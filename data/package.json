@@ -1,0 +1,22 @@
+{
+    "name": "fullcontract",
+    "version": "0.0.0",
+    "description": "Name of the person to greet: \"Dan\".\nThank you!",
+    "author": "Rui Marques",
+    "accordproject": {
+        "template": "contract",
+        "cicero": "^0.22.0",
+        "runtime": "ergo"
+    },
+    "devDependencies": {
+        "@accordproject/cicero-cli": "^0.22.0",
+        "chai": "4.2.0",
+        "cucumber": "^5.1.0"
+    },
+    "scripts": {
+        "test": "cucumber-js test -r .cucumber.js"
+    },
+    "dependencies": {
+        "npm": "^7.17.0"
+    }
+}

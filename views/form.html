@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Contract</title>
+
+    <!-- Style and bootstrap stuff -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <!-- javascript to make the page really awesome -->
+    <script src="../js/form.js"></script>
+
+    <!-- style for styling the page with swag -->
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+
+<body>
+    <div class="container" style="padding: 20px 0px 20px 0px;">
+        <div class="row">
+            <div class="col" style="overflow: auto;">
+                <form action="post">
+                    <h3>Client</h3>
+                    <div class="form-group">
+                        <label for="client">Name:</label>
+                        <input type="text" class="form-control" id="client" placeholder="Name"
+                            onchange='onChangeInput("client");' onkeyup="this.onchange();" onpaste="this.onchange();"
+                            oninput="this.onchange();">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientRep">Representative:</label>
+                        <input type="text" class="form-control" id="clientRep" placeholder="Representative's name"
+                            onchange='onChangeInput("clientRep");' onkeyup="this.onchange();" onpaste="this.onchange();"
+                            oninput="this.onchange();">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientNIF">NIF:</label>
+                        <input type="text" class="form-control" id="clientNIF" placeholder="NIF"
+                            onchange='onChangeInput("clientNIF");' onkeyup="this.onchange();" onpaste="this.onchange();"
+                            oninput="this.onchange();">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientadd">Client's Address:</label>
+                        <input type="text" class="form-control" id="clientadd" placeholder="Address">
+                    </div>
+                    <h3>Provider</h3>
+                    <div class="form-group">
+                        <label for="provider">Name:</label>
+                        <input type="text" class="form-control" id="provider" placeholder="Name"
+                            onchange='onChangeInput("provider");' onkeyup="this.onchange();" onpaste="this.onchange();"
+                            oninput="this.onchange();">
+                    </div>
+                    <div class="form-group">
+                        <label for="providerrep">Representative:</label>
+                        <input type="text" class="form-control" id="providerrep" placeholder="Representative's name">
+                    </div>
+                    <div class="form-group">
+                        <label for="providernif">NIF:</label>
+                        <input type="text" class="form-control" id="providernif" placeholder="NIF">
+                    </div>
+                    <div class="form-group">
+                        <label for="provideradd">Provider's Address:</label>
+                        <input type="text" class="form-control" id="provideradd" placeholder="Address">
+                    </div>
+                    <h3>Contract data</h3>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="servicecost">Service cost:</label>
+                            <input type="number" class="form-control" id="servicecost">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="provideradd">Initial date:</label>
+                            <input type="date" class="form-control" id="provideradd">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="provideradd">Duration amount:</label>
+                            <input type="number" class="form-control" id="provideradd">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="provideradd">Duration unit:</label>
+                            <select class="form-control" name="durationunit" id="durationunit">
+                                <option disabled selected>Pick a unit</option>
+                                <option value="years">Years</option>
+                                <option value="quarters">Quarters</option>
+                                <option value="months">Months</option>
+                                <option value="weeks">Weeks</option>
+                                <option value="days">Days</option>
+                            </select>
+                        </div>
+                    </div>
+                    <h3>SLA Points</h3>
+                    <h5>Intervalos</h5>
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <input type="number" class="form-control" placeholder="0" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control">
+                        </div>
+                        <div class="input-group col-md-4">
+                            <input type="number" class="form-control" placeholder="0" readonly>
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <input type="number" class="form-control" placeholder="0" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control">
+                        </div>
+                        <div class="input-group col-md-4">
+                            <input type="number" class="form-control" placeholder="0">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <input type="number" class="form-control" placeholder="0" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control">
+                        </div>
+                        <div class="input-group col-md-4">
+                            <input type="number" class="form-control" placeholder="0">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <input type="number" class="form-control" placeholder="0" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control">
+                        </div>
+                        <div class="input-group col-md-4">
+                            <input type="number" class="form-control" placeholder="0">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col" style="overflow: hidden;">
+                <h3>Contract</h3>
+                <div class="card" id="contract">
+                    <div class="card-body">
+                        <h4 class="card-title">Service Level Agreement</h4>
+                        <p class="card-text">Este é um contrato para o fornecimento de um serviço de fornecimento de
+                            internet.</p>
+                        <p class="card-text">Entre</p>
+                        <p class="card-text"><span id="spanprovider">{{provider}}</span> com o NIF nº <span id="spanproviderNIF">{{providerNIF}}</span>,
+                            com sede em <span id="spanproviderAddress">{{providerAddress}}</span>,
+                            representado por <span id="spanproviderRep">{{providerRep}}</span>, doravante denominado por <strong>Fornecedor</strong>.
+                        </p>
+                        <p class="card-text">E</p>
+                        <p class="card-text"><span id="spanclient">{{client}}</span> com o NIF nº <span
+                                id="spanclientNIF">{{clientNIF}}</span>, sediado em <span id="">{{clientAddress}}</span>,
+                            representado por <span id="spanclientRep">{{clientRep}}</span>, adiante designado por
+                            <strong>Cliente</strong>.</p>
+                        <p class="card-text">O contrato será iniciado a <span id="">{{inicialDate as "DD/MM/YYYY"}}</span>, iniciando nesse
+                            mesmo dia e terá a duração de <span id="">{{contractDuration}}</span> meses.</p>
+                        <p class="card-text">O serviço prestado pelo <strong>Fornecedor</strong> terá o custo de
+                            <span id="">{{serviceCost}}</span> pelo
+                            período de serviço acordado pelas partes deste contrato. O pagamento será feito mediante o
+                            resultado da avaliação realizada pelo <strong>Cliente</strong>, que terá que ser
+                            obrigatoriamente
+                            realizada num espaço de 7 dias a contar desde o final do contrato.</p>
+                        <p class="card-text">A avaliação terá que ser realizada numa escala de 0 a 100 pontos em que:
+                        </p>
+                        <p class="card-text">1. No caso da pontuação ser inferior a <span id="">{{minPoints}}</span> (valor mínimo de
+                            pontuação do serviço) o contrato entre ambas as partes termina e o <strong>Cliente</strong>
+                            não tem que
+                            pagar pelo serviço prestado;</p>
+                        <p class="card-text">2. No caso da pontuação estar compreendida entre o valor mínimo e
+                            <span id="">{{lowPoints}}</span> o contrato não será renovado e o <strong>Cliente</strong> paga apenas
+                            <span id="">{{highPercentage}}</span>%
+                            do valor total do serviço;</p>
+                        <p class="card-text">3. No caso da pontuação estar compreendida entre o valor definido no Ponto
+                            2 e <span id="">{{midPoints}}</span> o contrato será renovado e o <strong>Cliente</strong> paga apenas
+                            <span id="">{{midPercentage}}</span>% do
+                            valor total do serviço providenciado;</p>
+                        <p class="card-text">4. No caso da pontuação estar compreendida entro o valor definido no Ponto
+                            3 e <span id="">{{highPoints}}</span> o contrato será renovado e o <strong>Cliente</strong> paga apenas
+                            <span id="">{{lowPercentage}}</span>%
+                            do valor total definido previamente;</p>
+                        <p class="card-text">5. No caso da pontuação ser superior a <span id="">{{maxPoints}}</span> o contrato será
+                            renovado e o <strong>Cliente</strong> paga a totalidade do valor acordado entre ambas as
+                            partes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

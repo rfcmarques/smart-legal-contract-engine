@@ -1,0 +1,181 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace pt.digitalsign.fullcontract
+
+import org.accordproject.time.*
+import org.accordproject.runtime.*
+import org.accordproject.money.*
+import org.accordproject.obligation.*
+import org.accordproject.payment.PaymentReceived
+
+
+define function getNextRenewalDate(finaldate:DateTime,duration:Period) : String {
+  return
+    format(addPeriod(finaldate, duration), "DD/MM/YYYY")
+}
+
+contract ContractLogic over ServiceLevelAgreement state ServiceLevelAgreementState {
+
+  // Clausula de iniciação de contrato
+  // Esta clausula é chamada quando o contrato é inicializado
+  // Troca o estado do contrato para INICIADO
+  clause init(request : Request) : StateResponse {
+    set state ServiceLevelAgreementState {
+      status: INICIADO
+    };
+
+    return StateResponse{message: "Contrato iniciado"}
+  }
+
+  // Clausula de avaliação do contrato
+  // Esta clausula é chamada quando é feito um Request do tipo ContractRequest
+  // Só funciona caso o contrato tenha o estado inicializado
+  // Realiza a avaliação do serviço e atribui os parametros consoante o valor da avaliação
+  clause avaliacontrato(request : ContractRequest) : ContractResponse emits PaymentObligation {
+
+    let points = request.points;
+    let contractEnd = addPeriod(contract.inicialDate, contract.contractDuration);
+    let limitDate = addDuration(contractEnd, Duration{ amount: 7, unit: ~org.accordproject.time.TemporalUnit.days});
+
+    enforce (state.status = INICIADO) 
+      else throw Error{ message: `O estado {{% state.status %}} é inválido para este tipo de contrato` };
+
+    enforce points >= 0.0 and points <= 100.0 else
+      throw Error{ message : "Os pontos devem estar compreendidos entre 0 e 100" };
+
+    enforce isAfter(now(), contractEnd) else
+      throw Error{ message : "O serviço ainda não pode ser avaliado porque o contrato ainda não terminou" };
+    
+    enforce isBefore(now(), limitDate) else
+      throw Error{ message : "A data limite para a avaliação já foi atingida" };
+
+
+    if points >= contract.minPoints and points < contract.lowPoints then
+
+      emit PaymentObligation{
+        contract: contract,
+        promisor: some(contract.provider),
+        promisee: some(contract.client),
+        deadline: none,
+        amount: MonetaryAmount{doubleValue: contract.serviceCost.doubleValue * 0.5, currencyCode: EUR },
+        description: toString(contract.client) ++ " should pay to " ++ toString(contract.provider)
+      };
+
+      set state ServiceLevelAgreementState {
+        status: OBRIGACAO_EMITIDA
+      };
+
+      return ContractResponse{ 
+        message: "Avaliação submetida com sucesso",
+        paymentInfo: "O cliente deve pagar ao fornecedor metade do valor acordado",
+        renewal: false,
+        newContractEndDate: "Null"
+      }
+
+    else if points >= contract.lowPoints and points < contract.midPoints then
+
+      emit PaymentObligation{
+        contract: contract,
+        promisor: some(contract.provider),
+        promisee: some(contract.client),
+        deadline: none,
+        amount: MonetaryAmount{doubleValue: contract.serviceCost.doubleValue * 0.8, currencyCode: EUR },
+        description: toString(contract.client) ++ " should pay to " ++ toString(contract.provider)
+      };
+
+      set state ServiceLevelAgreementState {
+        status: OBRIGACAO_EMITIDA
+      };
+
+      return ContractResponse{ 
+        message: "Avaliação submetida com sucesso",
+        paymentInfo: "O cliente deve pagar ao fornecedor 80% do valor acordado",
+        renewal: true,
+        newContractEndDate: getNextRenewalDate(contractEnd, contract.contractDuration)
+      }
+    
+    else if points >= contract.midPoints and points < contract.highPoints then
+
+      emit PaymentObligation{
+        contract: contract,
+        promisor: some(contract.provider),
+        promisee: some(contract.client),
+        deadline: none,
+        amount: MonetaryAmount{doubleValue: contract.serviceCost.doubleValue * 0.9, currencyCode: EUR },
+        description: toString(contract.client) ++ " should pay to " ++ toString(contract.provider)
+      };
+
+      set state ServiceLevelAgreementState {
+        status: OBRIGACAO_EMITIDA
+      };
+    
+      return ContractResponse{ 
+        message: "Avaliação submetida com sucesso",
+        paymentInfo: "O cliente deve pagar ao fornecedor 90% do valor acordado",
+        renewal: true,
+        newContractEndDate: getNextRenewalDate(contractEnd, contract.contractDuration)
+      }
+    
+    else if points >= contract.maxPoints then
+
+      emit PaymentObligation{
+        contract: contract,
+        promisor: some(contract.provider),
+        promisee: some(contract.client),
+        deadline: none,
+        amount: contract.serviceCost,
+        description: toString(contract.client) ++ " should pay to " ++ toString(contract.provider)
+      };
+
+      set state ServiceLevelAgreementState {
+        status: OBRIGACAO_EMITIDA
+      };
+    
+      return ContractResponse{ 
+        message: "Avaliação submetida com sucesso",
+        paymentInfo: "O cliente deve pagar ao fornecedor a totalidade do valor acordado",
+        renewal: true,
+        newContractEndDate: getNextRenewalDate(contractEnd, contract.contractDuration)
+      }
+    
+    else 
+
+      set state ServiceLevelAgreementState {
+        status: TERMINADO
+      }; 
+
+      return ContractResponse{
+        message: "Avaliação submetida com sucesso",
+        paymentInfo: "O cliente não deve pagar qualquer valor acordado com o fornecedor, por má prestação de serviço",
+        renewal: false,
+        newContractEndDate: "Null"
+      }
+  }
+
+  clause paymentDone(request : PaymentReceived) : PaymentResponse {
+
+    enforce (state.status = OBRIGACAO_EMITIDA) 
+      else throw Error{ message: `O estado {{% state.status %}} é inválido para este tipo de contrato` };
+
+    set state ServiceLevelAgreementState{
+      status: TERMINADO
+    };
+
+    return PaymentResponse{
+      message: "Pagamento recebido. Contrato terminado com sucesso"
+    }
+  }
+
+}

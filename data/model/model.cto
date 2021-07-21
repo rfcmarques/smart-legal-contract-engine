@@ -1,0 +1,66 @@
+namespace pt.digitalsign.fullcontract
+
+import org.accordproject.contract.* from https://models.accordproject.org/accordproject/contract.cto
+import org.accordproject.runtime.* from https://models.accordproject.org/accordproject/runtime.cto
+import org.accordproject.time.* from https://models.accordproject.org/time@0.2.0.cto
+import org.accordproject.money.* from https://models.accordproject.org/money@0.2.0.cto
+import org.accordproject.party.* from https://models.accordproject.org/accordproject/party.cto
+import org.accordproject.obligation.* from https://models.accordproject.org/accordproject/obligation.cto
+import org.accordproject.payment.PaymentReceived from https://models.accordproject.org/payment/payment@0.2.0.cto
+
+transaction ContractRequest extends Request {
+  o Double points
+}
+
+transaction ContractResponse extends Response {
+  o String message
+  o String paymentInfo
+  o Boolean renewal
+  o String newContractEndDate
+}
+
+transaction StateResponse {
+  o String message
+}
+
+transaction PaymentResponse {
+  o String message
+}
+
+/**
+ * The model for the contract
+ */
+asset ServiceLevelAgreement extends Contract {
+  /**
+   * The name for the contract
+   */
+  --> Party provider
+  --> Party client
+  o String providerRep
+  o String clientRep
+  o Integer providerNIF
+  o Integer clientNIF
+  o String providerAddress
+  o String clientAddress
+  o DateTime inicialDate
+  o Period contractDuration
+  o MonetaryAmount serviceCost
+  o Double minPoints
+  o Double lowPoints
+  o Double midPoints
+  o Double highPoints
+  o Double maxPoints
+  o Double highPercentage
+  o Double midPercentage
+  o Double lowPercentage
+}
+
+asset ServiceLevelAgreementState extends State {
+  o ContractLifecycleStatus status
+}
+
+enum ContractLifecycleStatus {
+  o INICIADO
+  o OBRIGACAO_EMITIDA
+  o TERMINADO
+}
