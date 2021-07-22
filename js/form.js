@@ -1,3 +1,15 @@
+/*
+ *
+ * DYNAMIC AREA
+ * Author: Rui Marques
+ * Date: 22-07-2021
+ *
+ * The code below makes the input fields
+ * and the contract sample on the right
+ * work dynamically 
+ *
+ */
+
 function onChangeInput(elem) {
     spantext = "{{" + elem + "}}";
 
@@ -63,3 +75,23 @@ function setIntervals(elem) {
         $('#' + elem + '-2').val(0);
     }
 }
+
+/*
+ *
+ * REGEX AREA
+ * Author: Rui Marques
+ * Date: 22-07-2021
+ *
+ * The code below sets the regex for
+ * the input fields
+ *
+ */
+
+$('#btnCreate').click(function () {
+    var rgx = /^[a-zA-Z]$/;
+
+
+    $('input[type=text]').addClass("is-valid");
+    
+
+})
