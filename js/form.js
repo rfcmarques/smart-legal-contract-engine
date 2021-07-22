@@ -1,6 +1,5 @@
 function onChangeInput(elem) {
     spantext = "{{" + elem + "}}";
-    console.log($('#' + elem).val());
 
     if ($('#' + elem).val()) {
         str = $('#' + elem).val();
@@ -10,12 +9,46 @@ function onChangeInput(elem) {
     }
 }
 
+function onChangeAmount(elem) {
+    spantext = "{{" + elem + "}}";
+
+    if ($('#' + elem).val()) {
+        str = $('#' + elem).val() + " " + $('#currency').val()
+        $('#contract #span' + elem).text(str);
+    } else {
+        $('#contract #span' + elem).text(spantext);
+    }
+}
+
+$('#currency').change(function () {
+    $('#serviceCost').change();
+})
+
+function onChangeDuration(elem) {
+    spantext = "{{" + elem + "}}";
+
+    if ($('#' + elem).val() && $('#' + elem + 'Unit').val()) {
+        str = $('#' + elem).val() + " " + $('#' + elem + 'Unit').val();
+        $('#contract #span' + elem).text(str);
+    } else {
+        $('#contract #span' + elem).text(spantext);
+    }
+}
+
+$('#contractDurationUnit').change(function () {
+    $('#contractDuration').change();
+})
+
 function onChangeDate(elem) {
     spantext = "{{" + elem + "}}";
 
     if ($('#' + elem).val() != "") {
         $('#' + elem).on('change', () => {
-            str = $('#' + elem).val();
+            date = $('#' + elem).val();
+            dd = date.split("-")[2];
+            mm = date.split("-")[1];
+            yy = date.split("-")[0];
+            str = dd + "-" + mm + "-" + yy;
             $('#contract #span' + elem).text(str);
         })
     } else {
