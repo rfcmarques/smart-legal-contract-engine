@@ -16,8 +16,10 @@ function onChangeInput(elem) {
     if ($('#' + elem).val()) {
         str = $('#' + elem).val();
         $('#contract #span' + elem).text(str);
+        $('#contract #span' + elem).css({'color': 'rgb(0, 153, 255)', 'font-weight': 'bold'});
     } else {
         $('#contract #span' + elem).text(spantext);
+        $('#contract #span' + elem).css({'color': 'red', 'font-weight': 'normal'});
     }
 }
 
@@ -27,8 +29,10 @@ function onChangeAmount(elem) {
     if ($('#' + elem).val()) {
         str = $('#' + elem).val() + " " + $('#currency').val()
         $('#contract #span' + elem).text(str);
+        $('#contract #span' + elem).css({'color': 'rgb(0, 153, 255)', 'font-weight': 'bold'});
     } else {
         $('#contract #span' + elem).text(spantext);
+        $('#contract #span' + elem).css({'color': 'red', 'font-weight': 'normal'});
     }
 }
 
@@ -42,8 +46,10 @@ function onChangeDuration(elem) {
     if ($('#' + elem).val() && $('#' + elem + 'Unit').val()) {
         str = $('#' + elem).val() + " " + $('#' + elem + 'Unit').val();
         $('#contract #span' + elem).text(str);
+        $('#contract #span' + elem).css({'color': 'rgb(0, 153, 255)', 'font-weight': 'bold'});
     } else {
         $('#contract #span' + elem).text(spantext);
+        $('#contract #span' + elem).css({'color': 'red', 'font-weight': 'normal'});
     }
 }
 
@@ -62,9 +68,11 @@ function onChangeDate(elem) {
             yy = date.split("-")[0];
             str = dd + "-" + mm + "-" + yy;
             $('#contract #span' + elem).text(str);
+            $('#contract #span' + elem).css({'color': 'rgb(0, 153, 255)', 'font-weight': 'bold'});
         })
     } else {
         $('#contract #span' + elem).text(spantext);
+        $('#contract #span' + elem).css({'color': 'red', 'font-weight': 'normal'});
     }
 }
 
@@ -80,7 +88,7 @@ function setIntervals(elem) {
  *
  * REGEX AREA
  * Author: Rui Marques
- * Date: 22-07-2021
+ * Date: 23-07-2021
  *
  * The code below sets the regex for
  * the input fields
@@ -88,10 +96,55 @@ function setIntervals(elem) {
  */
 
 $('#btnCreate').click(function () {
-    var rgx = /^[a-zA-Z]$/;
+    var textrgx = /[a-zA-Z]+/;
+    var numbrgx = new RegExp('^[0-9]+$');
 
+    $('input[type=text]').each(function () {
+        if (!textrgx.test($(this).val())) {
+            $(this).addClass("is-invalid");
+        } else {
+            $(this).addClass("is-valid");
+        }
+    });
 
-    $('input[type=text]').addClass("is-valid");
-    
+    $('input[type=number]').each(function () {
+        if (!numbrgx.test($(this).val())) {
+            $(this).addClass("is-invalid");
+        } else {
+            $(this).addClass("is-valid");
+        }
+    })
+})
 
+$('input[type=text]').each(function () {
+    var textrgx = new RegExp('[^A-Za-z ]+');
+
+    $(this).on('keyup', function () {
+        if ($(this).val()) {
+            if (textrgx.test($(this).val())) {
+                $(this).addClass("is-invalid");
+                $(this).removeClass("is-valid");
+            } else {
+                $(this).addClass("is-valid");
+                $(this).removeClass("is-invalid");
+            }
+        } else {
+            $(this).removeClass("is-valid");
+            $(this).removeClass("is-invalid");
+        }
+    })
+})
+
+$('input[type=number]').each(function () {
+    var numbrgx = new RegExp('^[0-9]+$');
+
+    $(this).on('keyup', function () {
+        if (!numbrgx.test($(this).val())) {
+            $(this).addClass("is-invalid");
+            $(this).removeClass("is-valid");
+        } else {
+            $(this).addClass("is-valid");
+            $(this).removeClass("is-invalid");
+        }
+    })
 })

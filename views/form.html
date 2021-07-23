@@ -31,168 +31,189 @@
         <div class="row">
             <div class="col" style="overflow: auto;">
                 <form action="post">
-                    <h3>Client</h3>
-                    <div class="form-group">
-                        <label for="client">Name:</label>
-                        <input type="text" class="form-control" id="client" placeholder="Name"
-                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();" onpaste="this.onchange();"
-                            oninput="this.onchange();">
-                    </div>
-                    <div class="form-group">
-                        <label for="clientRep">Representative:</label>
-                        <input type="text" class="form-control" id="clientRep" placeholder="Representative's name"
-                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();" onpaste="this.onchange();"
-                            oninput="this.onchange();">
-                    </div>
-                    <div class="form-group">
-                        <label for="clientNIF">NIF:</label>
-                        <input type="text" class="form-control" id="clientNIF" placeholder="NIF"
-                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();" onpaste="this.onchange();"
-                            oninput="this.onchange();">
-                    </div>
-                    <div class="form-group">
-                        <label for="clientAddress">Client's Address:</label>
-                        <input type="text" class="form-control" id="clientAddress" placeholder="Address"
-                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();" onpaste="this.onchange();"
-                            oninput="this.onchange();">
-                    </div>
-                    <h3>Provider</h3>
-                    <div class="form-group">
-                        <label for="provider">Name:</label>
-                        <input type="text" class="form-control" id="provider" placeholder="Name"
-                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();" onpaste="this.onchange();"
-                            oninput="this.onchange();">
-                    </div>
-                    <div class="form-group">
-                        <label for="providerRep">Representative:</label>
-                        <input type="text" class="form-control" id="providerRep" placeholder="Representative's name"
-                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();" onpaste="this.onchange();"
-                            oninput="this.onchange();">
-                    </div>
-                    <div class="form-group">
-                        <label for="providerNIF">NIF:</label>
-                        <input type="text" class="form-control" id="providerNIF" placeholder="NIF"
-                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();" onpaste="this.onchange();"
-                            oninput="this.onchange();">
-                    </div>
-                    <div class="form-group">
-                        <label for="providerAddress">Provider's Address:</label>
-                        <input type="text" class="form-control" id="providerAddress" placeholder="Address"
-                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();" onpaste="this.onchange();"
-                            oninput="this.onchange();">
-                    </div>
-                    <h3>Contract data</h3>
-                    <div class="form-row">
-                        <div class="col-md-3 mb-3">
-                            <label for="serviceCost">Service cost:</label>
-                            <input type="number" class="form-control" id="serviceCost"
-                                onchange='onChangeAmount(this.id);' onkeyup="this.onchange();"
-                                onpaste="this.onchange();" oninput="this.onchange();">
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="serviceCostCurrency">Currency:</label>
-                            <select class="custom-select" name="serviceCostCurrency" id="currency">
-                                <option value="EUR">€</option>
-                                <option value="USD">$</option>
-                                <option value="GBP">£</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="inicialDate">Initial date:</label>
-                            <input type="date" class="form-control" id="inicialDate" onchange='onChangeDate(this.id);'
-                                onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <label for="contractDuration">Duration amount:</label>
-                            <input type="number" class="form-control" id="contractDuration"
-                                onchange='onChangeDuration(this.id);' onkeyup="this.onchange();"
-                                oninput="this.onchange();" onpaste="this.onchange();">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="contractDurationUnit">Duration unit:</label>
-                            <select class="form-control" name="durationunit" id="contractDurationUnit">
-                                <option disabled selected>Pick a unit</option>
-                                <option value="years">Years</option>
-                                <option value="quarters">Quarters</option>
-                                <option value="months">Months</option>
-                                <option value="weeks">Weeks</option>
-                                <option value="days">Days</option>
-                            </select>
-                        </div>
-                    </div>
-                    <h3>SLA Points</h3>
-                    <h5>Intervalos</h5>
-                    <div class="form-row">
-                        <div class="col-md-4">
-                            <input type="number" class="form-control" placeholder="0" readonly>
-                        </div>
-                        <div class="col-md-4">
-                            <input id="minPoints" type="number" class="form-control"
-                                onchange='setIntervals(this.id); onChangeInput(this.id);' onkeyup="this.onchange();"
-                                oninput="this.onchange();" onpaste="this.onchange();">
-                        </div>
-                        <div class="input-group col-md-4">
-                            <input type="number" class="form-control" placeholder="0" readonly>
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">%</span>
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Client</h3>
+                            <div class="form-group">
+                                <label for="client">Name:</label>
+                                <input type="text" class="form-control" id="client" placeholder="Name"
+                                    onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                    onpaste="this.onchange();" oninput="this.onchange();">
+                            </div>
+                            <div class="form-group">
+                                <label for="clientRep">Representative:</label>
+                                <input type="text" class="form-control" id="clientRep"
+                                    placeholder="Representative's name" onchange='onChangeInput(this.id);'
+                                    onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();">
+                            </div>
+                            <div class="form-group">
+                                <label for="clientNIF">NIF:</label>
+                                <input type="number" class="form-control" id="clientNIF" placeholder="NIF"
+                                    onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                    onpaste="this.onchange();" oninput="this.onchange();">
+                            </div>
+                            <div class="form-group">
+                                <label for="clientAddress">Client's Address:</label>
+                                <input type="text" class="form-control" id="clientAddress" placeholder="Address"
+                                    onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                    onpaste="this.onchange();" oninput="this.onchange();">
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <div class="form-row">
-                        <div class="col-md-4">
-                            <input id="minPoints-2" type="number" class="form-control" placeholder="0" readonly>
-                        </div>
-                        <div class="col-md-4">
-                            <input id="lowPoints" type="number" class="form-control"
-                                onchange='setIntervals(this.id); onChangeInput(this.id);' onkeyup="this.onchange();"
-                                oninput="this.onchange();" onpaste="this.onchange();">
-                        </div>
-                        <div class="input-group col-md-4">
-                            <input type="number" class="form-control" placeholder="0" id="highPercentage"
-                                onchange='onChangeInput(this.id);' onkeyup="this.onchange();" oninput="this.onchange();"
-                                onpaste="this.onchange();">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">%</span>
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Provider</h3>
+                            <div class="form-group">
+                                <label for="provider">Name:</label>
+                                <input type="text" class="form-control" id="provider" placeholder="Name"
+                                    onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                    onpaste="this.onchange();" oninput="this.onchange();">
+                            </div>
+                            <div class="form-group">
+                                <label for="providerRep">Representative:</label>
+                                <input type="text" class="form-control" id="providerRep"
+                                    placeholder="Representative's name" onchange='onChangeInput(this.id);'
+                                    onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();">
+                            </div>
+                            <div class="form-group">
+                                <label for="providerNIF">NIF:</label>
+                                <input type="number" class="form-control" id="providerNIF" placeholder="NIF"
+                                    onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                    onpaste="this.onchange();" oninput="this.onchange();">
+                            </div>
+                            <div class="form-group">
+                                <label for="providerAddress">Provider's Address:</label>
+                                <input type="text" class="form-control" id="providerAddress" placeholder="Address"
+                                    onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                    onpaste="this.onchange();" oninput="this.onchange();">
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <div class="form-row">
-                        <div class="col-md-4">
-                            <input id="lowPoints-2" type="number" class="form-control" placeholder="0" readonly>
-                        </div>
-                        <div class="col-md-4">
-                            <input id="midPoints" type="number" class="form-control"
-                                onchange='setIntervals(this.id); onChangeInput(this.id);' onkeyup="this.onchange();"
-                                oninput="this.onchange();" onpaste="this.onchange();">
-                        </div>
-                        <div class="input-group col-md-4">
-                            <input type="number" class="form-control" placeholder="0" id="midPercentage"
-                                onchange='onChangeInput(this.id);' onkeyup="this.onchange();" oninput="this.onchange();"
-                                onpaste="this.onchange();">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">%</span>
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Contract data</h3>
+                            <div class="form-row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="serviceCost">Service cost:</label>
+                                    <input type="number" class="form-control" id="serviceCost"
+                                        onchange='onChangeAmount(this.id);' onkeyup="this.onchange();"
+                                        onpaste="this.onchange();" oninput="this.onchange();">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="serviceCostCurrency">Currency:</label>
+                                    <select class="custom-select" name="serviceCostCurrency" id="currency">
+                                        <option value="EUR">€</option>
+                                        <option value="USD">$</option>
+                                        <option value="GBP">£</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="inicialDate">Initial date:</label>
+                                    <input type="date" class="form-control" id="inicialDate"
+                                        onchange='onChangeDate(this.id);' onkeyup="this.onchange();"
+                                        onpaste="this.onchange();" oninput="this.onchange();">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="contractDuration">Duration amount:</label>
+                                    <input type="number" class="form-control" id="contractDuration"
+                                        onchange='onChangeDuration(this.id);' onkeyup="this.onchange();"
+                                        oninput="this.onchange();" onpaste="this.onchange();">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="contractDurationUnit">Duration unit:</label>
+                                    <select class="form-control" name="durationunit" id="contractDurationUnit">
+                                        <option disabled selected>Pick a unit</option>
+                                        <option value="years">Years</option>
+                                        <option value="quarters">Quarters</option>
+                                        <option value="months">Months</option>
+                                        <option value="weeks">Weeks</option>
+                                        <option value="days">Days</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <div class="form-row">
-                        <div class="col-md-4">
-                            <input id="midPoints-2" type="number" class="form-control" placeholder="0" readonly>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="number" class="form-control" id="highPoints" onchange='onChangeInput(this.id);'
-                                onkeyup="this.onchange();" oninput="this.onchange();" onpaste="this.onchange();">
-                        </div>
-                        <div class="input-group col-md-4">
-                            <input type="number" class="form-control" placeholder="0" id="lowPercentage"
-                                onchange='onChangeInput(this.id);' onkeyup="this.onchange();" oninput="this.onchange();"
-                                onpaste="this.onchange();">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">%</span>
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>SLA Points</h3>
+                            <h5>Intervalos</h5>
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <input type="number" class="form-control" placeholder="0" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <input id="minPoints" type="number" class="form-control"
+                                        onchange='setIntervals(this.id); onChangeInput(this.id);'
+                                        onkeyup="this.onchange();" oninput="this.onchange();"
+                                        onpaste="this.onchange();">
+                                </div>
+                                <div class="input-group col-md-4">
+                                    <input type="number" class="form-control" placeholder="0" readonly>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <input id="minPoints-2" type="number" class="form-control" placeholder="0" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <input id="lowPoints" type="number" class="form-control"
+                                        onchange='setIntervals(this.id); onChangeInput(this.id);'
+                                        onkeyup="this.onchange();" oninput="this.onchange();"
+                                        onpaste="this.onchange();">
+                                </div>
+                                <div class="input-group col-md-4">
+                                    <input type="number" class="form-control" placeholder="0" id="highPercentage"
+                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                        oninput="this.onchange();" onpaste="this.onchange();">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <input id="lowPoints-2" type="number" class="form-control" placeholder="0" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <input id="midPoints" type="number" class="form-control"
+                                        onchange='setIntervals(this.id); onChangeInput(this.id);'
+                                        onkeyup="this.onchange();" oninput="this.onchange();"
+                                        onpaste="this.onchange();">
+                                </div>
+                                <div class="input-group col-md-4">
+                                    <input type="number" class="form-control" placeholder="0" id="midPercentage"
+                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                        oninput="this.onchange();" onpaste="this.onchange();">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <input id="midPoints-2" type="number" class="form-control" placeholder="0" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="number" class="form-control" id="highPoints"
+                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                        oninput="this.onchange();" onpaste="this.onchange();">
+                                </div>
+                                <div class="input-group col-md-4">
+                                    <input type="number" class="form-control" placeholder="0" id="lowPercentage"
+                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                        oninput="this.onchange();" onpaste="this.onchange();">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">%</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
