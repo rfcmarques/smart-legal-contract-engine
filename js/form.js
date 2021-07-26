@@ -96,7 +96,7 @@ function setIntervals(elem) {
  */
 
 $('#btnCreate').click(function () {
-    var textrgx = /[a-zA-Z]+/;
+    var textrgx = new RegExp('[^A-Za-z ,0-9]+');
     var numbrgx = new RegExp('^[0-9]+$');
 
     $('input[type=text]').each(function () {
@@ -117,7 +117,7 @@ $('#btnCreate').click(function () {
 })
 
 $('input[type=text]').each(function () {
-    var textrgx = new RegExp('[^A-Za-z ]+');
+    var textrgx = new RegExp('[^A-Za-z ,0-9]+');
 
     $(this).on('keyup', function () {
         if ($(this).val()) {
