@@ -50,7 +50,6 @@ router.post('/', function (request, response) {
 
     pdf.create(templateHtml, options).toFile(destination, function (err, pdf) {})
 
-    response.redirect('/');
 })
 
 module.exports = router;

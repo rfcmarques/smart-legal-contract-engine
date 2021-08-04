@@ -16,10 +16,16 @@ function onChangeInput(elem) {
     if ($('#' + elem).val()) {
         str = $('#' + elem).val();
         $('#contract #span' + elem).text(str);
-        $('#contract #span' + elem).css({'color': 'rgb(0, 153, 255)', 'font-weight': 'bold'});
+        $('#contract #span' + elem).css({
+            'color': 'rgb(0, 153, 255)',
+            'font-weight': 'bold'
+        });
     } else {
         $('#contract #span' + elem).text(spantext);
-        $('#contract #span' + elem).css({'color': 'red', 'font-weight': 'normal'});
+        $('#contract #span' + elem).css({
+            'color': 'red',
+            'font-weight': 'normal'
+        });
     }
 }
 
@@ -29,10 +35,16 @@ function onChangeAmount(elem) {
     if ($('#' + elem).val()) {
         str = $('#' + elem).val() + " " + $('#currency').val()
         $('#contract #span' + elem).text(str);
-        $('#contract #span' + elem).css({'color': 'rgb(0, 153, 255)', 'font-weight': 'bold'});
+        $('#contract #span' + elem).css({
+            'color': 'rgb(0, 153, 255)',
+            'font-weight': 'bold'
+        });
     } else {
         $('#contract #span' + elem).text(spantext);
-        $('#contract #span' + elem).css({'color': 'red', 'font-weight': 'normal'});
+        $('#contract #span' + elem).css({
+            'color': 'red',
+            'font-weight': 'normal'
+        });
     }
 }
 
@@ -46,10 +58,16 @@ function onChangeDuration(elem) {
     if ($('#' + elem).val() && $('#' + elem + 'Unit').val()) {
         str = $('#' + elem).val() + " " + $('#' + elem + 'Unit').val();
         $('#contract #span' + elem).text(str);
-        $('#contract #span' + elem).css({'color': 'rgb(0, 153, 255)', 'font-weight': 'bold'});
+        $('#contract #span' + elem).css({
+            'color': 'rgb(0, 153, 255)',
+            'font-weight': 'bold'
+        });
     } else {
         $('#contract #span' + elem).text(spantext);
-        $('#contract #span' + elem).css({'color': 'red', 'font-weight': 'normal'});
+        $('#contract #span' + elem).css({
+            'color': 'red',
+            'font-weight': 'normal'
+        });
     }
 }
 
@@ -68,11 +86,17 @@ function onChangeDate(elem) {
             yy = date.split("-")[0];
             str = dd + "-" + mm + "-" + yy;
             $('#contract #span' + elem).text(str);
-            $('#contract #span' + elem).css({'color': 'rgb(0, 153, 255)', 'font-weight': 'bold'});
+            $('#contract #span' + elem).css({
+                'color': 'rgb(0, 153, 255)',
+                'font-weight': 'bold'
+            });
         })
     } else {
         $('#contract #span' + elem).text(spantext);
-        $('#contract #span' + elem).css({'color': 'red', 'font-weight': 'normal'});
+        $('#contract #span' + elem).css({
+            'color': 'red',
+            'font-weight': 'normal'
+        });
     }
 }
 
@@ -146,5 +170,28 @@ $('input[type=number]').each(function () {
             $(this).addClass("is-valid");
             $(this).removeClass("is-invalid");
         }
+    })
+})
+
+$('#btnCreate').on('click', function () {
+    setTimeout(function () {
+        window.location.reload();
+    },2000)
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+    Toast.fire({
+        icon: "success",
+        title: "PDF gerado com sucesso!"
     })
 })
