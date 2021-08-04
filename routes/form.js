@@ -1,9 +1,9 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const router = express.Router();
-var fs = require('fs');
-var pdf = require('html-pdf');
-var path = require('path');
+const fs = require('fs');
+const pdf = require('html-pdf');
+const path = require('path');
 var dirpath = path.join(__dirname, '../');
 
 router.get('/', function (request, response) {
@@ -50,8 +50,10 @@ router.post('/', function (request, response) {
     templateHtml = templateHtml.replace('{{midPercentage}}', data.midPercentage);
     templateHtml = templateHtml.replace('{{lowPercentage}}', data.lowPercentage);
 
-    pdf.create(templateHtml, options).toFile(destination, function (err, pdf) {})
-
+    pdf.create(templateHtml, options).toFile(destination, function (err, pdf) {
+        console.log(pdf)
+    })
+    
 })
 
 module.exports = router;

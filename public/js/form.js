@@ -176,7 +176,8 @@ $('input[type=number]').each(function () {
 $('#btnCreate').on('click', function () {
     setTimeout(function () {
         window.location.reload();
-    },2000)
+    }, 5000)
+
 
     const Toast = Swal.mixin({
         toast: true,
