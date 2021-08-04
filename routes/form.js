@@ -43,7 +43,9 @@ router.post('/', function (request, response) {
     templateHtml = templateHtml.replace('{{serviceCost}}', data.serviceCost + " " + data.serviceCostCurrency);
     templateHtml = templateHtml.replace('{{minPoints}}', data.minPoints);
     templateHtml = templateHtml.replace('{{lowPoints}}', data.lowPoints);
+    templateHtml = templateHtml.replace('{{midPoints}}', data.midPoints);
     templateHtml = templateHtml.replace('{{highPoints}}', data.highPoints);
+    templateHtml = templateHtml.replace('{{maxPoints}}', data.highPoints);
     templateHtml = templateHtml.replace('{{highPercentage}}', data.highPercentage);
     templateHtml = templateHtml.replace('{{midPercentage}}', data.midPercentage);
     templateHtml = templateHtml.replace('{{lowPercentage}}', data.lowPercentage);
