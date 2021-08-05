@@ -178,7 +178,6 @@ $('#btnCreate').on('click', function () {
         window.location.reload();
     }, 5000)
 
-
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',

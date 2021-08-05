@@ -11,6 +11,14 @@ router.get('/', function (request, response) {
     response.render('form', {})
 });
 
+router.get('/:pdf', function (request, response) {
+    if(request.params.pdf === 'contract-template'){
+        response.download(dirpath + '/public/downloads/template.pdf');
+    }else{
+        response.render('error 404')
+    }
+})
+
 router.post('/', function (request, response) {
 
     var template = path.join(dirpath, '/views', 'template.html');
@@ -51,7 +59,7 @@ router.post('/', function (request, response) {
     templateHtml = templateHtml.replace('{{lowPercentage}}', data.lowPercentage);
 
     pdf.create(templateHtml, options).toFile(destination, function (err, pdf) {
-        console.log(pdf)
+        response.redirect('/contract-template');
     })
     
 })
