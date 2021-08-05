@@ -1,0 +1,60 @@
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+a {
+    color: #0087C3;
+    text-decoration: none;
+}
+
+body {
+    background-color: #ffffff;
+    position: relative;
+    width: 21cm;
+    height: 29.7cm;
+    margin: 0 auto;
+    color: #555555;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-family: SourceSansPro;
+}
+
+header {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #AAAAAA;
+}
+
+span {
+    color: #0087C3;
+    font-weight: 600;
+}
+
+#company {
+    float: right;
+    margin-top: 8px;
+    text-align: right;
+}
+
+#logo {
+    float: left;
+    margin-top: 45px;
+}
+
+#logo img {
+    height: 40px;
+}
+
+#text {
+    color: #555555;
+    text-align: justify;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#title h1 {
+    color: #555555;
+    text-align: center
+}
