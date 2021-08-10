@@ -119,27 +119,6 @@ function setIntervals(elem) {
  *
  */
 
-$('#btnCreate').click(function () {
-    var textrgx = new RegExp('[^A-Za-z ,0-9]+');
-    var numbrgx = new RegExp('^[0-9]+$');
-
-    $('input[type=text]').each(function () {
-        if (!textrgx.test($(this).val())) {
-            $(this).addClass("is-invalid");
-        } else {
-            $(this).addClass("is-valid");
-        }
-    });
-
-    $('input[type=number]').each(function () {
-        if (!numbrgx.test($(this).val())) {
-            $(this).addClass("is-invalid");
-        } else {
-            $(this).addClass("is-valid");
-        }
-    })
-})
-
 $('input[type=text]').each(function () {
     var textrgx = new RegExp('[^A-Za-z ,0-9]+');
 
@@ -173,8 +152,21 @@ $('input[type=number]').each(function () {
     })
 })
 
+/*
+ *
+ * SUBMIT BUTTON AREA
+ * Author: Rui Marques
+ * Date: 04-08-2021
+ *
+ * The code below sets the behavior
+ * for the submit button that throws
+ * a sweetalert on the top-right corner
+ *
+ */
+
 $('#btnCreate').on('click', function () {
     setTimeout(function () {
+        $('#contractform').trigger('reset');
         window.location.reload();
     }, 5000)
 
@@ -196,24 +188,36 @@ $('#btnCreate').on('click', function () {
     })
 })
 
+/*
+ *
+ * VALIDATION AREA
+ * Author: Rui Marques
+ * Date: 10-08-2021
+ *
+ * The code below sets the validation
+ * for the input fields and enables
+ * the submit button
+ *
+ */
 
-// $(function () {
-//     var submitButton = $('#btnCreate').attr('disabled', true);
+$(function () {
+    var submitButton = $('#btnCreate').attr('disabled', true);
 
-//     $("#contractform input.required").change(function () {
-//         var valid = true;
-//         $.each($("#contractform input.required"), function (index, value) {
-            
-//             if(!$(value).val()){
-//                valid = false;
-//             }
-//         });
-//         if(valid){
-//             $(submitButton).attr("disabled", false);
-//             console.log("valid");
-//         } 
-//         else{
-//              $(submitButton).attr("disabled", true);
-//         }
-//     });
-// })
+    $("#contractform input:required").change(function () {
+        var valid = true;
+        console.log('entrei');
+        $.each($('#contractform input:required'), function (index, value) {
+            console.log('im here');
+            if (!$(value).val()) {
+                console.log('it works');
+                valid = false;
+            }
+        });
+        if (valid) {
+            $(submitButton).attr("disabled", false);
+            console.log("valid");
+        } else {
+            $(submitButton).attr("disabled", true);
+        }
+    });
+})
