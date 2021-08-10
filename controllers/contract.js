@@ -120,17 +120,8 @@ async function run() {
         res.json(objt);
 
     })
-
-    console.log(aod.getStateTypes());
-    console.log(aod.getIdentifier());
-    console.log(aod.getHash());
-    console.log(aod.getName());
-    console.log(aod.getIdentifier() + "-" + aod.getHash());
-    console.log(obj.data.contractId);
-
 }
 
 run();
-console.log("The contract is ready to be executed");
 
 module.exports = app;

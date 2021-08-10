@@ -195,3 +195,25 @@ $('#btnCreate').on('click', function () {
         title: "PDF gerado com sucesso!"
     })
 })
+
+
+// $(function () {
+//     var submitButton = $('#btnCreate').attr('disabled', true);
+
+//     $("#contractform input.required").change(function () {
+//         var valid = true;
+//         $.each($("#contractform input.required"), function (index, value) {
+            
+//             if(!$(value).val()){
+//                valid = false;
+//             }
+//         });
+//         if(valid){
+//             $(submitButton).attr("disabled", false);
+//             console.log("valid");
+//         } 
+//         else{
+//              $(submitButton).attr("disabled", true);
+//         }
+//     });
+// })

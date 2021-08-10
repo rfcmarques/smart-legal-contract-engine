@@ -15,7 +15,7 @@ router.get('/:pdf', function (request, response) {
     if(request.params.pdf === 'contract-template'){
         response.download(dirpath + '/public/downloads/template.pdf');
     }else{
-        response.render('error 404')
+        // response.render('error 404')
     }
 })
 

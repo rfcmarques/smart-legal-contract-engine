@@ -29,7 +29,7 @@
     <div class="container" style="padding: 20px 0px 20px 0px;">
         <div class="row">
             <div class="col" style="overflow: auto;">
-                <form action="/" method="POST">
+                <form id="contractform" action="/" method="POST">
                     <div class="card">
                         <div class="card-body">
                             <h3>Client</h3>
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="serviceCostCurrency">Currency:</label>
-                                    <select class="custom-select" name="serviceCostCurrency" id="currency" required>
+                                    <select class="custom-select" name="serviceCostCurrency" id="currency">
                                         <option value="EUR">€</option>
                                         <option value="USD">$</option>
                                         <option value="GBP">£</option>
@@ -123,7 +123,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="contractDurationUnit">Duration unit:</label>
-                                    <select class="form-control" name="contractDurationUnit" id="contractDurationUnit" required>
+                                    <select class="form-control" name="contractDurationUnit" id="contractDurationUnit">
                                         <option disabled selected>Pick a unit</option>
                                         <option value="anos">Anos</option>
                                         <option value="trimestres">Trimestres</option>
@@ -296,5 +296,4 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
-
 </html>
