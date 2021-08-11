@@ -205,17 +205,13 @@ $(function () {
 
     $("#contractform input:required").change(function () {
         var valid = true;
-        console.log('entrei');
         $.each($('#contractform input:required'), function (index, value) {
-            console.log('im here');
             if (!$(value).val()) {
-                console.log('it works');
                 valid = false;
             }
         });
         if (valid) {
             $(submitButton).attr("disabled", false);
-            console.log("valid");
         } else {
             $(submitButton).attr("disabled", true);
         }
