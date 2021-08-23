@@ -24,7 +24,7 @@ function onChangeInput(elem) {
         $('#contract #span' + elem).text(spantext);
         $('#contract #span' + elem).css({
             'color': 'red',
-            'font-weight': 'normal'
+            'font-weight': 600
         });
     }
 }
@@ -43,7 +43,7 @@ function onChangeAmount(elem) {
         $('#contract #span' + elem).text(spantext);
         $('#contract #span' + elem).css({
             'color': 'red',
-            'font-weight': 'normal'
+            'font-weight': 600
         });
     }
 }
@@ -66,7 +66,7 @@ function onChangeDuration(elem) {
         $('#contract #span' + elem).text(spantext);
         $('#contract #span' + elem).css({
             'color': 'red',
-            'font-weight': 'normal'
+            'font-weight': 600
         });
     }
 }
@@ -95,7 +95,7 @@ function onChangeDate(elem) {
         $('#contract #span' + elem).text(spantext);
         $('#contract #span' + elem).css({
             'color': 'red',
-            'font-weight': 'normal'
+            'font-weight': 600
         });
     }
 }
@@ -214,6 +214,67 @@ $(function () {
             $(submitButton).attr("disabled", false);
         } else {
             $(submitButton).attr("disabled", true);
+        }
+    });
+})
+
+$(function () {
+    $("#collapseOne input").change(function () {
+        var valid = true;
+        $.each($('#collapseOne input'), function (index, value) {
+            if (!$(value).val()) {
+                valid = false;
+            }
+        });
+        if (valid) {
+            $('#headingOne button').addClass('bg-success text-white');
+            $('#headingTwo button').click();
+        } else {
+            $('#headingOne button').removeClass('bg-success text-white');
+        }
+    });
+
+    $("#collapseTwo input").change(function () {
+        var valid = true;
+        $.each($('#collapseTwo input'), function (index, value) {
+            if (!$(value).val()) {
+                valid = false;
+            }
+        });
+        if (valid) {
+            $('#headingTwo button').addClass('bg-success text-white');
+            $('#headingThree button').click();
+        } else {
+            $('#headingTwo button').removeClass('bg-success text-white');
+        }
+    });
+
+    $("#collapseThree input").change(function () {
+        var valid = true;
+        $.each($('#collapseThree input'), function (index, value) {
+            if (!$(value).val()) {
+                valid = false;
+            }
+        });
+        if (valid) {
+            $('#headingThree button').addClass('bg-success text-white');
+            $('#headingFour button').click();
+        } else {
+            $('#headingFour button').removeClass('bg-success text-white');
+        }
+    });
+
+    $("#collapseFour input").change(function () {
+        var valid = true;
+        $.each($('#collapseFour input:required'), function (index, value) {
+            if (!$(value).val()) {
+                valid = false;
+            }
+        });
+        if (valid) {
+            $('#headingFour button').addClass('bg-success text-white');
+        } else {
+            $('#headingFour button').removeClass('bg-success text-white');
         }
     });
 })
