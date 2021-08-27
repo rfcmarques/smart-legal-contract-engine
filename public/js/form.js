@@ -251,8 +251,10 @@ $(function () {
 
     $("#collapseThree input").change(function () {
         var valid = true;
-        $.each($('#collapseThree input'), function (index, value) {
+        $.each($('#collapseThree input:required'), function (index, value) {
             if (!$(value).val()) {
+                valid = false;
+            } else if (!$('#contractDurationUnit').val()) {
                 valid = false;
             }
         });
