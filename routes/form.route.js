@@ -59,7 +59,7 @@ router.post('/', function (request, response) {
     templateHtml = templateHtml.replace('{{lowPercentage}}', data.lowPercentage);
 
     pdf.create(templateHtml, options).toFile(destination, function (err, pdf) {
-        response.redirect('/contract-template');
+        response.redirect('/form/contract-template');
     })
     
 })

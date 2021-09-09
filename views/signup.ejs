@@ -1,0 +1,52 @@
+<%- include('partials/login-header') %>
+
+<body>
+    <div class="modal modal-signin position-static d-block py-5">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-5 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h2 class="fw-bold mb-0">Sign up for free</h2>
+                    <img src="/public/img/logo.png" alt="Smart Legal Contract Engine">
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form class="">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-4" id="email"
+                                placeholder="name@example.com">
+                            <label for="email">Email address</label>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control rounded-4" id="firstName"
+                                        placeholder="First Name">
+                                    <label for="firstname">First Name</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control rounded-4" id="lastName"
+                                        placeholder="Last Name">
+                                    <label for="lastname">Last Name</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-4" id="password" placeholder="Password">
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-4" id="repeatPassword"
+                                placeholder="Repeat Password">
+                            <label for="repeatPassword">Repeat Password</label>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-4 btn-success" type="submit">Create account</button>
+                        <small class="text-muted">By clicking Create account, you agree to the terms of use.</small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/login-footer') %>

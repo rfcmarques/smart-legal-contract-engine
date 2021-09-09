@@ -1,0 +1,22 @@
+<div class="container">
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
+            <% if (file == 'signup') { %>
+            <li class="nav-item"><a href="/login" class="nav-link px-2 text-muted">Login</a></li>
+            <% }else{ %>
+            <li class="nav-item"><a href="/login/signup" class="nav-link px-2 text-muted">Sign-up</a></li>
+            <% } %> 
+        </ul>
+        <p class="text-center text-muted">© 2021 Rui Marques</p>
+    </footer>
+</div>
+
+<!-- javascript to make the page really awesome -->
+<script src="/public/js/login.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+<script src="/public/assets/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>
