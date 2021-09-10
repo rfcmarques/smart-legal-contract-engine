@@ -297,26 +297,29 @@
                             <p class="card-text">Este é um contrato para o fornecimento de um serviço de fornecimento de
                                 internet.</p>
                             <p class="card-text">Entre</p>
-                            <p class="card-text"><span id="spanprovider">{{provider}}</span> com o NIF nº <span
-                                    id="spanproviderNIF">{{providerNIF}}</span>,
-                                com sede em <span id="spanproviderAddress">{{providerAddress}}</span>,
-                                representado por <span id="spanproviderRep">{{providerRep}}</span>, doravante denominado
+                            <p class="card-text"><span class="contractvar" id="spanprovider">{{provider}}</span> com o
+                                NIF nº <span class="contractvar" id="spanproviderNIF">{{providerNIF}}</span>,
+                                com sede em <span class="contractvar"
+                                    id="spanproviderAddress">{{providerAddress}}</span>,
+                                representado por <span class="contractvar" id="spanproviderRep">{{providerRep}}</span>,
+                                doravante denominado
                                 por
                                 <strong>Fornecedor</strong>.
                             </p>
                             <p class="card-text">E</p>
-                            <p class="card-text"><span id="spanclient">{{client}}</span> com o NIF nº <span
-                                    id="spanclientNIF">{{clientNIF}}</span>, sediado em <span
-                                    id="spanclientAddress">{{clientAddress}}</span>,
-                                representado por <span id="spanclientRep">{{clientRep}}</span>, adiante designado por
+                            <p class="card-text"><span class="contractvar" id="spanclient">{{client}}</span> com o NIF
+                                nº <span class="contractvar" id="spanclientNIF">{{clientNIF}}</span>, sediado em <span
+                                    class="contractvar" id="spanclientAddress">{{clientAddress}}</span>,
+                                representado por <span class="contractvar" id="spanclientRep">{{clientRep}}</span>,
+                                adiante designado por
                                 <strong>Cliente</strong>.</p>
-                            <p class="card-text">O contrato será iniciado a <span
+                            <p class="card-text">O contrato será iniciado a <span class="contractvar"
                                     id="spaninicialDate">{{inicialDate}}</span>, iniciando nesse
-                                mesmo dia e terá a duração de <span
+                                mesmo dia e terá a duração de <span class="contractvar"
                                     id="spancontractDuration">{{contractDuration}}</span>.
                             </p>
                             <p class="card-text">O serviço prestado pelo <strong>Fornecedor</strong> terá o custo de
-                                <span id="spanserviceCost">{{serviceCost}}</span> pelo
+                                <span class="contractvar" id="spanserviceCost">{{serviceCost}}</span> pelo
                                 período de serviço acordado pelas partes deste contrato. O pagamento será feito mediante
                                 o
                                 resultado da avaliação realizada pelo <strong>Cliente</strong>, que terá que ser
@@ -325,7 +328,7 @@
                             <p class="card-text">A avaliação terá que ser realizada numa escala de 0 a 100 pontos em
                                 que:
                             </p>
-                            <p class="card-text">1. No caso da pontuação ser inferior a <span
+                            <p class="card-text">1. No caso da pontuação ser inferior a <span class="contractvar"
                                     id="spanminPoints">{{minPoints}}</span>
                                 (valor mínimo de
                                 pontuação do serviço) o contrato entre ambas as partes termina e o
@@ -333,35 +336,39 @@
                                 não tem que
                                 pagar pelo serviço prestado;</p>
                             <p class="card-text">2. No caso da pontuação estar compreendida entre o valor mínimo e
-                                <span id="spanlowPoints">{{lowPoints}}</span> o contrato não será renovado e o
+                                <span class="contractvar" id="spanlowPoints">{{lowPoints}}</span> o contrato não será
+                                renovado e o
                                 <strong>Cliente</strong>
                                 paga apenas
-                                <span id="spanhighPercentage">{{highPercentage}}</span>%
+                                <span class="contractvar" id="spanhighPercentage">{{highPercentage}}</span>%
                                 do valor total do serviço;</p>
                             <p class="card-text">3. No caso da pontuação estar compreendida entre o valor definido no
                                 Ponto
-                                2 e <span id="spanmidPoints">{{midPoints}}</span> o contrato será renovado e o
+                                2 e <span class="contractvar" id="spanmidPoints">{{midPoints}}</span> o contrato será
+                                renovado e o
                                 <strong>Cliente</strong>
                                 paga apenas
-                                <span id="spanmidPercentage">{{midPercentage}}</span>% do
+                                <span class="contractvar" id="spanmidPercentage">{{midPercentage}}</span>% do
                                 valor total do serviço providenciado;</p>
                             <p class="card-text">4. No caso da pontuação estar compreendida entro o valor definido no
                                 Ponto
-                                3 e <span id="spanhighPoints">{{highPoints}}</span> o contrato será renovado e o
+                                3 e <span class="contractvar" id="spanhighPoints">{{highPoints}}</span> o contrato será
+                                renovado e o
                                 <strong>Cliente</strong>
                                 paga apenas
-                                <span id="spanlowPercentage">{{lowPercentage}}</span>%
+                                <span class="contractvar" id="spanlowPercentage">{{lowPercentage}}</span>%
                                 do valor total definido previamente;</p>
-                            <p class="card-text">5. No caso da pontuação ser superior a <span
+                            <p class="card-text">5. No caso da pontuação ser superior a <span class="contractvar"
                                     id="spanhighPoints">{{highPoints}}</span> o
                                 contrato será
                                 renovado e o <strong>Cliente</strong> paga a totalidade do valor acordado entre ambas as
                                 partes.</p>
+                            <hr>
                         </div>
                     </div>
                 </div>
             </main>
-            <%- include('partials/footer') -%> 
+            <%- include('partials/footer') -%>
         </div>
     </div>
 

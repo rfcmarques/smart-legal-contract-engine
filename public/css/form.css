@@ -12,7 +12,7 @@ body {
     background-color: #dedede;
 }
 
-span {
+.contractvar {
     color: red;
     font-weight: 600;
 }
