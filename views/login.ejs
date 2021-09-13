@@ -10,21 +10,22 @@
                 </div>
 
                 <div class="modal-body p-5 pt-0">
-                    <form class="">
+                    <form class="form" method="POST" action="/login">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control rounded-4" id="email"
+                            <input type="email" class="form-control rounded-4" id="email" name="email"
                                 placeholder="name@example.com">
                             <label for="email">Email address</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control rounded-4" id="password" placeholder="Password">
+                            <input type="password" class="form-control rounded-4" id="password" name="password"
+                                placeholder="Password">
                             <label for="password">Password</label>
                         </div>
                         <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Sign in</button>
-                        <hr>
-                        <a class="w-100 mb-2 btn btn-lg rounded-4 btn-outline-danger" id="createaccount"
-                            href="/login/signup"><span>Don't have an account?</span></a>
                     </form>
+                    <hr>
+                    <a class="w-100 mb-2 btn btn-lg rounded-4 btn-outline-danger" id="createaccount"
+                        href="/login/signup"><span>Don't have an account?</span></a>
                 </div>
             </div>
         </div>
