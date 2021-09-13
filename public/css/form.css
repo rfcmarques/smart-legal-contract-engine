@@ -9,10 +9,10 @@ input[type=number] {
 }
 
 body {
-    background-color: #ecf0f5;
+    background-color: #dedede;
 }
 
-span {
+.contractvar {
     color: red;
     font-weight: 600;
 }

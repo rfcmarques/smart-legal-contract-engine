@@ -1,0 +1,36 @@
+.card {
+    position: inherit;
+}
+
+.dashboard .card-body{
+    max-height: 100px;
+    color: #fff;
+    text-shadow: 0.5px 0.5px 1px rgba(255, 255, 255, 0.05);
+}
+
+.number {
+    font-size: 22pt;
+    font-weight: 600;
+}
+
+.col-6 h6 {
+    font-weight: 700;
+    font-size: 10pt;
+}
+
+.dashboard:hover .icon i {
+    font-size: 64px;
+    transition: 1s;
+    -webkit-transition: 1s;
+}
+
+.card .icon i {
+    color: rgba(0, 0, 0, 0.15);
+    font-size: 35px;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    bottom: auto;
+    z-index: 0;
+}
+

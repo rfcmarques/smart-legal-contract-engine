@@ -1,414 +1,379 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('partials/header') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Contract</title>
+<!-- User side CSS -->
+<link rel="stylesheet" href="/public/css/layout.css">
+<!-- CSS for this page -->
+<link rel="stylesheet" href="/public/css/form.css">
 
-    <!-- Style and bootstrap stuff -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
-    </script>
-
-    <!-- style for styling the page with swag -->
-    <link rel="stylesheet" href="../public/css/form.css">
 </head>
 
 <body>
-    <header class="p-3 bg-dark text-white">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <h5><strong>Smart Legal Contract Engine</strong></h5>
-                </a>
+    <%- include('partials/nav') %>
 
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-secondary"></a></li>
-                    <li><a href="#" class="nav-link px-2 text-white"></a></li>
-                    <li><a href="#" class="nav-link px-2 text-white"></a></li>
-                    <li><a href="#" class="nav-link px-2 text-white"></a></li>
-                    <li><a href="#" class="nav-link px-2 text-white"></a></li>
-                </ul>
-
-                <div class="text-end">
-                    <button type="button" class="btn btn-outline-light me-2" disabled>Login</button>
-                    <button type="button" class="btn btn-primary" disabled>Sign-up</button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="container" style="padding-top: 10px;">
+    <div class="container-fluid" style="padding-top: 10px;">
         <div class="row">
-            <div class="col" style="overflow: auto;">
-                <form id="contractform" action="/" method="POST">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title">Dados Contratuais</h3>
-                            <div class="accordion" id="accordion">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                            Client
-                                        </button>
-                                    </h2>
-                                    <div id="collapseOne" class="accordion-collapse collapse show"
-                                        aria-labelledby="headingOne" data-bs-parent="#accordion">
-                                        <div class="accordion-body">
-                                            <div class="form-group">
-                                                <label for="client">Name:</label>
-                                                <input type="text" class="form-control" id="client" name="client"
-                                                    placeholder="Name" onchange='onChangeInput(this.id);'
-                                                    onkeyup="this.onchange();" onpaste="this.onchange();"
-                                                    oninput="this.onchange();" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="clientRep">Representative:</label>
-                                                <input type="text" class="form-control" id="clientRep" name="clientRep"
-                                                    placeholder="Representative's name"
-                                                    onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
-                                                    onpaste="this.onchange();" oninput="this.onchange();" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="clientNIF">NIF:</label>
-                                                <input type="number" class="form-control" id="clientNIF"
-                                                    name="clientNIF" placeholder="NIF"
-                                                    onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
-                                                    onpaste="this.onchange();" oninput="this.onchange();" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="clientAddress">Client's Address:</label>
-                                                <input type="text" class="form-control" id="clientAddress"
-                                                    name="clientAddress" placeholder="Address"
-                                                    onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
-                                                    onpaste="this.onchange();" oninput="this.onchange();" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                            aria-expanded="false" aria-controls="collapseTwo">
-                                            Provider
-                                        </button>
-                                    </h2>
-                                    <div id="collapseTwo" class="accordion-collapse collapse"
-                                        aria-labelledby="headingTwo" data-bs-parent="#accordion">
-                                        <div class="accordion-body">
-                                            <div class="form-group">
-                                                <label for="provider">Name:</label>
-                                                <input type="text" class="form-control" id="provider" name="provider"
-                                                    placeholder="Name" onchange='onChangeInput(this.id);'
-                                                    onkeyup="this.onchange();" onpaste="this.onchange();"
-                                                    oninput="this.onchange();" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="providerRep">Representative:</label>
-                                                <input type="text" class="form-control" id="providerRep"
-                                                    name="providerRep" placeholder="Representative's name"
-                                                    onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
-                                                    onpaste="this.onchange();" oninput="this.onchange();" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="providerNIF">NIF:</label>
-                                                <input type="number" class="form-control" id="providerNIF"
-                                                    name="providerNIF" placeholder="NIF"
-                                                    onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
-                                                    onpaste="this.onchange();" oninput="this.onchange();" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="providerAddress">Provider's Address:</label>
-                                                <input type="text" class="form-control" id="providerAddress"
-                                                    name="providerAddress" placeholder="Address"
-                                                    onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
-                                                    onpaste="this.onchange();" oninput="this.onchange();" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+            <%- include('partials/sidebar') -%>
 
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingThree">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                            aria-expanded="false" aria-controls="collapseThree">
-                                            Contract Data
-                                        </button>
-                                    </h2>
-                                    <div id="collapseThree" class="accordion-collapse collapse"
-                                        aria-labelledby="headingThree" data-bs-parent="#accordion">
-                                        <div class="accordion-body">
-                                            <div class="form-row">
-                                                <div class="col-md-3 mb-3">
-                                                    <label for="serviceCost">Service cost:</label>
-                                                    <input type="number" class="form-control" name="serviceCost"
-                                                        id="serviceCost" onchange='onChangeAmount(this.id);'
+            <main class="col-md-1 ms-sm-auto col-lg-10 px-md-4">
+
+                <div class="col-6" style="overflow: auto; float: left;">
+                    <form id="contractform" action="/form" method="POST">
+                        <div class="card shadow">
+                            <div class="card-body rounded-3 shadow">
+                                <h3 class="card-title">Dados Contratuais</h3>
+                                <div class="accordion" id="accordion">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                                Client
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            aria-labelledby="headingOne" data-bs-parent="#accordion">
+                                            <div class="accordion-body">
+                                                <div class="form-group">
+                                                    <label for="client">Name:</label>
+                                                    <input type="text" class="form-control" id="client" name="client"
+                                                        placeholder="Name" onchange='onChangeInput(this.id);'
                                                         onkeyup="this.onchange();" onpaste="this.onchange();"
                                                         oninput="this.onchange();" required>
                                                 </div>
-                                                <div class="col-md-3 mb-3">
-                                                    <label for="serviceCostCurrency">Currency:</label>
-                                                    <select class="custom-select" name="serviceCostCurrency"
-                                                        id="currency">
-                                                        <option value="EUR">€</option>
-                                                        <option value="USD">$</option>
-                                                        <option value="GBP">£</option>
-                                                    </select>
+                                                <div class="form-group">
+                                                    <label for="clientRep">Representative:</label>
+                                                    <input type="text" class="form-control" id="clientRep"
+                                                        name="clientRep" placeholder="Representative's name"
+                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                        onpaste="this.onchange();" oninput="this.onchange();" required>
                                                 </div>
-                                                <div class="col-md-6 mb-3">
-                                                    <label for="inicialDate">Initial date:</label>
-                                                    <input type="date" class="form-control" name="inicialDate"
-                                                        id="inicialDate" onchange='onChangeDate(this.id);'
-                                                        onkeyup="this.onchange();" onpaste="this.onchange();"
-                                                        oninput="this.onchange();" required>
+                                                <div class="form-group">
+                                                    <label for="clientNIF">NIF:</label>
+                                                    <input type="number" class="form-control" id="clientNIF"
+                                                        name="clientNIF" placeholder="NIF"
+                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                        onpaste="this.onchange();" oninput="this.onchange();" required>
                                                 </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="col-md-6 mb-3">
-                                                    <label for="contractDuration">Duration amount:</label>
-                                                    <input type="number" class="form-control" name="contractDuration"
-                                                        id="contractDuration" onchange='onChangeDuration(this.id);'
-                                                        onkeyup="this.onchange();" oninput="this.onchange();"
-                                                        onpaste="this.onchange();" required>
-                                                </div>
-                                                <div class="col-md-6 mb-3">
-                                                    <label for="contractDurationUnit">Duration unit:</label>
-                                                    <select class="form-control" name="contractDurationUnit"
-                                                        id="contractDurationUnit">
-                                                        <option disabled selected>Pick a unit</option>
-                                                        <option value="anos">Anos</option>
-                                                        <option value="trimestres">Trimestres</option>
-                                                        <option value="meses">Meses</option>
-                                                        <option value="semanas">Semanas</option>
-                                                        <option value="dias">Dias</option>
-                                                    </select>
+                                                <div class="form-group">
+                                                    <label for="clientAddress">Client's Address:</label>
+                                                    <input type="text" class="form-control" id="clientAddress"
+                                                        name="clientAddress" placeholder="Address"
+                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                        onpaste="this.onchange();" oninput="this.onchange();" required>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingFour">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                                            aria-expanded="false" aria-controls="collapseFour">
-                                            Service Level Agreement Points
-                                        </button>
-                                    </h2>
-                                    <div id="collapseFour" class="accordion-collapse collapse"
-                                        aria-labelledby="headingFour" data-bs-parent="#accordion">
-                                        <div class="accordion-body">
-                                            <h5>Intervalos</h5>
-                                            <div class="form-row">
-                                                <div class="col-md-4">
-                                                    <input type="number" class="form-control" placeholder="0" readonly>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                aria-expanded="false" aria-controls="collapseTwo">
+                                                Provider
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                            aria-labelledby="headingTwo" data-bs-parent="#accordion">
+                                            <div class="accordion-body">
+                                                <div class="form-group">
+                                                    <label for="provider">Name:</label>
+                                                    <input type="text" class="form-control" id="provider"
+                                                        name="provider" placeholder="Name"
+                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                        onpaste="this.onchange();" oninput="this.onchange();" required>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <input id="minPoints" name="minPoints" type="number"
-                                                        class="form-control"
-                                                        onchange='setIntervals(this.id); onChangeInput(this.id);'
-                                                        onkeyup="this.onchange();" oninput="this.onchange();"
-                                                        onpaste="this.onchange();" required>
+                                                <div class="form-group">
+                                                    <label for="providerRep">Representative:</label>
+                                                    <input type="text" class="form-control" id="providerRep"
+                                                        name="providerRep" placeholder="Representative's name"
+                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                        onpaste="this.onchange();" oninput="this.onchange();" required>
                                                 </div>
-                                                <div class="input-group col-md-4">
-                                                    <input type="number" class="form-control" placeholder="0" readonly>
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text" id="basic-addon2">%</span>
+                                                <div class="form-group">
+                                                    <label for="providerNIF">NIF:</label>
+                                                    <input type="number" class="form-control" id="providerNIF"
+                                                        name="providerNIF" placeholder="NIF"
+                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                        onpaste="this.onchange();" oninput="this.onchange();" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="providerAddress">Provider's Address:</label>
+                                                    <input type="text" class="form-control" id="providerAddress"
+                                                        name="providerAddress" placeholder="Address"
+                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                        onpaste="this.onchange();" oninput="this.onchange();" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                aria-expanded="false" aria-controls="collapseThree">
+                                                Contract Data
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                            aria-labelledby="headingThree" data-bs-parent="#accordion">
+                                            <div class="accordion-body">
+                                                <div class="form-row">
+                                                    <div class="col-md-3 mb-3">
+                                                        <label for="serviceCost">Service cost:</label>
+                                                        <input type="number" class="form-control" name="serviceCost"
+                                                            id="serviceCost" onchange='onChangeAmount(this.id);'
+                                                            onkeyup="this.onchange();" onpaste="this.onchange();"
+                                                            oninput="this.onchange();" required>
+                                                    </div>
+                                                    <div class="col-md-3 mb-3">
+                                                        <label for="serviceCostCurrency">Currency:</label>
+                                                        <select class="custom-select" name="serviceCostCurrency"
+                                                            id="currency">
+                                                            <option value="EUR">€</option>
+                                                            <option value="USD">$</option>
+                                                            <option value="GBP">£</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="inicialDate">Initial date:</label>
+                                                        <input type="date" class="form-control" name="inicialDate"
+                                                            id="inicialDate" onchange='onChangeDate(this.id);'
+                                                            onkeyup="this.onchange();" onpaste="this.onchange();"
+                                                            oninput="this.onchange();" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="contractDuration">Duration amount:</label>
+                                                        <input type="number" class="form-control"
+                                                            name="contractDuration" id="contractDuration"
+                                                            onchange='onChangeDuration(this.id);'
+                                                            onkeyup="this.onchange();" oninput="this.onchange();"
+                                                            onpaste="this.onchange();" required>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="contractDurationUnit">Duration unit:</label>
+                                                        <select class="form-control" name="contractDurationUnit"
+                                                            id="contractDurationUnit">
+                                                            <option disabled selected>Pick a unit</option>
+                                                            <option value="anos">Anos</option>
+                                                            <option value="trimestres">Trimestres</option>
+                                                            <option value="meses">Meses</option>
+                                                            <option value="semanas">Semanas</option>
+                                                            <option value="dias">Dias</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <br>
-                                            <div class="form-row">
-                                                <div class="col-md-4">
-                                                    <input id="minPoints-2" type="number" class="form-control"
-                                                        placeholder="0" readonly>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <input name="lowPoints" id="lowPoints" type="number"
-                                                        class="form-control"
-                                                        onchange='setIntervals(this.id); onChangeInput(this.id);'
-                                                        onkeyup="this.onchange();" oninput="this.onchange();"
-                                                        onpaste="this.onchange();" required>
-                                                </div>
-                                                <div class="input-group col-md-4">
-                                                    <input type="number" class="form-control" placeholder="0"
-                                                        id="highPercentage" name="highPercentage"
-                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
-                                                        oninput="this.onchange();" onpaste="this.onchange();" required>
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text" id="basic-addon2">%</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingFour">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                                                aria-expanded="false" aria-controls="collapseFour">
+                                                Service Level Agreement Points
+                                            </button>
+                                        </h2>
+                                        <div id="collapseFour" class="accordion-collapse collapse"
+                                            aria-labelledby="headingFour" data-bs-parent="#accordion">
+                                            <div class="accordion-body">
+                                                <h5>Intervalos</h5>
+                                                <div class="form-row">
+                                                    <div class="col-md-4">
+                                                        <input type="number" class="form-control" placeholder="0"
+                                                            readonly>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input id="minPoints" name="minPoints" type="number"
+                                                            class="form-control"
+                                                            onchange='setIntervals(this.id); onChangeInput(this.id);'
+                                                            onkeyup="this.onchange();" oninput="this.onchange();"
+                                                            onpaste="this.onchange();" required>
+                                                    </div>
+                                                    <div class="input-group col-md-4">
+                                                        <input type="number" class="form-control" placeholder="0"
+                                                            readonly>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" id="basic-addon2">%</span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <br>
-                                            <div class="form-row">
-                                                <div class="col-md-4">
-                                                    <input id="lowPoints-2" type="number" class="form-control"
-                                                        placeholder="0" readonly>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <input id="midPoints" name="midPoints" type="number"
-                                                        class="form-control"
-                                                        onchange='setIntervals(this.id); onChangeInput(this.id);'
-                                                        onkeyup="this.onchange();" oninput="this.onchange();"
-                                                        onpaste="this.onchange();" required>
-                                                </div>
-                                                <div class="input-group col-md-4">
-                                                    <input type="number" class="form-control" placeholder="0"
-                                                        id="midPercentage" name="midPercentage"
-                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
-                                                        oninput="this.onchange();" onpaste="this.onchange();" required>
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text" id="basic-addon2">%</span>
+                                                <br>
+                                                <div class="form-row">
+                                                    <div class="col-md-4">
+                                                        <input id="minPoints-2" type="number" class="form-control"
+                                                            placeholder="0" readonly>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input name="lowPoints" id="lowPoints" type="number"
+                                                            class="form-control"
+                                                            onchange='setIntervals(this.id); onChangeInput(this.id);'
+                                                            onkeyup="this.onchange();" oninput="this.onchange();"
+                                                            onpaste="this.onchange();" required>
+                                                    </div>
+                                                    <div class="input-group col-md-4">
+                                                        <input type="number" class="form-control" placeholder="0"
+                                                            id="highPercentage" name="highPercentage"
+                                                            onchange='onChangeInput(this.id);'
+                                                            onkeyup="this.onchange();" oninput="this.onchange();"
+                                                            onpaste="this.onchange();" required>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" id="basic-addon2">%</span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <br>
-                                            <div class="form-row">
-                                                <div class="col-md-4">
-                                                    <input id="midPoints-2" type="number" class="form-control"
-                                                        placeholder="0" readonly>
+                                                <br>
+                                                <div class="form-row">
+                                                    <div class="col-md-4">
+                                                        <input id="lowPoints-2" type="number" class="form-control"
+                                                            placeholder="0" readonly>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input id="midPoints" name="midPoints" type="number"
+                                                            class="form-control"
+                                                            onchange='setIntervals(this.id); onChangeInput(this.id);'
+                                                            onkeyup="this.onchange();" oninput="this.onchange();"
+                                                            onpaste="this.onchange();" required>
+                                                    </div>
+                                                    <div class="input-group col-md-4">
+                                                        <input type="number" class="form-control" placeholder="0"
+                                                            id="midPercentage" name="midPercentage"
+                                                            onchange='onChangeInput(this.id);'
+                                                            onkeyup="this.onchange();" oninput="this.onchange();"
+                                                            onpaste="this.onchange();" required>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" id="basic-addon2">%</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <input type="number" class="form-control" id="highPoints"
-                                                        name="highPoints" onchange='onChangeInput(this.id);'
-                                                        onkeyup="this.onchange();" oninput="this.onchange();"
-                                                        onpaste="this.onchange();" required>
-                                                </div>
-                                                <div class="input-group col-md-4">
-                                                    <input type="number" class="form-control" placeholder="0"
-                                                        id="lowPercentage" name="lowPercentage"
-                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
-                                                        oninput="this.onchange();" onpaste="this.onchange();" required>
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text" id="basic-addon2">%</span>
+                                                <br>
+                                                <div class="form-row">
+                                                    <div class="col-md-4">
+                                                        <input id="midPoints-2" type="number" class="form-control"
+                                                            placeholder="0" readonly>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input type="number" class="form-control" id="highPoints"
+                                                            name="highPoints" onchange='onChangeInput(this.id);'
+                                                            onkeyup="this.onchange();" oninput="this.onchange();"
+                                                            onpaste="this.onchange();" required>
+                                                    </div>
+                                                    <div class="input-group col-md-4">
+                                                        <input type="number" class="form-control" placeholder="0"
+                                                            id="lowPercentage" name="lowPercentage"
+                                                            onchange='onChangeInput(this.id);'
+                                                            onkeyup="this.onchange();" oninput="this.onchange();"
+                                                            onpaste="this.onchange();" required>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" id="basic-addon2">%</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="form-row">
-                                <button id="btnCreate" type="submit" class="btn btn-block btn-outline-success">Gerar
-                                    PDF</button>
+                                <br>
+                                <div class="form-row">
+                                    <button id="btnCreate" type="submit" class="btn btn-block btn-outline-success">Gerar
+                                        PDF</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col" style="overflow: hidden;">
+                    </form>
+                </div>
 
-                <div class="card" id="contract">
-                    <div class="card-body">
-                        <h3 class="card-title">Contrato</h3>
-                        <p class="card-text">Este é um contrato para o fornecimento de um serviço de fornecimento de
-                            internet.</p>
-                        <p class="card-text">Entre</p>
-                        <p class="card-text"><span id="spanprovider">{{provider}}</span> com o NIF nº <span
-                                id="spanproviderNIF">{{providerNIF}}</span>,
-                            com sede em <span id="spanproviderAddress">{{providerAddress}}</span>,
-                            representado por <span id="spanproviderRep">{{providerRep}}</span>, doravante denominado por
-                            <strong>Fornecedor</strong>.
-                        </p>
-                        <p class="card-text">E</p>
-                        <p class="card-text"><span id="spanclient">{{client}}</span> com o NIF nº <span
-                                id="spanclientNIF">{{clientNIF}}</span>, sediado em <span
-                                id="spanclientAddress">{{clientAddress}}</span>,
-                            representado por <span id="spanclientRep">{{clientRep}}</span>, adiante designado por
-                            <strong>Cliente</strong>.</p>
-                        <p class="card-text">O contrato será iniciado a <span
-                                id="spaninicialDate">{{inicialDate}}</span>, iniciando nesse
-                            mesmo dia e terá a duração de <span id="spancontractDuration">{{contractDuration}}</span>.
-                        </p>
-                        <p class="card-text">O serviço prestado pelo <strong>Fornecedor</strong> terá o custo de
-                            <span id="spanserviceCost">{{serviceCost}}</span> pelo
-                            período de serviço acordado pelas partes deste contrato. O pagamento será feito mediante o
-                            resultado da avaliação realizada pelo <strong>Cliente</strong>, que terá que ser
-                            obrigatoriamente
-                            realizada num espaço de 7 dias a contar desde o final do contrato.</p>
-                        <p class="card-text">A avaliação terá que ser realizada numa escala de 0 a 100 pontos em que:
-                        </p>
-                        <p class="card-text">1. No caso da pontuação ser inferior a <span
-                                id="spanminPoints">{{minPoints}}</span>
-                            (valor mínimo de
-                            pontuação do serviço) o contrato entre ambas as partes termina e o <strong>Cliente</strong>
-                            não tem que
-                            pagar pelo serviço prestado;</p>
-                        <p class="card-text">2. No caso da pontuação estar compreendida entre o valor mínimo e
-                            <span id="spanlowPoints">{{lowPoints}}</span> o contrato não será renovado e o
-                            <strong>Cliente</strong>
-                            paga apenas
-                            <span id="spanhighPercentage">{{highPercentage}}</span>%
-                            do valor total do serviço;</p>
-                        <p class="card-text">3. No caso da pontuação estar compreendida entre o valor definido no Ponto
-                            2 e <span id="spanmidPoints">{{midPoints}}</span> o contrato será renovado e o
-                            <strong>Cliente</strong>
-                            paga apenas
-                            <span id="spanmidPercentage">{{midPercentage}}</span>% do
-                            valor total do serviço providenciado;</p>
-                        <p class="card-text">4. No caso da pontuação estar compreendida entro o valor definido no Ponto
-                            3 e <span id="spanhighPoints">{{highPoints}}</span> o contrato será renovado e o
-                            <strong>Cliente</strong>
-                            paga apenas
-                            <span id="spanlowPercentage">{{lowPercentage}}</span>%
-                            do valor total definido previamente;</p>
-                        <p class="card-text">5. No caso da pontuação ser superior a <span
-                                id="spanhighPoints">{{highPoints}}</span> o
-                            contrato será
-                            renovado e o <strong>Cliente</strong> paga a totalidade do valor acordado entre ambas as
-                            partes.</p>
+                <div class="col-6" style="overflow: hidden; float: right;">
+
+                    <div class="card shadow" id="contract">
+                        <div class="card-body rounded-3 shadow">
+                            <h3 class="card-title">Contrato</h3>
+                            <p class="card-text">Este é um contrato para o fornecimento de um serviço de fornecimento de
+                                internet.</p>
+                            <p class="card-text">Entre</p>
+                            <p class="card-text"><span class="contractvar" id="spanprovider">{{provider}}</span> com o
+                                NIF nº <span class="contractvar" id="spanproviderNIF">{{providerNIF}}</span>,
+                                com sede em <span class="contractvar"
+                                    id="spanproviderAddress">{{providerAddress}}</span>,
+                                representado por <span class="contractvar" id="spanproviderRep">{{providerRep}}</span>,
+                                doravante denominado
+                                por
+                                <strong>Fornecedor</strong>.
+                            </p>
+                            <p class="card-text">E</p>
+                            <p class="card-text"><span class="contractvar" id="spanclient">{{client}}</span> com o NIF
+                                nº <span class="contractvar" id="spanclientNIF">{{clientNIF}}</span>, sediado em <span
+                                    class="contractvar" id="spanclientAddress">{{clientAddress}}</span>,
+                                representado por <span class="contractvar" id="spanclientRep">{{clientRep}}</span>,
+                                adiante designado por
+                                <strong>Cliente</strong>.</p>
+                            <p class="card-text">O contrato será iniciado a <span class="contractvar"
+                                    id="spaninicialDate">{{inicialDate}}</span>, iniciando nesse
+                                mesmo dia e terá a duração de <span class="contractvar"
+                                    id="spancontractDuration">{{contractDuration}}</span>.
+                            </p>
+                            <p class="card-text">O serviço prestado pelo <strong>Fornecedor</strong> terá o custo de
+                                <span class="contractvar" id="spanserviceCost">{{serviceCost}}</span> pelo
+                                período de serviço acordado pelas partes deste contrato. O pagamento será feito mediante
+                                o
+                                resultado da avaliação realizada pelo <strong>Cliente</strong>, que terá que ser
+                                obrigatoriamente
+                                realizada num espaço de 7 dias a contar desde o final do contrato.</p>
+                            <p class="card-text">A avaliação terá que ser realizada numa escala de 0 a 100 pontos em
+                                que:
+                            </p>
+                            <p class="card-text">1. No caso da pontuação ser inferior a <span class="contractvar"
+                                    id="spanminPoints">{{minPoints}}</span>
+                                (valor mínimo de
+                                pontuação do serviço) o contrato entre ambas as partes termina e o
+                                <strong>Cliente</strong>
+                                não tem que
+                                pagar pelo serviço prestado;</p>
+                            <p class="card-text">2. No caso da pontuação estar compreendida entre o valor mínimo e
+                                <span class="contractvar" id="spanlowPoints">{{lowPoints}}</span> o contrato não será
+                                renovado e o
+                                <strong>Cliente</strong>
+                                paga apenas
+                                <span class="contractvar" id="spanhighPercentage">{{highPercentage}}</span>%
+                                do valor total do serviço;</p>
+                            <p class="card-text">3. No caso da pontuação estar compreendida entre o valor definido no
+                                Ponto
+                                2 e <span class="contractvar" id="spanmidPoints">{{midPoints}}</span> o contrato será
+                                renovado e o
+                                <strong>Cliente</strong>
+                                paga apenas
+                                <span class="contractvar" id="spanmidPercentage">{{midPercentage}}</span>% do
+                                valor total do serviço providenciado;</p>
+                            <p class="card-text">4. No caso da pontuação estar compreendida entro o valor definido no
+                                Ponto
+                                3 e <span class="contractvar" id="spanhighPoints">{{highPoints}}</span> o contrato será
+                                renovado e o
+                                <strong>Cliente</strong>
+                                paga apenas
+                                <span class="contractvar" id="spanlowPercentage">{{lowPercentage}}</span>%
+                                do valor total definido previamente;</p>
+                            <p class="card-text">5. No caso da pontuação ser superior a <span class="contractvar"
+                                    id="spanhighPoints">{{highPoints}}</span> o
+                                contrato será
+                                renovado e o <strong>Cliente</strong> paga a totalidade do valor acordado entre ambas as
+                                partes.</p>
+                            <hr>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <footer class="py-3 my-4">
-                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted"></a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted"></a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted"></a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted"></a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted"></a></li>
-                </ul>
-                <p class="text-center text-muted">© 2021 Rui Marques</p>
-            </footer>
+            </main>
+            <%- include('partials/footer') -%>
         </div>
     </div>
 
 
+
 </body>
-<!-- javascript to make the page really awesome -->
-<script src="../public/js/form.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
-<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
 
 </html>

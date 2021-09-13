@@ -1,0 +1,247 @@
+<%- include('partials/header') %>
+
+<!-- User side CSS -->
+<link rel="stylesheet" href="/public/css/user-contracts.css">
+<link rel="stylesheet" href="/public/css/layout.css">
+
+<!-- CSS for this page -->
+<!-- <link rel="stylesheet" href="/public/css/form.css"> -->
+
+<!-- DATA TABLES -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.2/datatables.min.css" />
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.2/datatables.min.js"></script>
+
+</head>
+
+<body>
+  <%- include('partials/nav') %>
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <%- include('partials/sidebar') -%>
+
+      <main class="col-md-1 ms-sm-auto col-lg-10 px-md-4" style="padding-top: 1%;">
+
+        <div class="card shadow">
+          <div class="card-header">
+            <h2 class="card-title">
+              Monitorização
+            </h2>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-3 col-sm-6 dashboard">
+                <div class="card shadow">
+                  <div class="card-body rounded-3 shadow btn-success">
+                    <div class="row">
+                      <div class="col-6">
+                        <h6 class="h6 card-title">Terminados</h6>
+                        <p class="number">10</p>
+                      </div>
+                      <div class="col-6 icon">
+                        <i class="far fa-calendar-check"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-sm-6 dashboard">
+                <div class="card-box shadow border">
+                  <div class="card-body rounded-3 shadow btn-primary">
+                    <div class="row">
+                      <div class="col-6">
+                        <h6 class="h6 card-title">Em curso</h6>
+                        <p class="number">17</p>
+                      </div>
+                      <div class="col-6 icon">
+                        <i class="fas fa-hourglass-half"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-sm-6 dashboard">
+                <div class="card shadow">
+                  <div class="card-body rounded-3 shadow btn-warning">
+                    <div class="row">
+                      <div class="col-6">
+                        <h6 class="h6 card-title">Por assinar</h6>
+                        <p class="number">3</p>
+                      </div>
+                      <div class="col-6 icon">
+                        <i class="fas fa-file-signature"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-sm-6 dashboard">
+                <div class="card shadow">
+                  <div class="card-body rounded-3 shadow btn-danger">
+                    <div class="row">
+                      <div class="col-6">
+                        <h6 class="h6 card-title">Expirados</h6>
+                        <p class="number">2</p>
+                      </div>
+                      <div class="col-6 icon">
+                        <i class="far fa-calendar-times"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="card shadow">
+          <div class="card-header">
+            <h2 class="card-title">Contratos</h2>
+          </div>
+          <div class="card-body rounded-3 shadow">
+            <div class="table-responsive">
+              <table id="contracts" class="table table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col"># ID</th>
+                    <th scope="col">Criador</th>
+                    <th scope="col">Data Criação</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Editar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1,001</td>
+                    <td>Roger Smith</td>
+                    <td>DD/MM/YYYY</td>
+                    <td><span class="badge badge-primary">Em curso</span></td>
+                    <td><a class="btn-sm btn-success" href="/form"><i class="fas fa-edit"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td>1,002</td>
+                    <td>Jon Doe</td>
+                    <td>DD/MM/YYYY</td>
+                    <td><span class="badge badge-primary">Em curso</span></td>
+                    <td><a class="btn-sm btn-success" href="/form"><i class="fas fa-edit"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td>1,003</td>
+                    <td>António Antunes</td>
+                    <td>DD/MM/YYYY</td>
+                    <td><span class="badge badge-primary">Em curso</span></td>
+                    <td><a class="btn-sm btn-success" href="/form"><i class="fas fa-edit"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td>1,003</td>
+                    <td>Joaquim Alberto</td>
+                    <td>DD/MM/YYYY</td>
+                    <td><span class="badge badge-success">Terminado</span></td>
+                    <td><a class="btn-sm btn-success" href="/form"><i class="fas fa-edit"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td>1,004</td>
+                    <td>Hanna Montana</td>
+                    <td>DD/MM/YYYY</td>
+                    <td><span class="badge badge-warning">Por assinar</span></td>
+                    <td><a class="btn-sm btn-success" href="/form"><i class="fas fa-edit"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td>1,005</td>
+                    <td>Lisa Olsen</td>
+                    <td>DD/MM/YYYY</td>
+                    <td><span class="badge badge-success">Terminado</span></td>
+                    <td><a class="btn-sm btn-success" href="/form"><i class="fas fa-edit"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td>1,006</td>
+                    <td>Lisa Olsen</td>
+                    <td>DD/MM/YYYY</td>
+                    <td><span class="badge badge-success">Terminado</span></td>
+                    <td><a class="btn-sm btn-success" href="/form"><i class="fas fa-edit"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td>1,007</td>
+                    <td>Jon Doe</td>
+                    <td>DD/MM/YYYY</td>
+                    <td><span class="badge badge-danger">Expirado</span></td>
+                    <td><a class="btn-sm btn-success" href="/form"><i class="fas fa-edit"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td>1,008</td>
+                    <td>Roger Smith</td>
+                    <td>DD/MM/YYYY</td>
+                    <td><span class="badge badge-primary">Em curso</span></td>
+                    <td><a class="btn-sm btn-success" href="/form"><i class="fas fa-edit"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td>1,009</td>
+                    <td>Jon Doe</td>
+                    <td>DD/MM/YYYY</td>
+                    <td><span class="badge badge-success">Terminado</span></td>
+                    <td><a class="btn-sm btn-success" href="/form"><i class="fas fa-edit"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td>1,010</td>
+                    <td>data</td>
+                    <td>DD/MM/YYYY</td>
+                    <td><span class="badge badge-success">Terminado</span></td>
+                    <td><a class="btn-sm btn-success" href="/form"><i class="fas fa-edit"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td>1,011</td>
+                    <td>information</td>
+                    <td>Jon Doe</td>
+                    <td>illustrative</td>
+                    <td><a class="btn-sm btn-success" href="/form"><i class="fas fa-edit"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td>1,012</td>
+                    <td>text</td>
+                    <td>Jon Doe</td>
+                    <td>layout</td>
+                    <td><a class="btn-sm btn-success" href="/form"><i class="fas fa-edit"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td>1,013</td>
+                    <td>Lisa Olsen</td>
+                    <td>irrelevant</td>
+                    <td>text</td>
+                    <td><a class="btn-sm btn-success" href="/form"><i class="fas fa-edit"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td>1,014</td>
+                    <td>Lisa Olsen</td>
+                    <td>illustrative</td>
+                    <td>rich</td>
+                    <td><a class="btn-sm btn-success" href="/form"><i class="fas fa-edit"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td>1,015</td>
+                    <td>Roger Smith</td>
+                    <td>tabular</td>
+                    <td>information</td>
+                    <td><a class="btn-sm btn-success" href="/form"><i class="fas fa-edit"></i></a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+      <%- include('partials/footer') %>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $('#contracts').DataTable();
+    });
+  </script>
+</body>
+
+</html>
