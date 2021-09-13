@@ -32,11 +32,4 @@ router.post('/', function (request, response) {
     });
 });
 
-router.get('/signup', function (request, response) {
-    response.set("Content-Type", "text/html");
-    response.render('signup',{
-        file: 'signup'
-    })
-});
-
 module.exports = router;

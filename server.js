@@ -9,6 +9,23 @@ const passport = require('passport');
 
 const userModel = require('./models/user.model');
 
+global.secure = function(type) {
+	return function (request, response, next) {
+		if (request.isAuthenticated()) {
+			if (type) {
+				if (type === request.user.type) {
+					return next();
+				}else{
+					response.render('401');
+				}
+			}else{
+				return next();
+			}			
+		}
+		response.render('401');
+	}
+};
+
 // API
 const contract = require('./controllers/contract');
 
@@ -17,24 +34,7 @@ const routerForm = require('./routes/form.route');
 const userContract = require('./routes/contract.route');
 const login = require('./routes/login.route');
 const logout = require('./routes/logout.route');
-
-
-global.secure = function(type) {
-	return function (request, response, next) {
-		if (request.isAuthenticated()) {
-			if (type) {
-				if (type === request.user.type) {
-					return next();
-				}else{
-					response.redirect('/');
-				}
-			}else{
-				return next();
-			}			
-		}
-		response.redirect('/');
-	}
-};
+const signup = require('./routes/signup.route');
 
 app.use(validator());
 app.use(express.json(), express.urlencoded({
@@ -76,12 +76,13 @@ app.use(function (request, response, next) {
 app.use('/public', express.static('public'));
 
 app.use('/', index);
+app.use('/signup', signup);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/user', userContract);
 app.use('/contract', contract);
 app.use('/form', routerForm);
 
-// app.use(function (req, res) {
-//     res.status(404).render('404');
-// });
+app.use(function (req, res) {
+    res.status(404).render('404');
+});
