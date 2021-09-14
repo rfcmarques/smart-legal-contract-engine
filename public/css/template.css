@@ -12,9 +12,10 @@ a {
 body {
     background-color: #ffffff;
     position: relative;
-    width: 21cm;
+    max-width: 21cm;
     height: 29.7cm;
-    margin: 0 auto;
+    margin-left: 1in;
+    margin-right: 1in;
     color: #555555;
     font-family: Arial, sans-serif;
     font-size: 14px;

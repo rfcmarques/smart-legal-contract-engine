@@ -17,21 +17,28 @@ module.exports = {
         });
     },
 
+    readId(idUser, callback) {
+        var sql = 'SELECT * from Users where idUser=?';
+        db.query(sql, [idUser], function (error, rows, fields) {
+            if (error) throw error;
+            callback(rows[0]);
+        });
+    },
+
     create(data, callback) {
-        var sql = 'INSERT INTO Users (email, password, name) VALUES (?,?,?)';
+        var sql = 'INSERT INTO Users (email, password, firstName, lastName) VALUES (?,?,?,?)';
         db.query(
-            sql, [data.email, data.password, data.name],
+            sql, [data.email, data.password, data.firstName, data.lastName],
             function (error, rows, fields) {
                 if (error) throw error;
                 callback(rows[0]);
-
             });
     },
 
     update(email, data, callback) {
-        var sql = 'UPDATE Users SET password=?, name=? WHERE email=?';
+        var sql = 'UPDATE Users SET password=?, firstName=?, lastName=? WHERE email=?';
         db.query(
-            sql, [data.password, data.name],
+            sql, [data.password, data.firstName, data.lastName, email],
             function (error, rows, fields) {
                 if (error) throw error;
                 callback(rows[0]);

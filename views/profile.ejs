@@ -1,0 +1,83 @@
+<%- include('partials/header') %>
+
+<!-- User side CSS -->
+<link rel="stylesheet" href="/public/css/user-contracts.css">
+<link rel="stylesheet" href="/public/css/layout.css">
+
+<!-- CSS for this page -->
+<!-- <link rel="stylesheet" href="/public/css/form.css"> -->
+
+<!-- DATA TABLES -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.2/datatables.min.css" />
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.2/datatables.min.js"></script>
+
+</head>
+
+<body>
+  <%- include('partials/nav') %>
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <%- include('partials/sidebar') -%>
+
+      <main class="col-md-1 ms-sm-auto col-lg-10 px-md-4" style="padding-top: 1%;">
+
+        <div class="card shadow">
+          <div class="card-header">
+            <h2 class="card-title">
+              Perfil
+            </h2>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <form action="/profile/<%= user.idUser %> " method="POST">
+                <div class="form-floating mb-3">
+                  <input type="email" class="form-control rounded-4" id="email" name="email"
+                    placeholder="name@example.com" value="<%= user.email %>" readonly>
+                  <label for="email">Email address</label>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control rounded-4" id="firstName" name="firstName"
+                        value="<%= user.firstName %>" placeholder="First Name">
+                      <label for="firstname">First Name</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control rounded-4" id="lastName" name="lastName"
+                        value="<%= user.lastName %>" placeholder="Last Name">
+                      <label for="lastname">Last Name</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="password" class="form-control rounded-4" id="password" name="password"
+                    placeholder="Password" value="<%= user.password %>" required>
+                  <label for="password">Password</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="password" class="form-control rounded-4" id="repeatPassword"
+                    placeholder="Repeat Password" value="<%= user.password %>" required>
+                  <label for="repeatPassword">Repeat Password</label>
+                </div>
+                <button class="w-100 mb-2 btn btn-lg rounded-4 btn-success" type="submit">Editar perfil</button>
+              </form>
+            </div>
+          </div>
+      </main>
+      <%- include('partials/footer') %>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $('#contracts').DataTable();
+    });
+  </script>
+</body>
+
+</html>
