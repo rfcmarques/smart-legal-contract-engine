@@ -6,20 +6,20 @@ const pdf = require('html-pdf');
 const path = require('path');
 var dirpath = path.join(__dirname, '../');
 
-router.get('/', function (request, response) {
+router.get('/', global.secure(), function (request, response) {
     response.set("Content-Type", "text/html");
     response.render('form', {})
 });
 
-router.get('/:pdf', function (request, response) {
+router.get('/:pdf', global.secure(), function (request, response) {
     if(request.params.pdf === 'contract-template'){
         response.download(dirpath + '/public/downloads/template.pdf');
     }else{
-        // response.render('error 404')
+        response.render('404')
     }
 })
 
-router.post('/', function (request, response) {
+router.post('/', global.secure(), function (request, response) {
 
     var template = path.join(dirpath, '/views', 'template.html');
     var destination = path.join('./public/downloads', 'template.pdf')
