@@ -5,6 +5,8 @@ const fs = require('fs');
 const pdf = require('html-pdf');
 const path = require('path');
 var dirpath = path.join(__dirname, '../');
+const contractModel = require('../models/contract.model');
+const userModel = require('../models/user.model');
 
 router.get('/', global.secure(), function (request, response) {
     response.set("Content-Type", "text/html");
@@ -38,6 +40,12 @@ router.post('/', global.secure(), function (request, response) {
         localUrlAccess: true
     };
 
+    var contractData = {
+        'contracthash': " ",
+        'data': data,
+        'creator': 1
+    }
+
     templateHtml = templateHtml.replace('{{provider}}', data.provider);
     templateHtml = templateHtml.replace('{{providerNIF}}', data.providerNIF);
     templateHtml = templateHtml.replace('{{providerAddress}}', data.providerAddress);
@@ -60,7 +68,10 @@ router.post('/', global.secure(), function (request, response) {
 
     pdf.create(templateHtml, options).toFile(destination, function (err, pdf) {
         response.redirect('/form/contract-template');
-    })
+        // contractModel.create(contractData, ()=>{
+        //     response.redirect('/user');
+        // });
+    });
     
 })
 

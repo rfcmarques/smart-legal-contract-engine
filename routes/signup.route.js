@@ -13,10 +13,13 @@ router.post('/', function (request, response) {
     var data = {
         'email': request.body.email,
         'password': request.body.password,
-        'name': request.body.firstName + " " + request.body.lastName
+        'firstName': request.body.firstName,
+        'lastName': request.body.lastName
     }
     model.create(data, function(){
-        response.redirect('/user')
+        setTimeout(()=>{
+            response.redirect('/login')
+        }, 3500);  
     });
 });
 
