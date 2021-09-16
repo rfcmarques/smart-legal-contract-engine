@@ -20,7 +20,7 @@ module.exports = {
     create(data, callback) {
         var sql = 'INSERT INTO contracts (contracthash, data, creator) VALUES (?,?,?)';
         db.query(
-            sql, [data.contract, data.data, data.creator],
+            sql, [data.contracthash, data.data, data.creator],
             function (error, rows, fields) {
                 if (error) throw error;
                 callback(rows[0]);

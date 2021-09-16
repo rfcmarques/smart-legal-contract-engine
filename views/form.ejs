@@ -5,10 +5,24 @@
 <!-- CSS for this page -->
 <link rel="stylesheet" href="/public/css/form.css">
 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.2/datatables.min.css" />
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.2/datatables.min.js"></script>
+
+<% if (!isNew) { %>
+<style>
+    .contractvar {
+        color: rgb(0, 153, 255);
+        font-weight: 700;
+    }
+</style>
+<% } %>
+
 
 </head>
 
 <body>
+
     <%- include('partials/nav') %>
 
     <div class="container-fluid" style="padding-top: 10px;">
@@ -17,6 +31,440 @@
             <%- include('partials/sidebar') -%>
 
             <main class="col-md-1 ms-sm-auto col-lg-10 px-md-4">
+                <% if (!isNew) { %>
+                    <% var contractstates = [] %>
+                    <% for( let i = 0; i < state.length; i++ ) { %>
+                        <% if (state[i].contract == contract.idContract) { %>
+                            <% contractstates.push(parseInt(state[i].timestamp.getTime())) %>
+                        <% } %>
+                    <% } %>
+
+                <% var json = JSON.parse(contract.data) %>
+                <div class="col-6" style="overflow: auto; float: left;">
+                    <form id="contractform" action="/form" method="POST">
+                        <div class="card shadow">
+                            <div class="card-header">
+                                <h3 class="card-title">Dados Contratuais</h3>
+                            </div>
+                            <div class="card-body rounded-3 shadow">
+                                <div class="accordion" id="accordion">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                                Client
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            aria-labelledby="headingOne" data-bs-parent="#accordion">
+                                            <div class="accordion-body">
+                                                <div class="form-group">
+                                                    <label for="client">Name:</label>
+                                                    <input type="text" class="form-control" id="client" name="client"
+                                                        placeholder="Name" onchange='onChangeInput(this.id);'
+                                                        onkeyup="this.onchange();" onpaste="this.onchange();"
+                                                        oninput="this.onchange();" value="<%= json.client %>" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="clientRep">Representative:</label>
+                                                    <input type="text" class="form-control" id="clientRep"
+                                                        name="clientRep" placeholder="Representative's name"
+                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                        onpaste="this.onchange();" oninput="this.onchange();"
+                                                        value="<%= json.clientRep %>" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="clientNIF">NIF:</label>
+                                                    <input type="number" class="form-control" id="clientNIF"
+                                                        name="clientNIF" placeholder="NIF"
+                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                        onpaste="this.onchange();" oninput="this.onchange();"
+                                                        value="<%= json.clientNIF %>" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="clientAddress">Client's Address:</label>
+                                                    <input type="text" class="form-control" id="clientAddress"
+                                                        name="clientAddress" placeholder="Address"
+                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                        onpaste="this.onchange();" oninput="this.onchange();"
+                                                        value="<%= json.clientAddress %>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                aria-expanded="false" aria-controls="collapseTwo">
+                                                Provider
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                            aria-labelledby="headingTwo" data-bs-parent="#accordion">
+                                            <div class="accordion-body">
+                                                <div class="form-group">
+                                                    <label for="provider">Name:</label>
+                                                    <input type="text" class="form-control" id="provider"
+                                                        name="provider" placeholder="Name"
+                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                        onpaste="this.onchange();" oninput="this.onchange();"
+                                                        value="<%= json.provider %>" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="providerRep">Representative:</label>
+                                                    <input type="text" class="form-control" id="providerRep"
+                                                        name="providerRep" placeholder="Representative's name"
+                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                        onpaste="this.onchange();" oninput="this.onchange();"
+                                                        value="<%= json.providerRep %>" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="providerNIF">NIF:</label>
+                                                    <input type="number" class="form-control" id="providerNIF"
+                                                        name="providerNIF" placeholder="NIF"
+                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                        onpaste="this.onchange();" oninput="this.onchange();"
+                                                        value="<%= json.providerNIF %>" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="providerAddress">Provider's Address:</label>
+                                                    <input type="text" class="form-control" id="providerAddress"
+                                                        name="providerAddress" placeholder="Address"
+                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                        onpaste="this.onchange();" oninput="this.onchange();"
+                                                        value="<%= json.providerAddress %>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                aria-expanded="false" aria-controls="collapseThree">
+                                                Contract Data
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                            aria-labelledby="headingThree" data-bs-parent="#accordion">
+                                            <div class="accordion-body">
+                                                <div class="form-row">
+                                                    <div class="col-md-3 mb-3">
+                                                        <label for="serviceCost">Service cost:</label>
+                                                        <input type="number" class="form-control" name="serviceCost"
+                                                            id="serviceCost" onchange='onChangeAmount(this.id);'
+                                                            onkeyup="this.onchange();" onpaste="this.onchange();"
+                                                            oninput="this.onchange();"
+                                                            value="<%= json.serviceCost.split(" ")[0] %>" required>
+                                                    </div>
+                                                    <div class="col-md-3 mb-3">
+                                                        <label for="serviceCostCurrency">Currency:</label>
+                                                        <select class="form-select" name="serviceCostCurrency"
+                                                            id="currency">
+                                                            <option value="EUR">€</option>
+                                                            <option value="USD">$</option>
+                                                            <option value="GBP">£</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="inicialDate">Initial date:</label>
+                                                        <input type="date" class="form-control" name="inicialDate"
+                                                            id="inicialDate" onchange='onChangeDate(this.id);'
+                                                            onkeyup="this.onchange();" onpaste="this.onchange();"
+                                                            oninput="this.onchange();" value="<%= json.inicialDate %>"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="contractDuration">Duration amount:</label>
+                                                        <input type="number" class="form-control"
+                                                            name="contractDuration" id="contractDuration"
+                                                            onchange='onChangeDuration(this.id);'
+                                                            onkeyup="this.onchange();" oninput="this.onchange();"
+                                                            onpaste="this.onchange();"
+                                                            value="<%= json.contractDuration.split(" ")[0] %>" required>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="contractDurationUnit">Duration unit:</label>
+                                                        <select class="form-select" name="contractDurationUnit"
+                                                            id="contractDurationUnit">
+                                                            <option disabled>Pick a unit</option>
+                                                            <option value="anos">Anos</option>
+                                                            <option value="trimestres">Trimestres</option>
+                                                            <option value="meses">Meses</option>
+                                                            <option value="semanas">Semanas</option>
+                                                            <option value="dias">Dias</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingFour">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                                                aria-expanded="false" aria-controls="collapseFour">
+                                                Service Level Agreement Points
+                                            </button>
+                                        </h2>
+                                        <div id="collapseFour" class="accordion-collapse collapse"
+                                            aria-labelledby="headingFour" data-bs-parent="#accordion">
+                                            <div class="accordion-body">
+                                                <h5>Intervalos</h5>
+                                                <div class="form-row">
+                                                    <div class="col-md-4">
+                                                        <input type="number" class="form-control" placeholder="0"
+                                                            readonly disabled>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input id="minPoints" name="minPoints" type="number"
+                                                            class="form-control"
+                                                            onchange='setIntervals(this.id); onChangeInput(this.id);'
+                                                            onkeyup="this.onchange();" oninput="this.onchange();"
+                                                            onpaste="this.onchange();" value="<%= json.minPoints %>"
+                                                            required>
+                                                    </div>
+                                                    <div class="input-group col-md-4">
+                                                        <input type="number" class="form-control" placeholder="0"
+                                                            readonly disabled>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" id="basic-addon2">%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-row">
+                                                    <div class="col-md-4">
+                                                        <input id="minPoints-2" type="number" class="form-control"
+                                                            placeholder="0" value="<%= json.minPoints %>" disabled
+                                                            readonly>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input name="lowPoints" id="lowPoints" type="number"
+                                                            class="form-control"
+                                                            onchange='setIntervals(this.id); onChangeInput(this.id);'
+                                                            onkeyup="this.onchange();" oninput="this.onchange();"
+                                                            onpaste="this.onchange();" value="<%= json.lowPoints %>"
+                                                            required>
+                                                    </div>
+                                                    <div class="input-group col-md-4">
+                                                        <input type="number" class="form-control" placeholder="0"
+                                                            id="highPercentage" name="highPercentage"
+                                                            onchange='onChangeInput(this.id);'
+                                                            onkeyup="this.onchange();" oninput="this.onchange();"
+                                                            onpaste="this.onchange();"
+                                                            value="<%= json.highPercentage %>" required>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" id="basic-addon2">%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-row">
+                                                    <div class="col-md-4">
+                                                        <input id="lowPoints-2" type="number" class="form-control"
+                                                            placeholder="0" value="<%= json.lowPoints %>" disabled
+                                                            readonly>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input id="midPoints" name="midPoints" type="number"
+                                                            class="form-control"
+                                                            onchange='setIntervals(this.id); onChangeInput(this.id);'
+                                                            onkeyup="this.onchange();" oninput="this.onchange();"
+                                                            onpaste="this.onchange();" value="<%= json.midPoints %>"
+                                                            required>
+                                                    </div>
+                                                    <div class="input-group col-md-4">
+                                                        <input type="number" class="form-control" placeholder="0"
+                                                            id="midPercentage" name="midPercentage"
+                                                            onchange='onChangeInput(this.id);'
+                                                            onkeyup="this.onchange();" oninput="this.onchange();"
+                                                            onpaste="this.onchange();" value="<%= json.midPercentage %>"
+                                                            required>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" id="basic-addon2">%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-row">
+                                                    <div class="col-md-4">
+                                                        <input id="midPoints-2" type="number" class="form-control"
+                                                            placeholder="0" value="<%= json.midPoints %>" disabled
+                                                            readonly>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input type="number" class="form-control" id="highPoints"
+                                                            name="highPoints" onchange='onChangeInput(this.id);'
+                                                            onkeyup="this.onchange();" oninput="this.onchange();"
+                                                            onpaste="this.onchange();" value="<%= json.highPoints %>"
+                                                            required>
+                                                    </div>
+                                                    <div class="input-group col-md-4">
+                                                        <input type="number" class="form-control" placeholder="0"
+                                                            id="lowPercentage" name="lowPercentage"
+                                                            onchange='onChangeInput(this.id);'
+                                                            onkeyup="this.onchange();" oninput="this.onchange();"
+                                                            onpaste="this.onchange();" value="<%= json.lowPercentage %>"
+                                                            required>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" id="basic-addon2">%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-row">
+                                    <button id="btnCreate" type="submit" class="btn btn-block btn-outline-success">Gerar
+                                        PDF</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+
+                    <div class="card shadow">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h3 class="card-title">Estado do Contrato </h3>
+                                </div>
+                                <div class="col-6" style="text-align: right;">
+                                    <%# contractstates.reduce() %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body rounded-3 shadow">
+                            <h5 class="card-title h5">Histórico de Estados</h5>
+                            <div class="table-responsive">
+                                <table id="history" class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Estado</th>
+                                            <th>Data de alteração</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for( let i = 0; i < state.length; i++ ) { %>
+                                        <% if (state[i].contract == contract.idContract) { %>
+                                        <% let date = state[i].timestamp %>
+                                        <tr>
+                                            <% if (state[i].description == 'INICIADO') { %>
+                                            <td><span class="badge badge-primary">Em curso</span></td>
+                                            <% } else if (state[i].description == 'OBRIGACAO_EMITIDA') { %>
+                                            <td><span class="badge badge-info">Pagamento emitido</span></td>
+                                            <% } %>
+                                            <td><%= date.toLocaleDateString('en-GB') + " " + date.toLocaleTimeString() %>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6" style="overflow: hidden; float: right;">
+
+                    <div class="card shadow" id="contract">
+                        <div class="card-header">
+                            <h3 class="card-title">Contrato</h3>
+                        </div>
+                        <div class="card-body rounded-3 shadow">
+                            <p class="card-text">Este é um contrato para o fornecimento de um serviço de fornecimento de
+                                internet.</p>
+                            <p class="card-text">Entre</p>
+                            <p class="card-text"><span class="contractvar" id="spanprovider"><%= json.provider %></span>
+                                com o NIF nº <span class="contractvar"
+                                    id="spanproviderNIF"><%= json.providerNIF %></span>,
+                                com sede em <span class="contractvar"
+                                    id="spanproviderAddress"><%= json.providerAddress %></span>,
+                                representado por <span class="contractvar"
+                                    id="spanproviderRep"><%= json.providerRep %></span>,
+                                doravante denominado
+                                por
+                                <strong>Fornecedor</strong>.
+                            </p>
+                            <p class="card-text">E</p>
+                            <p class="card-text"><span class="contractvar" id="spanclient"><%= json.client %></span> com
+                                o NIF
+                                nº <span class="contractvar" id="spanclientNIF"><%= json.clientNIF %></span>, sediado em
+                                <span class="contractvar" id="spanclientAddress"><%= json.providerAddress %></span>,
+                                representado por <span class="contractvar"
+                                    id="spanclientRep"><%= json.providerRep %></span>,
+                                adiante designado por
+                                <strong>Cliente</strong>.</p>
+                            <p class="card-text">O contrato será iniciado a <span class="contractvar"
+                                    id="spaninicialDate"><%= json.inicialDate %></span>, iniciando nesse
+                                mesmo dia e terá a duração de <span class="contractvar"
+                                    id="spancontractDuration"><%= json.contractDuration %></span>.
+                            </p>
+                            <p class="card-text">O serviço prestado pelo <strong>Fornecedor</strong> terá o custo de
+                                <span class="contractvar" id="spanserviceCost"><%= json.serviceCost %></span> pelo
+                                período de serviço acordado pelas partes deste contrato. O pagamento será feito mediante
+                                o
+                                resultado da avaliação realizada pelo <strong>Cliente</strong>, que terá que ser
+                                obrigatoriamente
+                                realizada num espaço de 7 dias a contar desde o final do contrato.</p>
+                            <p class="card-text">A avaliação terá que ser realizada numa escala de 0 a 100 pontos em
+                                que:
+                            </p>
+                            <p class="card-text">1. No caso da pontuação ser inferior a <span class="contractvar"
+                                    id="spanminPoints"><%= json.minPoints %>}</span>
+                                (valor mínimo de
+                                pontuação do serviço) o contrato entre ambas as partes termina e o
+                                <strong>Cliente</strong>
+                                não tem que
+                                pagar pelo serviço prestado;</p>
+                            <p class="card-text">2. No caso da pontuação estar compreendida entre o valor mínimo e
+                                <span class="contractvar" id="spanlowPoints"><%= json.lowPoints %></span> o contrato não
+                                será
+                                renovado e o
+                                <strong>Cliente</strong>
+                                paga apenas
+                                <span class="contractvar" id="spanhighPercentage"><%= json.highPercentage %></span>%
+                                do valor total do serviço;</p>
+                            <p class="card-text">3. No caso da pontuação estar compreendida entre o valor definido no
+                                Ponto
+                                2 e <span class="contractvar" id="spanmidPoints"><%= json.midPoints %></span> o contrato
+                                será
+                                renovado e o
+                                <strong>Cliente</strong>
+                                paga apenas
+                                <span class="contractvar" id="spanmidPercentage"><%= json.midPercentage %></span>% do
+                                valor total do serviço providenciado;</p>
+                            <p class="card-text">4. No caso da pontuação estar compreendida entro o valor definido no
+                                Ponto
+                                3 e <span class="contractvar" id="spanhighPoints"><%= json.highPoints %></span> o
+                                contrato será
+                                renovado e o
+                                <strong>Cliente</strong>
+                                paga apenas
+                                <span class="contractvar" id="spanlowPercentage"><%= json.lowPercentage %></span>%
+                                do valor total definido previamente;</p>
+                            <p class="card-text">5. No caso da pontuação ser superior a <span class="contractvar"
+                                    id="spanhighPoints"><%= json.highPoints %></span> o
+                                contrato será
+                                renovado e o <strong>Cliente</strong> paga a totalidade do valor acordado entre ambas as
+                                partes.</p>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+
+                <% }else{ %>
 
                 <div class="col-6" style="overflow: auto; float: left;">
                     <form id="contractform" action="/form" method="POST">
@@ -367,13 +815,20 @@
                         </div>
                     </div>
                 </div>
+                <% } %>
             </main>
             <%- include('partials/footer') -%>
         </div>
     </div>
-
-
-
+    <% if (!isNew) { %>
+        <script>
+            $(document).ready(function () {
+                $('#history').DataTable({
+                    "order": [[1, "desc"]]
+                });
+            });
+        </script>
+    <% } %>
 </body>
 
 </html>
