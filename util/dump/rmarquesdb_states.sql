@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `rmarquesdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `rmarquesdb`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: hag-pre.intranet.digitalsign.pt    Database: rmarquesdb
@@ -30,7 +32,7 @@ CREATE TABLE `states` (
   PRIMARY KEY (`idState`),
   KEY `fk_states_contracts1_idx` (`contract`),
   CONSTRAINT `fk_states_contracts1` FOREIGN KEY (`contract`) REFERENCES `contracts` (`idContract`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +41,7 @@ CREATE TABLE `states` (
 
 LOCK TABLES `states` WRITE;
 /*!40000 ALTER TABLE `states` DISABLE KEYS */;
-INSERT INTO `states` VALUES (1,'INICIADO','2021-09-16 15:15:06',1),(4,'OBRIGACAO_EMITIDA','2021-09-16 15:26:36',1),(7,'INICIADO','2021-09-16 17:58:38',7);
+INSERT INTO `states` VALUES (1,'INICIADO','2021-09-16 15:15:06',1),(4,'OBRIGACAO_EMITIDA','2021-09-16 15:26:36',1),(7,'INICIADO','2021-09-16 17:58:38',7),(8,'PAGAMENTO_EFETUADO','2021-09-20 10:24:02',1),(11,'OBRIGACAO_EMITIDA','2021-09-20 12:42:35',4);
 /*!40000 ALTER TABLE `states` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-16 18:03:32
+-- Dump completed on 2021-09-20 17:48:43

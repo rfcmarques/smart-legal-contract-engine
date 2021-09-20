@@ -38,6 +38,9 @@
                             <% contractstates.push(parseInt(state[i].timestamp.getTime())) %>
                         <% } %>
                     <% } %>
+                    <% var laststatetimestamp = Math.max.apply(null,contractstates)  %>
+                    <% console.log(laststatetimestamp) %>
+                    <% console.log(contractstates.length) %>
 
                 <% var json = JSON.parse(contract.data) %>
                 <div class="col-6" style="overflow: auto; float: left;">
@@ -340,38 +343,65 @@
                                     <h3 class="card-title">Estado do Contrato </h3>
                                 </div>
                                 <div class="col-6" style="text-align: right;">
-                                    <%# contractstates.reduce() %>
+                                    <% if (contractstates.length == 0) { %>
+                                        <h3><span class="badge badge-warning">Por assinar</span></h3>
+                                    <% }else{ %>
+                                        <% for(let i=0;i<state.length;i++) { %>
+                                            <% if (state[i].contract == contract.idContract) { %>
+                                                <% if (state[i].timestamp.getTime() == laststatetimestamp) { %>
+                                                    <% if (state[i].description == 'INICIADO') { %>
+                                                        <h3><span class="badge badge-primary">Em curso</span></h3>  
+                                                    <% }else if (state[i].description == 'OBRIGACAO_EMITIDA') { %>
+                                                        <h3><span class="badge badge-info">Pagamento emitido</span></h3>
+                                                    <% }else if (state[i].description == 'PAGAMENTO_EFETUADO'){ %>
+                                                        <h3><span class="badge badge-success">Pagamento efetuado</span></h3>
+                                                    <% } %>      
+                                                <% } %>                                         
+                                            <% } %>
+                                        <% } %>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body rounded-3 shadow">
                             <h5 class="card-title h5">Histórico de Estados</h5>
-                            <div class="table-responsive">
-                                <table id="history" class="table table-hover table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Estado</th>
-                                            <th>Data de alteração</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <% for( let i = 0; i < state.length; i++ ) { %>
-                                        <% if (state[i].contract == contract.idContract) { %>
-                                        <% let date = state[i].timestamp %>
-                                        <tr>
-                                            <% if (state[i].description == 'INICIADO') { %>
-                                            <td><span class="badge badge-primary">Em curso</span></td>
-                                            <% } else if (state[i].description == 'OBRIGACAO_EMITIDA') { %>
-                                            <td><span class="badge badge-info">Pagamento emitido</span></td>
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table id="history" class="table table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Estado</th>
+                                                <th>Data de alteração</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for( let i = 0; i < state.length; i++ ) { %>
+                                            <% if (state[i].contract == contract.idContract) { %>
+                                            <% let date = state[i].timestamp %>
+                                            <tr>
+                                                <% if (state[i].description == 'INICIADO') { %>
+                                                <td><span class="badge badge-primary">Em curso</span></td>
+                                                <% } else if (state[i].description == 'OBRIGACAO_EMITIDA') { %>
+                                                <td><span class="badge badge-info">Pagamento emitido</span></td>
+                                                <% } else if (state[i].description == 'PAGAMENTO_EFETUADO') { %>
+                                                <td><span class="badge badge-success">Pagamento efetuado</span></td>
+                                                <% } %>
+                                                <td><%= date.toLocaleDateString('pt-PT') + " " + date.toLocaleTimeString() %>
+                                                </td>
+                                            </tr>
                                             <% } %>
-                                            <td><%= date.toLocaleDateString('en-GB') + " " + date.toLocaleTimeString() %>
-                                            </td>
-                                        </tr>
-                                        <% } %>
-                                        <% } %>
-                                    </tbody>
-                                </table>
+                                            <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+                            <br>
+                            <form action="" method="post">
+                                <div class="row">
+                                    <button class="btn btn-block btn-outline-primary" type="submit">Alterar
+                                        estado</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -821,13 +851,15 @@
         </div>
     </div>
     <% if (!isNew) { %>
-        <script>
-            $(document).ready(function () {
-                $('#history').DataTable({
-                    "order": [[1, "desc"]]
-                });
+    <script>
+        $(document).ready(function () {
+            $('#history').DataTable({
+                "order": [
+                    [1, "desc"]
+                ]
             });
-        </script>
+        });
+    </script>
     <% } %>
 </body>
 

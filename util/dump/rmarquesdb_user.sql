@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `rmarquesdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `rmarquesdb`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: hag-pre.intranet.digitalsign.pt    Database: rmarquesdb
@@ -31,7 +33,7 @@ CREATE TABLE `user` (
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `type` varchar(45) DEFAULT 'user',
   PRIMARY KEY (`idUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-16 18:03:33
+-- Dump completed on 2021-09-20 17:48:43

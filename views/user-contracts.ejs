@@ -24,6 +24,33 @@
 
       <main class="col-md-1 ms-sm-auto col-lg-10 px-md-4" style="padding-top: 1%;">
 
+        <% var counteremitidos = 0 %>
+        <% var counterpagos = 0 %>
+        <% var counterinit = 0 %>
+        <% var counterexpirados = 0 %>
+        <% var counter = 0 %>
+        <% for(let i=0;i<contract.length;i++) { %>
+          <% if (contract[i].creator == user.idUser) { %>
+            <% counter++ %>
+            <% for(let a=0; a<state.length;a++) { %>
+              <% if (state[a].contract == contract[i].idContract) { %>
+                <% for(let x=0;x<laststate.length;x++) { %>
+                  <% if (state[a].timestamp.getTime() == laststate[x].lasttimestamp.getTime()) { %>
+                    <% if (state[a].description == 'OBRIGACAO_EMITIDA') { %>
+                     <% counteremitidos++  %>
+                    <% }else if (state[a].description == 'PAGAMENTO_EFETUADO'){ %>
+                      <% counterpagos++ %>
+                    <% }else if (state[a].description == 'INICIADO'){ %>
+                      <% counterinit++ %>
+                    <% } %> 
+                  <% } %>
+                <% } %> 
+              <% } %>  
+            <% } %>
+          <% } %>
+        <% } %>
+        <% var counterassinar = counter - counterinit - counteremitidos - counterpagos %>
+
         <div class="card shadow">
           <div class="card-header">
             <h2 class="card-title">
@@ -37,7 +64,7 @@
                   <div class="card-body rounded-3 shadow btn-success">
                     <div class="row">
                       <div class="col-6">
-                        <p class="number">10</p>
+                        <p class="number"><%= counterpagos %> </p>
                         <h6 class="h6 card-title">Terminados</h6>
                       </div>
                       <div class="col-6 icon">
@@ -52,7 +79,7 @@
                   <div class="card-body rounded-3 shadow btn-primary">
                     <div class="row">
                       <div class="col-6">
-                        <p class="number">17</p>
+                        <p class="number"><%= counterinit + counteremitidos %> </p>
                         <h6 class="h6 card-title">Em curso</h6>
                       </div>
                       <div class="col-6 icon">
@@ -67,7 +94,7 @@
                   <div class="card-body rounded-3 shadow btn-warning">
                     <div class="row">
                       <div class="col-6">
-                        <p class="number">3</p>
+                        <p class="number"><%= counterassinar %> </p>
                         <h6 class="h6 card-title">Por assinar</h6>
                       </div>
                       <div class="col-6 icon">
@@ -82,7 +109,7 @@
                   <div class="card-body rounded-3 shadow btn-danger">
                     <div class="row">
                       <div class="col-6">
-                        <p class="number">2</p>
+                        <p class="number"><%= counterexpirados %> </p>
                         <h6 class="h6 card-title">Expirados</h6>
                       </div>
                       <div class="col-6 icon">
@@ -116,16 +143,25 @@
                 </thead>
                 <% for( let i = 0; i < contract.length; i++ ) {%>
                   <% if (contract[i].creator == user.idUser) { %>
-                    <% let date = contract[i].creation_date %> 
-                   <tbody>
-                     <tr>
-                       <td><%= i+1 %></td>
-                       <td><%= user.firstName + " " + user.lastName %> </td>
-                       <td><%= date.toLocaleDateString('en-GB') + " " + date.toLocaleTimeString() %></td>
-                       <td><span class="badge badge-primary">Em curso</span></td>
-                       <td><a class="btn-sm btn-success" href="/user/<%= contract[i].idContract %>"><i class="fas fa-edit"></i></a></td>
-                     </tr>
-                   </tbody>
+                    <% let date = contract[i].creation_date %>
+                    <% for(let a=0; a<state.length;a++) { %>
+                      <% if (state[a].contract == contract[i].idContract) { %>
+                        <% for(let x=0;x<laststate.length;x++) { %>
+                          <% if (state[a].timestamp.getTime() == laststate[x].lasttimestamp.getTime()) { %>
+                            <tbody>
+                              <tr>
+                                <td><%= i+1 %></td>
+                                <td><%= user.firstName + " " + user.lastName %> </td>
+                                <td><%= date.toLocaleDateString('pt-PT') + " " + date.toLocaleTimeString() %></td>
+                                <td><span class="badge badge-primary">Em curso</span></td>
+                                <td><a class="btn-sm btn-success" href="/user/<%= contract[i].idContract %>"><i
+                                      class="fas fa-edit"></i></a></td>
+                              </tr>
+                            </tbody>
+                          <% } %>  
+                        <% } %>  
+                      <% } %>
+                    <% } %>
                   <% } %>
                 <% } %>
               </table>
