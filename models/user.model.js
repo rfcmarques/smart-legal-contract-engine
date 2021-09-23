@@ -2,7 +2,7 @@ const db = require('../util/database');
 
 module.exports = {
     list(callback) {
-        var sql = 'SELECT * FROM user';
+        var sql = 'SELECT * FROM users';
         db.query(sql, function (error, rows, fields) {
             if (error) throw error;
             callback(rows);
@@ -10,7 +10,7 @@ module.exports = {
     },
 
     read(email, callback) {
-        var sql = 'SELECT * FROM user where email=?';
+        var sql = 'SELECT * FROM users where email=?';
         db.query(sql, [email], function (error, rows, fields) {
             if (error) throw error;
             callback(rows[0]);
@@ -18,7 +18,7 @@ module.exports = {
     },
 
     readId(idUser, callback) {
-        var sql = 'SELECT * FROM user where idUser=?';
+        var sql = 'SELECT * FROM users where idUser=?';
         db.query(sql, [idUser], function (error, rows, fields) {
             if (error) throw error;
             callback(rows[0]);
@@ -26,7 +26,7 @@ module.exports = {
     },
 
     create(data, callback) {
-        var sql = 'INSERT INTO user (email, password, firstName, lastName) VALUES (?,?,?,?)';
+        var sql = 'INSERT INTO users (email, password, firstName, lastName) VALUES (?,?,?,?)';
         db.query(
             sql, [data.email, data.password, data.firstName, data.lastName],
             function (error, rows, fields) {
@@ -36,7 +36,7 @@ module.exports = {
     },
 
     update(email, data, callback) {
-        var sql = 'UPDATE user SET password=?, firstName=?, lastName=? WHERE email=?';
+        var sql = 'UPDATE users SET password=?, firstName=?, lastName=? WHERE email=?';
         db.query(
             sql, [data.password, data.firstName, data.lastName, email],
             function (error, rows, fields) {
@@ -46,7 +46,7 @@ module.exports = {
     },
 
     remove(email, callback) {
-        var sql = 'DELETE FROM user WHERE email=?';
+        var sql = 'DELETE FROM users WHERE email=?';
         db.query(sql, [email], function (error, rows, fields) {
             if (error) throw error;
             callback(rows);
@@ -54,7 +54,7 @@ module.exports = {
     },
 
     areValidCredentials(email, password, callback) {
-        var sql = 'SELECT password FROM user WHERE email=?';
+        var sql = 'SELECT password FROM users WHERE email=?';
         db.query(sql, [email], function (error, rows, fields) {
             if (error) throw error;
             if (rows.length == 1 && rows[0].password == password) {

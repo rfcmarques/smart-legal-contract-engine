@@ -165,10 +165,9 @@ $('input[type=number]').each(function () {
  */
 
 $('#btnCreate').on('click', function () {
-    // setTimeout(function () {
-    //     $('#contractform').trigger('reset');
-    //     window.location.reload();
-    // }, 5000)
+    setTimeout(function () {
+        window.location.replace('/user');
+    }, 5000)
 
     const Toast = Swal.mixin({
         toast: true,

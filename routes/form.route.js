@@ -10,7 +10,9 @@ const userModel = require('../models/user.model');
 
 router.get('/', global.secure(), function (request, response) {
     response.set("Content-Type", "text/html");
-    response.render('form', {})
+    response.render('form', {
+        isNew: true
+    })
 });
 
 router.get('/:pdf', global.secure(), function (request, response) {
@@ -21,7 +23,7 @@ router.get('/:pdf', global.secure(), function (request, response) {
     }
 })
 
-router.post('/', global.secure(), function (request, response) {
+router.post('/:user', global.secure(), function (request, response) {
 
     var template = path.join(dirpath, '/views', 'template.html');
     var destination = path.join('./public/downloads', 'template.pdf')
@@ -40,11 +42,33 @@ router.post('/', global.secure(), function (request, response) {
         localUrlAccess: true
     };
 
+    var contractJSON = {
+        'provider': data.provider,
+        'providerNIF': data.providerNIF,
+        'providerRep': data.providerRep,
+        'providerAddress': data.providerAddress,
+        'client': data.client,
+        'clientNIF': data.clientNIF,
+        'clientRep': data.clientRep,
+        'clientAddress': data.clientAddress,
+        'inicialDate': data.inicialDate,
+        'contractDuration': data.contractDuration + " " + data.contractDurationUnit,
+        'serviceCost': data.serviceCost + " " + data.serviceCostCurrency,
+        'minPoints': data.minPoints,
+        'lowPoints': data.lowPoints,
+        'midPoints': data.midPoints,
+        'highPoints': data.highPoints,
+        'maxPoints': data.highPoints,
+        'highPercentage': data.highPercentage,
+        'midPercentage': data.midPercentage,
+        'lowPercentage': data.lowPercentage
+    };
+
     var contractData = {
-        'contracthash': " ",
-        'data': data,
-        'creator': 1
-    }
+        'contracthash': 'teste',
+        'contractData': JSON.stringify(contractJSON),
+        'creator': request.params.user
+    };
 
     templateHtml = templateHtml.replace('{{provider}}', data.provider);
     templateHtml = templateHtml.replace('{{providerNIF}}', data.providerNIF);
@@ -68,11 +92,8 @@ router.post('/', global.secure(), function (request, response) {
 
     pdf.create(templateHtml, options).toFile(destination, function (err, pdf) {
         response.redirect('/form/contract-template');
-        // contractModel.create(contractData, ()=>{
-        //     response.redirect('/user');
-        // });
-    });
-    
-})
+        contractModel.create(contractData, function(){});
+    }); 
+});
 
 module.exports = router;
