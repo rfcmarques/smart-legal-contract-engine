@@ -23,24 +23,24 @@ router.get('/:pdf', global.secure(), function (request, response) {
     }
 })
 
-router.post('/', global.secure(), function (request, response) {
+router.post('/:user', global.secure(), function (request, response) {
 
-    // var template = path.join(dirpath, '/views', 'template.html');
-    // var destination = path.join('./public/downloads', 'template.pdf')
-    // var templateHtml = fs.readFileSync(template, 'utf8');
+    var template = path.join(dirpath, '/views', 'template.html');
+    var destination = path.join('./public/downloads', 'template.pdf')
+    var templateHtml = fs.readFileSync(template, 'utf8');
 
-    // var logo = path.join('file://', dirpath + '/public/css', 'digitalsign.png');
-    // templateHtml = templateHtml.replace('{{logo}}', logo);
+    var logo = path.join('file://', dirpath + '/public/css', 'digitalsign.png');
+    templateHtml = templateHtml.replace('{{logo}}', logo);
 
-    // var style = path.join('file://', dirpath + '/public/css', 'template.css');
-    // templateHtml = templateHtml.replace('{{style}}', style);
+    var style = path.join('file://', dirpath + '/public/css', 'template.css');
+    templateHtml = templateHtml.replace('{{style}}', style);
 
     var data = request.body;
 
-    // var options = {
-    //     format: 'Legal',
-    //     localUrlAccess: true
-    // };
+    var options = {
+        format: 'Legal',
+        localUrlAccess: true
+    };
 
     var contractJSON = {
         'provider': data.provider,
@@ -66,38 +66,34 @@ router.post('/', global.secure(), function (request, response) {
 
     var contractData = {
         'contracthash': 'teste',
-        'data': JSON.stringify(contractJSON),
-        'creator': 1
+        'contractData': JSON.stringify(contractJSON),
+        'creator': request.params.user
     };
 
-    contractModel.create(contractData, function(){
-        response.redirect('/user');
-    });
+    templateHtml = templateHtml.replace('{{provider}}', data.provider);
+    templateHtml = templateHtml.replace('{{providerNIF}}', data.providerNIF);
+    templateHtml = templateHtml.replace('{{providerAddress}}', data.providerAddress);
+    templateHtml = templateHtml.replace('{{providerRep}}', data.providerRep);
+    templateHtml = templateHtml.replace('{{client}}', data.client);
+    templateHtml = templateHtml.replace('{{clientNIF}}', data.clientNIF);
+    templateHtml = templateHtml.replace('{{clientAddress}}', data.clientAddress);
+    templateHtml = templateHtml.replace('{{clientRep}}', data.clientRep);
+    templateHtml = templateHtml.replace('{{inicialDate}}', data.inicialDate);
+    templateHtml = templateHtml.replace('{{contractDuration}}', data.contractDuration + " " + data.contractDurationUnit);
+    templateHtml = templateHtml.replace('{{serviceCost}}', data.serviceCost + " " + data.serviceCostCurrency);
+    templateHtml = templateHtml.replace('{{minPoints}}', data.minPoints);
+    templateHtml = templateHtml.replace('{{lowPoints}}', data.lowPoints);
+    templateHtml = templateHtml.replace('{{midPoints}}', data.midPoints);
+    templateHtml = templateHtml.replace('{{highPoints}}', data.highPoints);
+    templateHtml = templateHtml.replace('{{maxPoints}}', data.highPoints);
+    templateHtml = templateHtml.replace('{{highPercentage}}', data.highPercentage);
+    templateHtml = templateHtml.replace('{{midPercentage}}', data.midPercentage);
+    templateHtml = templateHtml.replace('{{lowPercentage}}', data.lowPercentage);
 
-    // templateHtml = templateHtml.replace('{{provider}}', data.provider);
-    // templateHtml = templateHtml.replace('{{providerNIF}}', data.providerNIF);
-    // templateHtml = templateHtml.replace('{{providerAddress}}', data.providerAddress);
-    // templateHtml = templateHtml.replace('{{providerRep}}', data.providerRep);
-    // templateHtml = templateHtml.replace('{{client}}', data.client);
-    // templateHtml = templateHtml.replace('{{clientNIF}}', data.clientNIF);
-    // templateHtml = templateHtml.replace('{{clientAddress}}', data.clientAddress);
-    // templateHtml = templateHtml.replace('{{clientRep}}', data.clientRep);
-    // templateHtml = templateHtml.replace('{{inicialDate}}', data.inicialDate);
-    // templateHtml = templateHtml.replace('{{contractDuration}}', data.contractDuration + " " + data.contractDurationUnit);
-    // templateHtml = templateHtml.replace('{{serviceCost}}', data.serviceCost + " " + data.serviceCostCurrency);
-    // templateHtml = templateHtml.replace('{{minPoints}}', data.minPoints);
-    // templateHtml = templateHtml.replace('{{lowPoints}}', data.lowPoints);
-    // templateHtml = templateHtml.replace('{{midPoints}}', data.midPoints);
-    // templateHtml = templateHtml.replace('{{highPoints}}', data.highPoints);
-    // templateHtml = templateHtml.replace('{{maxPoints}}', data.highPoints);
-    // templateHtml = templateHtml.replace('{{highPercentage}}', data.highPercentage);
-    // templateHtml = templateHtml.replace('{{midPercentage}}', data.midPercentage);
-    // templateHtml = templateHtml.replace('{{lowPercentage}}', data.lowPercentage);
-
-    // pdf.create(templateHtml, options).toFile(destination, function (err, pdf) {
-    //     response.redirect('/form/contract-template');
-    // });
-    
-})
+    pdf.create(templateHtml, options).toFile(destination, function (err, pdf) {
+        response.redirect('/form/contract-template');
+        contractModel.create(contractData, function(){});
+    }); 
+});
 
 module.exports = router;

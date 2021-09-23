@@ -18,9 +18,9 @@ module.exports = {
     },
 
     create(data, callback) {
-        var sql = 'INSERT INTO contracts (contracthash, data, creator) VALUES (?,?,?)';
+        var sql = 'INSERT INTO contracts (hash, contractData, creator) VALUES (?,?,?)';
         db.query(
-            sql, [data.contracthash, data.data, data.creator],
+            sql, [data.contracthash, data.contractData, data.creator],
             function (error, rows, fields) {
                 if (error) throw error;
                 callback(rows[0]);
@@ -28,8 +28,8 @@ module.exports = {
     },
 
     update(idContract, data, callback) {
-        var sql = 'UPDATE contracts SET contracthash=?, contractData=?, creator=? WHERE idContract=?';
-        db.query(sql, [data.contracthash, data.contractData, data.creator],
+        var sql = 'UPDATE contracts SET contractData=? WHERE idContract=?';
+        db.query(sql, [data.contractData, idContract],
             function (error, rows, fields) {
                 if (error) throw error;
                 callback(rows[0]);

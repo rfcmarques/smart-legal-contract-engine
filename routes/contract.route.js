@@ -2,54 +2,51 @@ const express = require('express');
 const router = express.Router();
 const userModel = require('../models/user.model');
 const contractModel = require('../models/contract.model');
-const stateModel = require('../models/states.model');
+const logModel = require('../models/log.model');
 
 router.get('/', global.secure(), function (request, response) {
     userModel.list(function (user) {
         contractModel.list(function (contract) {
-            stateModel.list(function (state){
-                stateModel.listlaststate(function (laststate) {
-                    response.set("Content-Type", "text/html");
-                    response.render('user-contracts', {
-                        isNew: false,
-                        data: user,
-                        contract: contract,
-                        state: state,
-                        laststate: laststate
-                    });
-                });
+            response.set("Content-Type", "text/html");
+            response.render('user-contracts', {
+                isNew: false,
+                data: user,
+                contract: contract
             });
         });
     });
 });
 
 router.get('/:contractid', global.secure(), function (request, response) {
-    if (request.params.contractid != undefined) {
-        userModel.list(function (user) {
-            contractModel.read(request.params.contractid, function (contract) {
-                stateModel.list(function (state) {
+    userModel.list(function (user) {
+        contractModel.read(request.params.contractid, function (contract) {
+            if (contract != undefined) {
+                logModel.listContractLog(request.params.contractid, function (log) {
                     response.set("Content-Type", "text/html");
                     response.render('form', {
                         isNew: false,
                         data: user,
                         contract: contract,
-                        state: state
+                        log: log
                     });
-                })
-            });
+                });
+            } else {
+                response.status(404).render('404')
+            }
         });
-    } else {
-        response.status(404).render('404')
-    }
+    });
 });
 
 router.post('/:contractid', global.secure(), function (request, response) {
     var data = {
-        'description': 'OBRIGACAO_EMITIDA',
-        'contract': request.params.contractid
-    }
-    stateModel.create(data, function (){
-        response.redirect('/user');
+        'state': parseInt(request.body.contractstate) + 3,
+        'contract': request.params.contractid,
+        'user': request.body.contractcreator    
+    };
+
+    console.log(data);
+    logModel.create(data, function(){
+        response.redirect('/user/'+request.params.contractid);
     });
 });
 

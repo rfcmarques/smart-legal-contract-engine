@@ -9,14 +9,6 @@ module.exports = {
         });
     },
 
-    listlaststate(callback) {
-        var sql = 'SELECT contract, MAX(timestamp) as lasttimestamp FROM states GROUP BY contract';
-        db.query(sql, function (error, rows, fields) {
-            if (error) throw error;
-            callback(rows);
-        });
-    },
-
     read(contract, callback) {
         var sql = 'SELECT * FROM states where contract=?';
         db.query(sql, [contract], function (error, rows, fields) {

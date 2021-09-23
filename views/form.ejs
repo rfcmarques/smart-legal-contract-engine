@@ -32,17 +32,8 @@
 
             <main class="col-md-1 ms-sm-auto col-lg-10 px-md-4">
                 <% if (!isNew) { %>
-                    <% var contractstates = [] %>
-                    <% for( let i = 0; i < state.length; i++ ) { %>
-                        <% if (state[i].contract == contract.idContract) { %>
-                            <% contractstates.push(parseInt(state[i].timestamp.getTime())) %>
-                        <% } %>
-                    <% } %>
-                    <% var laststatetimestamp = Math.max.apply(null,contractstates)  %>
-                    <% console.log(laststatetimestamp) %>
-                    <% console.log(contractstates.length) %>
 
-                <% var json = JSON.parse(contract.data) %>
+                <% var json = JSON.parse(contract.contractData) %>
                 <div class="col-6" style="overflow: auto; float: left;">
                     <form id="contractform" action="/form" method="POST">
                         <div class="card shadow">
@@ -343,22 +334,16 @@
                                     <h3 class="card-title">Estado do Contrato </h3>
                                 </div>
                                 <div class="col-6" style="text-align: right;">
-                                    <% if (contractstates.length == 0) { %>
-                                        <h3><span class="badge badge-warning">Por assinar</span></h3>
-                                    <% }else{ %>
-                                        <% for(let i=0;i<state.length;i++) { %>
-                                            <% if (state[i].contract == contract.idContract) { %>
-                                                <% if (state[i].timestamp.getTime() == laststatetimestamp) { %>
-                                                    <% if (state[i].description == 'INICIADO') { %>
-                                                        <h3><span class="badge badge-primary">Em curso</span></h3>  
-                                                    <% }else if (state[i].description == 'OBRIGACAO_EMITIDA') { %>
-                                                        <h3><span class="badge badge-info">Pagamento emitido</span></h3>
-                                                    <% }else if (state[i].description == 'PAGAMENTO_EFETUADO'){ %>
-                                                        <h3><span class="badge badge-success">Pagamento efetuado</span></h3>
-                                                    <% } %>      
-                                                <% } %>                                         
-                                            <% } %>
-                                        <% } %>
+                                    <% if (contract.currentstate == 2) { %>
+                                    <h3><span class="badge badge-warning">Por assinar</span></h3>
+                                    <% } else if (contract.currentstate == 5){ %>
+                                    <h3><span class="badge badge-primary">Em curso</span></h3>
+                                    <% } else if (contract.currentstate == 8) { %>
+                                    <h3><span class="badge badge-info">Obrigação emitida</span></h3>                                
+                                    <% } else if (contract.currentstate == 11) { %>
+                                    <h3><span class="badge badge-success">Concluído</span></h3> 
+                                    <% } else if (contract.currentstate == 14) { %>
+                                    <h3><span class="badge badge-danger">Expirado</span></h3>                                
                                     <% } %>
                                 </div>
                             </div>
@@ -375,33 +360,43 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <% for( let i = 0; i < state.length; i++ ) { %>
-                                            <% if (state[i].contract == contract.idContract) { %>
-                                            <% let date = state[i].timestamp %>
                                             <tr>
-                                                <% if (state[i].description == 'INICIADO') { %>
-                                                <td><span class="badge badge-primary">Em curso</span></td>
-                                                <% } else if (state[i].description == 'OBRIGACAO_EMITIDA') { %>
-                                                <td><span class="badge badge-info">Pagamento emitido</span></td>
-                                                <% } else if (state[i].description == 'PAGAMENTO_EFETUADO') { %>
-                                                <td><span class="badge badge-success">Pagamento efetuado</span></td>
-                                                <% } %>
-                                                <td><%= date.toLocaleDateString('pt-PT') + " " + date.toLocaleTimeString() %>
-                                                </td>
+                                                <td><span class="badge badge-warning">Por assinar</span></td>
+                                                <% let date = contract.creation_date %>
+                                                <td><%= date.toLocaleDateString('pt-PT') + " " + date.toLocaleTimeString() %></td>
                                             </tr>
+                                            <% for( let i=0;i<log.length;i++) { %> 
+                                            <tr>
+                                                <% if (log[i].state == 2) { %>
+                                                <td><span class="badge badge-warning">Por assinar</span></td>
+                                                <% } else if (log[i].state == 5) { %>
+                                                <td><span class="badge badge-primary">Em curso</span></td>
+                                                <% } else if (log[i].state == 8) { %>
+                                                    <td><span class="badge badge-info">Obrigação emitida</span></td>
+                                                    <% } else if (log[i].state == 11) { %>
+                                                    <td><span class="badge badge-success">Terminado</span></td>
+                                                    <% } else if (log[i].state == 14) { %>
+                                                    <td><span class="badge badge-danger">Terminado</span></td>
+                                                    <% } %>
+                                                <td><%= log[i].timestamp.toLocaleDateString('pt-PT') + " " + log[i].timestamp.toLocaleTimeString() %>   
+                                                </td>
                                             <% } %>
-                                            <% } %>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                             <br>
-                            <form action="" method="post">
-                                <div class="row">
-                                    <button class="btn btn-block btn-outline-primary" type="submit">Alterar
-                                        estado</button>
-                                </div>
-                            </form>
+                            <% if (contract.currentstate != 11) { %>
+                                <form action="/user/<%= contract.idContract %>" method="post">
+                                    <div class="row">
+                                        <input type="number" name="contractcreator" value="<%= contract.creator %>" hidden>
+                                        <input type="number" name="contractstate" value="<%= contract.currentstate %>" hidden>
+                                        <button class="btn btn-block btn-outline-primary" id="statebutton" type="submit">Alterar
+                                            estado</button>
+                                    </div>
+                                </form>
+                            <% } %>
                         </div>
                     </div>
                 </div>
@@ -497,7 +492,7 @@
                 <% }else{ %>
 
                 <div class="col-6" style="overflow: auto; float: left;">
-                    <form id="contractform" action="/form" method="POST">
+                    <form id="contractform" action="/form/<%= user.idUser  %> " method="POST">
                         <div class="card shadow">
                             <div class="card-body rounded-3 shadow">
                                 <h3 class="card-title">Dados Contratuais</h3>
