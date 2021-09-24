@@ -26,9 +26,6 @@ global.secure = function(type) {
 	}
 };
 
-// API
-const contract = require('./controllers/contract');
-
 const index = require('./routes/index.route');
 const routerForm = require('./routes/form.route');
 const userContract = require('./routes/contract.route');
@@ -62,7 +59,7 @@ passport.deserializeUser(function (email, callback) {
 });
 
 app.listen(8080, () => {
-    console.log(`I'm RESTing at 8080`);
+    console.log(`Visit me at 8080`);
 });
 
 app.set('view engine', 'ejs');
@@ -81,7 +78,6 @@ app.use('/signup', signup);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/user', userContract);
-app.use('/contract', contract);
 app.use('/form', routerForm);
 app.use('/profile', profile);
 
