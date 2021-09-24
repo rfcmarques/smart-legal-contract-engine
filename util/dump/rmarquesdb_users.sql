@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `rmarquesdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `rmarquesdb`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: hag-pre.intranet.digitalsign.pt    Database: rmarquesdb
@@ -18,32 +16,32 @@ USE `rmarquesdb`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `idUser` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `firstName` varchar(16) NOT NULL,
+  `firstName` varchar(45) NOT NULL,
   `lastName` varchar(45) DEFAULT NULL,
+  `type` varchar(5) DEFAULT 'user',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `type` varchar(45) DEFAULT 'user',
   PRIMARY KEY (`idUser`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `users`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin@mail.pt','admin123','Admin','SCLE','2021-09-15 09:20:24','admin'),(7,'user@mail.pt','user123','Utilizador','SLCE','2021-09-15 09:22:37','user'),(10,'rmarques@digitalsign.pt','abc123','Rui','Marques','2021-09-15 09:31:10','user'),(13,'teste@mail.pt','teste123','Tester','SLCE','2021-09-15 09:41:07','user');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (2,'admin@mail.pt','admin123','Admin','SLCE','admin','2021-09-21 11:36:40'),(5,'rmarques@digitalsign.pt','abc123','Rui','Marques','user','2021-09-21 11:40:14'),(8,'teste@mail.pt','teste123','Tester','SLCE','user','2021-09-21 11:40:48'),(11,'user@mail.pt','user123','User','SLCE','user','2021-09-21 11:42:42');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-20 17:48:43
+-- Dump completed on 2021-09-23 17:49:53
