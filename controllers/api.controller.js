@@ -5,6 +5,8 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 
+const fs = require('fs')
+
 const Template = require('@accordproject/cicero-core').Template;
 const Clause = require('@accordproject/cicero-core').Clause;
 const Engine = require('@accordproject/cicero-engine').Engine;
@@ -14,6 +16,11 @@ async function run() {
     const aod = await Template.fromDirectory('./data');
 
     const sample = aod.getMetadata().getSample();
+    
+    // const newsample = fs.readFileSync('./public/downloads/mdSamples/BpD6Ywt5NjKgK6zQ-uoJGgUOmnOaoTO1p.md').toString();
+    
+    
+    console.log(test)
 
     const clause = new Clause(aod);
     clause.parse(sample);

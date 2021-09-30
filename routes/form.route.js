@@ -7,7 +7,6 @@ const path = require('path');
 const Mustache = require('mustache');
 var dirpath = path.join(__dirname, '../');
 const contractModel = require('../models/contract.model');
-const userModel = require('../models/user.model');
 
 router.get('/', global.secure(), function (request, response) {
     response.set("Content-Type", "text/html");
@@ -25,7 +24,9 @@ router.get('/:pdf', global.secure(), function (request, response) {
 })
 
 router.post('/:user', global.secure(), function (request, response) {
-    let destination = path.join('./public/downloads', 'template.pdf');
+    let filename = makeid(16)+"-"+makeid(16);
+
+    let destination = path.join('./public/downloads/pdfFiles', filename+".pdf");
 
     let data = request.body;
 
@@ -57,14 +58,14 @@ router.post('/:user', global.secure(), function (request, response) {
     };
 
     let markJSON = {
-        provider: '"'+ data.provider+'"',
-        providerNIF: '"'+ data.providerNIF,
-        providerRep: data.providerRep +'"',
-        providerAddress: '"' + data.providerAddress +'"',
-        client: '"' + data.client +'"',
+        provider:  data.provider,
+        providerNIF:  data.providerNIF,
+        providerRep: data.providerRep ,
+        providerAddress:  data.providerAddress ,
+        client:  data.client ,
         clientNIF: data.clientNIF,
-        clientRep: '"' + data.clientRep +'"',
-        clientAddress: '"' + data.clientAddress +'"',
+        clientRep:  data.clientRep ,
+        clientAddress:  data.clientAddress ,
         inicialDate: data.inicialDate,
         contractDuration: data.contractDuration + " " + data.contractDurationUnit,
         serviceCost: data.serviceCost + " " + data.serviceCostCurrency,
@@ -79,24 +80,25 @@ router.post('/:user', global.secure(), function (request, response) {
     };
 
     let contractData = {
-        'contracthash': 'teste',
+        'name': data.contractname,
+        'hash': filename,
         'contractData': JSON.stringify(contractJSON),
         'creator': request.params.user
     };
 
-    createMD(markJSON);
+    createMD(markJSON,filename);
     let templateHtml = createPDF(contractJSON);
 
     pdf.create(templateHtml, options).toFile(destination, function (err, pdf) {
-        response.redirect('/form/contract-template');
+        // response.redirect('/form/contract-template');
         contractModel.create(contractData, function(){});
     }); 
 });
 
 
-function createMD(json){
+function createMD(json, name){
     let templatepath = path.join(dirpath, '/data/text','template.md');
-    let destinationpath = path.join(dirpath, '/public/downloads','example.md');
+    let destinationpath = path.join(dirpath, '/public/downloads/mdSamples',name+'.md');
 
     let template = fs.readFileSync(templatepath, 'utf-8');
 
@@ -134,6 +136,17 @@ function createPDF(json){
     templateHtml = templateHtml.replace('{{lowPercentage}}', json.lowPercentage);
 
     return templateHtml;
+}
+
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * 
+ charactersLength));
+   }
+   return result;
 }
 
 module.exports = router;

@@ -33,6 +33,7 @@ const login = require('./routes/login.route');
 const logout = require('./routes/logout.route');
 const signup = require('./routes/signup.route');
 const profile = require('./routes/profile.route');
+const download = require('./routes/download.route');
 
 app.use(validator());
 app.use(express.json(), express.urlencoded({
@@ -80,6 +81,7 @@ app.use('/logout', logout);
 app.use('/user', userContract);
 app.use('/form', routerForm);
 app.use('/profile', profile);
+app.use('/download', download);
 
 app.use(function (req, res) {
     res.status(404).render('404');

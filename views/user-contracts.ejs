@@ -147,18 +147,22 @@
                   <tr>
                     <th scope="col"># ID</th>
                     <th scope="col">Criador</th>
+                    <th scope="col">Nome</th>
                     <th scope="col">Data Criação</th>
                     <th scope="col">Estado</th>
+                    <th scope="col">Documentos</th>
                     <th scope="col">Editar</th>
                   </tr>
                 </thead>
                 <tbody>
+                  <% counterid = 0 %> 
                   <% for( let i = 0; i < contract.length; i++ ) {%>
                   <% if (contract[i].creator == user.idUser) { %>
                   <% let date = contract[i].creation_date %>
                   <tr>
-                    <td><%= i+1 %></td>
-                    <td><%= user.firstName + " " + user.lastName %> </td>
+                    <td><%= counterid++ %></td>
+                    <td><%= user.firstName + " " + user.lastName %></td>
+                    <td><%= contract[i].name %></td>
                     <td><%= date.toLocaleDateString('pt-PT') + " " + date.toLocaleTimeString() %></td>
                     <% if (contract[i].currentstate == 2) { %>
                     <td><span class="badge badge-warning">Por assinar</span></td>
@@ -171,6 +175,7 @@
                     <% } else if (contract[i].currentstate == 14) { %>
                     <td><span class="badge badge-danger">Terminado</span></td>
                     <% } %>
+                    <td><a class="btn-sm btn-danger" href="/download/pdf/<%= contract[i].hash %>.pdf"><i class="fas fa-file-download"></i></a></td>
                     <td><a class="btn-sm btn-success" href="/user/<%= contract[i].idContract %>"><i
                           class="fas fa-edit"></i></a></td>
                   </tr>

@@ -10,7 +10,7 @@ E
 
 {{client}} com o NIF nº {{clientNIF}}, sediado em {{clientAddress}}, representado por {{clientRep}}, adiante designado por **Cliente**.
 
-O contrato será iniciado a {{inicialDate as "DD/MM/YYYY"}}, iniciando nesse mesmo dia e terá a duração de {{contractDuration}} meses.
+O contrato será iniciado a {{inicialDate as "YYYY-MM-DD"}}, iniciando nesse mesmo dia e terá a duração de {{contractDuration}} meses.
 
 Neste acordo entre ambas as partes, o **Fornecedor** sujeita-se a uma avaliação do serviço prestado ao **Cliente**, em que o segundo atribui uma pontuação ao primeiro e dependendo dessa mesma pontuação o contrato será, ou não, renovado.
 
