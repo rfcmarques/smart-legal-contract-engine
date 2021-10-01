@@ -27,7 +27,7 @@ global.secure = function(type) {
 };
 
 // API
-const contract = require('./controllers/contract');
+const contract = require('./controllers/api.controller');
 
 const index = require('./routes/index.route');
 const routerForm = require('./routes/form.route');
