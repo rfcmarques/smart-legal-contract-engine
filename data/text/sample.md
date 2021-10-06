@@ -10,7 +10,7 @@ E
 
 "Cliente ABC" com o NIF nº 501987654, sediado em "Praça do Sítio, nº 2, 4º Frente, 4400-321 Algures Concelho", representado por "Maria Cliente", adiante designado por **Cliente**.
 
-O contrato será iniciado a 03/06/2021, iniciando nesse mesmo dia e terá a duração de 3 months meses.
+O contrato será iniciado a 2021-06-23, iniciando nesse mesmo dia e terá a duração de 3 months meses.
 
 Neste acordo entre ambas as partes, o **Fornecedor** sujeita-se a uma avaliação do serviço prestado ao **Cliente**, em que o segundo atribui uma pontuação ao primeiro e dependendo dessa mesma pontuação o contrato será, ou não, renovado.
 

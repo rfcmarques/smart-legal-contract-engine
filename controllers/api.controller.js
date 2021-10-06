@@ -5,11 +5,14 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 
+const fs = require('fs')
+
 const Template = require('@accordproject/cicero-core').Template;
 const Clause = require('@accordproject/cicero-core').Clause;
 const Engine = require('@accordproject/cicero-engine').Engine;
 
 async function run() {
+  
     let obj
 
     try {

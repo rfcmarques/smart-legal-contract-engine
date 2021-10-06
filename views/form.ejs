@@ -31,6 +31,7 @@
             <%- include('partials/sidebar') -%>
 
             <main class="col-md-1 ms-sm-auto col-lg-10 px-md-4">
+                <!--NOT NEW CONTRACT-->
                 <% if (!isNew) { %>
 
                 <% var json = JSON.parse(contract.contractData) %>
@@ -41,287 +42,574 @@
                                 <h3 class="card-title">Dados Contratuais</h3>
                             </div>
                             <div class="card-body rounded-3 shadow">
-                                <div class="accordion" id="accordion">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingOne">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseOne" aria-expanded="true"
-                                                aria-controls="collapseOne">
-                                                Client
-                                            </button>
-                                        </h2>
-                                        <div id="collapseOne" class="accordion-collapse collapse show"
-                                            aria-labelledby="headingOne" data-bs-parent="#accordion">
-                                            <div class="accordion-body">
-                                                <div class="form-group">
-                                                    <label for="client">Name:</label>
-                                                    <input type="text" class="form-control" id="client" name="client"
-                                                        placeholder="Name" onchange='onChangeInput(this.id);'
-                                                        onkeyup="this.onchange();" onpaste="this.onchange();"
-                                                        oninput="this.onchange();" value="<%= json.client %>" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="clientRep">Representative:</label>
-                                                    <input type="text" class="form-control" id="clientRep"
-                                                        name="clientRep" placeholder="Representative's name"
-                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
-                                                        onpaste="this.onchange();" oninput="this.onchange();"
-                                                        value="<%= json.clientRep %>" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="clientNIF">NIF:</label>
-                                                    <input type="number" class="form-control" id="clientNIF"
-                                                        name="clientNIF" placeholder="NIF"
-                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
-                                                        onpaste="this.onchange();" oninput="this.onchange();"
-                                                        value="<%= json.clientNIF %>" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="clientAddress">Client's Address:</label>
-                                                    <input type="text" class="form-control" id="clientAddress"
-                                                        name="clientAddress" placeholder="Address"
-                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
-                                                        onpaste="this.onchange();" oninput="this.onchange();"
-                                                        value="<%= json.clientAddress %>" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingTwo">
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                                aria-expanded="false" aria-controls="collapseTwo">
-                                                Provider
-                                            </button>
-                                        </h2>
-                                        <div id="collapseTwo" class="accordion-collapse collapse"
-                                            aria-labelledby="headingTwo" data-bs-parent="#accordion">
-                                            <div class="accordion-body">
-                                                <div class="form-group">
-                                                    <label for="provider">Name:</label>
-                                                    <input type="text" class="form-control" id="provider"
-                                                        name="provider" placeholder="Name"
-                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
-                                                        onpaste="this.onchange();" oninput="this.onchange();"
-                                                        value="<%= json.provider %>" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="providerRep">Representative:</label>
-                                                    <input type="text" class="form-control" id="providerRep"
-                                                        name="providerRep" placeholder="Representative's name"
-                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
-                                                        onpaste="this.onchange();" oninput="this.onchange();"
-                                                        value="<%= json.providerRep %>" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="providerNIF">NIF:</label>
-                                                    <input type="number" class="form-control" id="providerNIF"
-                                                        name="providerNIF" placeholder="NIF"
-                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
-                                                        onpaste="this.onchange();" oninput="this.onchange();"
-                                                        value="<%= json.providerNIF %>" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="providerAddress">Provider's Address:</label>
-                                                    <input type="text" class="form-control" id="providerAddress"
-                                                        name="providerAddress" placeholder="Address"
-                                                        onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
-                                                        onpaste="this.onchange();" oninput="this.onchange();"
-                                                        value="<%= json.providerAddress %>" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingThree">
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                                aria-expanded="false" aria-controls="collapseThree">
-                                                Contract Data
-                                            </button>
-                                        </h2>
-                                        <div id="collapseThree" class="accordion-collapse collapse"
-                                            aria-labelledby="headingThree" data-bs-parent="#accordion">
-                                            <div class="accordion-body">
-                                                <div class="form-row">
-                                                    <div class="col-md-3 mb-3">
-                                                        <label for="serviceCost">Service cost:</label>
-                                                        <input type="number" class="form-control" name="serviceCost"
-                                                            id="serviceCost" onchange='onChangeAmount(this.id);'
-                                                            onkeyup="this.onchange();" onpaste="this.onchange();"
-                                                            oninput="this.onchange();"
-                                                            value="<%= json.serviceCost.split(" ")[0] %>" required>
-                                                    </div>
-                                                    <div class="col-md-3 mb-3">
-                                                        <label for="serviceCostCurrency">Currency:</label>
-                                                        <select class="form-select" name="serviceCostCurrency"
-                                                            id="currency">
-                                                            <option value="EUR">€</option>
-                                                            <option value="USD">$</option>
-                                                            <option value="GBP">£</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="inicialDate">Initial date:</label>
-                                                        <input type="date" class="form-control" name="inicialDate"
-                                                            id="inicialDate" onchange='onChangeDate(this.id);'
-                                                            onkeyup="this.onchange();" onpaste="this.onchange();"
-                                                            oninput="this.onchange();" value="<%= json.inicialDate %>"
-                                                            required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="contractDuration">Duration amount:</label>
-                                                        <input type="number" class="form-control"
-                                                            name="contractDuration" id="contractDuration"
-                                                            onchange='onChangeDuration(this.id);'
-                                                            onkeyup="this.onchange();" oninput="this.onchange();"
-                                                            onpaste="this.onchange();"
-                                                            value="<%= json.contractDuration.split(" ")[0] %>" required>
-                                                    </div>
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="contractDurationUnit">Duration unit:</label>
-                                                        <select class="form-select" name="contractDurationUnit"
-                                                            id="contractDurationUnit">
-                                                            <option disabled>Pick a unit</option>
-                                                            <option value="anos">Anos</option>
-                                                            <option value="trimestres">Trimestres</option>
-                                                            <option value="meses">Meses</option>
-                                                            <option value="semanas">Semanas</option>
-                                                            <option value="dias">Dias</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingFour">
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                                                aria-expanded="false" aria-controls="collapseFour">
-                                                Service Level Agreement Points
-                                            </button>
-                                        </h2>
-                                        <div id="collapseFour" class="accordion-collapse collapse"
-                                            aria-labelledby="headingFour" data-bs-parent="#accordion">
-                                            <div class="accordion-body">
-                                                <h5>Intervalos</h5>
-                                                <div class="form-row">
-                                                    <div class="col-md-4">
-                                                        <input type="number" class="form-control" placeholder="0"
-                                                            readonly disabled>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <input id="minPoints" name="minPoints" type="number"
-                                                            class="form-control"
-                                                            onchange='setIntervals(this.id); onChangeInput(this.id);'
-                                                            onkeyup="this.onchange();" oninput="this.onchange();"
-                                                            onpaste="this.onchange();" value="<%= json.minPoints %>"
-                                                            required>
-                                                    </div>
-                                                    <div class="input-group col-md-4">
-                                                        <input type="number" class="form-control" placeholder="0"
-                                                            readonly disabled>
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text" id="basic-addon2">%</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <div class="form-row">
-                                                    <div class="col-md-4">
-                                                        <input id="minPoints-2" type="number" class="form-control"
-                                                            placeholder="0" value="<%= json.minPoints %>" disabled
-                                                            readonly>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <input name="lowPoints" id="lowPoints" type="number"
-                                                            class="form-control"
-                                                            onchange='setIntervals(this.id); onChangeInput(this.id);'
-                                                            onkeyup="this.onchange();" oninput="this.onchange();"
-                                                            onpaste="this.onchange();" value="<%= json.lowPoints %>"
-                                                            required>
-                                                    </div>
-                                                    <div class="input-group col-md-4">
-                                                        <input type="number" class="form-control" placeholder="0"
-                                                            id="highPercentage" name="highPercentage"
-                                                            onchange='onChangeInput(this.id);'
-                                                            onkeyup="this.onchange();" oninput="this.onchange();"
-                                                            onpaste="this.onchange();"
-                                                            value="<%= json.highPercentage %>" required>
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text" id="basic-addon2">%</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <div class="form-row">
-                                                    <div class="col-md-4">
-                                                        <input id="lowPoints-2" type="number" class="form-control"
-                                                            placeholder="0" value="<%= json.lowPoints %>" disabled
-                                                            readonly>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <input id="midPoints" name="midPoints" type="number"
-                                                            class="form-control"
-                                                            onchange='setIntervals(this.id); onChangeInput(this.id);'
-                                                            onkeyup="this.onchange();" oninput="this.onchange();"
-                                                            onpaste="this.onchange();" value="<%= json.midPoints %>"
-                                                            required>
-                                                    </div>
-                                                    <div class="input-group col-md-4">
-                                                        <input type="number" class="form-control" placeholder="0"
-                                                            id="midPercentage" name="midPercentage"
-                                                            onchange='onChangeInput(this.id);'
-                                                            onkeyup="this.onchange();" oninput="this.onchange();"
-                                                            onpaste="this.onchange();" value="<%= json.midPercentage %>"
-                                                            required>
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text" id="basic-addon2">%</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <div class="form-row">
-                                                    <div class="col-md-4">
-                                                        <input id="midPoints-2" type="number" class="form-control"
-                                                            placeholder="0" value="<%= json.midPoints %>" disabled
-                                                            readonly>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <input type="number" class="form-control" id="highPoints"
-                                                            name="highPoints" onchange='onChangeInput(this.id);'
-                                                            onkeyup="this.onchange();" oninput="this.onchange();"
-                                                            onpaste="this.onchange();" value="<%= json.highPoints %>"
-                                                            required>
-                                                    </div>
-                                                    <div class="input-group col-md-4">
-                                                        <input type="number" class="form-control" placeholder="0"
-                                                            id="lowPercentage" name="lowPercentage"
-                                                            onchange='onChangeInput(this.id);'
-                                                            onkeyup="this.onchange();" oninput="this.onchange();"
-                                                            onpaste="this.onchange();" value="<%= json.lowPercentage %>"
-                                                            required>
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text" id="basic-addon2">%</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="contractname">Nome do Contrato:</label>
+                                    <input id="contractname" name="contractname" class="form-control" type="text"
+                                        value="<%= contract.name %>" required>
                                 </div>
-                                <br>
-                                <div class="form-row">
-                                    <button id="btnCreate" type="submit" class="btn btn-block btn-outline-success">Gerar
-                                        PDF</button>
-                                </div>
+                                <!--EDITABLE CONTRACT-->
+                                <% if (contract.currentstate <= 2) { %>
+                                    <div class="accordion" id="accordion">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingOne">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne" aria-expanded="true"
+                                                    aria-controls="collapseOne">
+                                                    Client
+                                                </button>
+                                            </h2>
+                                            <div id="collapseOne" class="accordion-collapse collapse show"
+                                                aria-labelledby="headingOne" data-bs-parent="#accordion">
+                                                <div class="accordion-body">
+                                                    <div class="form-group">
+                                                        <label for="client">Name:</label>
+                                                        <input type="text" class="form-control" id="client" name="client"
+                                                            placeholder="Name" onchange='onChangeInput(this.id);'
+                                                            onkeyup="this.onchange();" onpaste="this.onchange();"
+                                                            oninput="this.onchange();" value="<%= json.client %>" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="clientRep">Representative:</label>
+                                                        <input type="text" class="form-control" id="clientRep"
+                                                            name="clientRep" placeholder="Representative's name"
+                                                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                            onpaste="this.onchange();" oninput="this.onchange();"
+                                                            value="<%= json.clientRep %>" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="clientNIF">NIF:</label>
+                                                        <input type="number" class="form-control" id="clientNIF"
+                                                            name="clientNIF" placeholder="NIF"
+                                                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                            onpaste="this.onchange();" oninput="this.onchange();"
+                                                            value="<%= json.clientNIF %>" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="clientAddress">Client's Address:</label>
+                                                        <input type="text" class="form-control" id="clientAddress"
+                                                            name="clientAddress" placeholder="Address"
+                                                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                            onpaste="this.onchange();" oninput="this.onchange();"
+                                                            value="<%= json.clientAddress %>" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingTwo">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                    aria-expanded="false" aria-controls="collapseTwo">
+                                                    Provider
+                                                </button>
+                                            </h2>
+                                            <div id="collapseTwo" class="accordion-collapse collapse"
+                                                aria-labelledby="headingTwo" data-bs-parent="#accordion">
+                                                <div class="accordion-body">
+                                                    <div class="form-group">
+                                                        <label for="provider">Name:</label>
+                                                        <input type="text" class="form-control" id="provider"
+                                                            name="provider" placeholder="Name"
+                                                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                            onpaste="this.onchange();" oninput="this.onchange();"
+                                                            value="<%= json.provider %>" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="providerRep">Representative:</label>
+                                                        <input type="text" class="form-control" id="providerRep"
+                                                            name="providerRep" placeholder="Representative's name"
+                                                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                            onpaste="this.onchange();" oninput="this.onchange();"
+                                                            value="<%= json.providerRep %>" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="providerNIF">NIF:</label>
+                                                        <input type="number" class="form-control" id="providerNIF"
+                                                            name="providerNIF" placeholder="NIF"
+                                                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                            onpaste="this.onchange();" oninput="this.onchange();"
+                                                            value="<%= json.providerNIF %>" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="providerAddress">Provider's Address:</label>
+                                                        <input type="text" class="form-control" id="providerAddress"
+                                                            name="providerAddress" placeholder="Address"
+                                                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                            onpaste="this.onchange();" oninput="this.onchange();"
+                                                            value="<%= json.providerAddress %>" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingThree">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                    aria-expanded="false" aria-controls="collapseThree">
+                                                    Contract Data
+                                                </button>
+                                            </h2>
+                                            <div id="collapseThree" class="accordion-collapse collapse"
+                                                aria-labelledby="headingThree" data-bs-parent="#accordion">
+                                                <div class="accordion-body">
+                                                    <div class="form-row">
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="serviceCost">Service cost:</label>
+                                                            <input type="number" class="form-control" name="serviceCost"
+                                                                id="serviceCost" onchange='onChangeAmount(this.id);'
+                                                                onkeyup="this.onchange();" onpaste="this.onchange();"
+                                                                oninput="this.onchange();"
+                                                                value="<%= json.serviceCost.split(" ")[0] %>" required>
+                                                        </div>
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="serviceCostCurrency">Currency:</label>
+                                                            <select class="form-select" name="serviceCostCurrency"
+                                                                id="currency">
+                                                                <option value="EUR">€</option>
+                                                                <option value="USD">$</option>
+                                                                <option value="GBP">£</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <label for="inicialDate">Initial date:</label>
+                                                            <input type="date" class="form-control" name="inicialDate"
+                                                                id="inicialDate" onchange='onChangeDate(this.id);'
+                                                                onkeyup="this.onchange();" onpaste="this.onchange();"
+                                                                oninput="this.onchange();" value="<%= json.inicialDate %>"
+                                                                required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label for="contractDuration">Duration amount:</label>
+                                                            <input type="number" class="form-control"
+                                                                name="contractDuration" id="contractDuration"
+                                                                onchange='onChangeDuration(this.id);'
+                                                                onkeyup="this.onchange();" oninput="this.onchange();"
+                                                                onpaste="this.onchange();"
+                                                                value="<%= json.contractDuration.split(" ")[0] %>" required>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <label for="contractDurationUnit">Duration unit:</label>
+                                                            <select class="form-select" name="contractDurationUnit"
+                                                                id="contractDurationUnit">
+                                                                <option disabled>Pick a unit</option>
+                                                                <option value="years">Anos</option>
+                                                                <option value="quarters">Trimestres</option>
+                                                                <option value="months">Meses</option>
+                                                                <option value="weeks">Semanas</option>
+                                                                <option value="days">Dias</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingFour">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                                                    aria-expanded="false" aria-controls="collapseFour">
+                                                    Service Level Agreement Points
+                                                </button>
+                                            </h2>
+                                            <div id="collapseFour" class="accordion-collapse collapse"
+                                                aria-labelledby="headingFour" data-bs-parent="#accordion">
+                                                <div class="accordion-body">
+                                                    <h5>Intervalos</h5>
+                                                    <div class="form-row">
+                                                        <div class="col-md-4">
+                                                            <input type="number" class="form-control" placeholder="0"
+                                                                readonly disabled>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input id="minPoints" name="minPoints" type="number"
+                                                                class="form-control"
+                                                                onchange='setIntervals(this.id); onChangeInput(this.id);'
+                                                                onkeyup="this.onchange();" oninput="this.onchange();"
+                                                                onpaste="this.onchange();" value="<%= json.minPoints %>"
+                                                                required>
+                                                        </div>
+                                                        <div class="input-group col-md-4">
+                                                            <input type="number" class="form-control" placeholder="0"
+                                                                readonly disabled>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="basic-addon2">%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-row">
+                                                        <div class="col-md-4">
+                                                            <input id="minPoints-2" type="number" class="form-control"
+                                                                placeholder="0" value="<%= json.minPoints %>" disabled
+                                                                readonly>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input name="lowPoints" id="lowPoints" type="number"
+                                                                class="form-control"
+                                                                onchange='setIntervals(this.id); onChangeInput(this.id);'
+                                                                onkeyup="this.onchange();" oninput="this.onchange();"
+                                                                onpaste="this.onchange();" value="<%= json.lowPoints %>"
+                                                                required>
+                                                        </div>
+                                                        <div class="input-group col-md-4">
+                                                            <input type="number" class="form-control" placeholder="0"
+                                                                id="highPercentage" name="highPercentage"
+                                                                onchange='onChangeInput(this.id);'
+                                                                onkeyup="this.onchange();" oninput="this.onchange();"
+                                                                onpaste="this.onchange();"
+                                                                value="<%= json.highPercentage %>" required>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="basic-addon2">%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-row">
+                                                        <div class="col-md-4">
+                                                            <input id="lowPoints-2" type="number" class="form-control"
+                                                                placeholder="0" value="<%= json.lowPoints %>" disabled
+                                                                readonly>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input id="midPoints" name="midPoints" type="number"
+                                                                class="form-control"
+                                                                onchange='setIntervals(this.id); onChangeInput(this.id);'
+                                                                onkeyup="this.onchange();" oninput="this.onchange();"
+                                                                onpaste="this.onchange();" value="<%= json.midPoints %>"
+                                                                required>
+                                                        </div>
+                                                        <div class="input-group col-md-4">
+                                                            <input type="number" class="form-control" placeholder="0"
+                                                                id="midPercentage" name="midPercentage"
+                                                                onchange='onChangeInput(this.id);'
+                                                                onkeyup="this.onchange();" oninput="this.onchange();"
+                                                                onpaste="this.onchange();" value="<%= json.midPercentage %>"
+                                                                required>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="basic-addon2">%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-row">
+                                                        <div class="col-md-4">
+                                                            <input id="midPoints-2" type="number" class="form-control"
+                                                                placeholder="0" value="<%= json.midPoints %>" disabled
+                                                                readonly>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input type="number" class="form-control" id="highPoints"
+                                                                name="highPoints" onchange='onChangeInput(this.id);'
+                                                                onkeyup="this.onchange();" oninput="this.onchange();"
+                                                                onpaste="this.onchange();" value="<%= json.highPoints %>"
+                                                                required>
+                                                        </div>
+                                                        <div class="input-group col-md-4">
+                                                            <input type="number" class="form-control" placeholder="0"
+                                                                id="lowPercentage" name="lowPercentage"
+                                                                onchange='onChangeInput(this.id);'
+                                                                onkeyup="this.onchange();" oninput="this.onchange();"
+                                                                onpaste="this.onchange();" value="<%= json.lowPercentage %>"
+                                                                required>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="basic-addon2">%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-row">
+                                        <button id="btnCreate" type="submit"
+                                            class="btn btn-block btn-outline-success">Editar contrato</button>
+                                    </div>
+
+                                <!--UNEDITABLE CONTRACT-->
+                                <% }else{ %>
+                                    <div class="accordion" id="accordion">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingOne">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne" aria-expanded="true"
+                                                    aria-controls="collapseOne">
+                                                    Client
+                                                </button>
+                                            </h2>
+                                            <div id="collapseOne" class="accordion-collapse collapse show"
+                                                aria-labelledby="headingOne" data-bs-parent="#accordion">
+                                                <div class="accordion-body">
+                                                    <div class="form-group">
+                                                        <label for="client">Name:</label>
+                                                        <input type="text" class="form-control" id="client" name="client"
+                                                            placeholder="Name" onchange='onChangeInput(this.id);'
+                                                            onkeyup="this.onchange();" onpaste="this.onchange();"
+                                                            oninput="this.onchange();" value="<%= json.client %>" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="clientRep">Representative:</label>
+                                                        <input type="text" class="form-control" id="clientRep"
+                                                            name="clientRep" placeholder="Representative's name"
+                                                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                            onpaste="this.onchange();" oninput="this.onchange();"
+                                                            value="<%= json.clientRep %>" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="clientNIF">NIF:</label>
+                                                        <input type="number" class="form-control" id="clientNIF"
+                                                            name="clientNIF" placeholder="NIF"
+                                                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                            onpaste="this.onchange();" oninput="this.onchange();"
+                                                            value="<%= json.clientNIF %>" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="clientAddress">Client's Address:</label>
+                                                        <input type="text" class="form-control" id="clientAddress"
+                                                            name="clientAddress" placeholder="Address"
+                                                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                            onpaste="this.onchange();" oninput="this.onchange();"
+                                                            value="<%= json.clientAddress %>" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingTwo">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                    aria-expanded="false" aria-controls="collapseTwo">
+                                                    Provider
+                                                </button>
+                                            </h2>
+                                            <div id="collapseTwo" class="accordion-collapse collapse"
+                                                aria-labelledby="headingTwo" data-bs-parent="#accordion">
+                                                <div class="accordion-body">
+                                                    <div class="form-group">
+                                                        <label for="provider">Name:</label>
+                                                        <input type="text" class="form-control" id="provider"
+                                                            name="provider" placeholder="Name"
+                                                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                            onpaste="this.onchange();" oninput="this.onchange();"
+                                                            value="<%= json.provider %>" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="providerRep">Representative:</label>
+                                                        <input type="text" class="form-control" id="providerRep"
+                                                            name="providerRep" placeholder="Representative's name"
+                                                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                            onpaste="this.onchange();" oninput="this.onchange();"
+                                                            value="<%= json.providerRep %>" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="providerNIF">NIF:</label>
+                                                        <input type="number" class="form-control" id="providerNIF"
+                                                            name="providerNIF" placeholder="NIF"
+                                                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                            onpaste="this.onchange();" oninput="this.onchange();"
+                                                            value="<%= json.providerNIF %>" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="providerAddress">Provider's Address:</label>
+                                                        <input type="text" class="form-control" id="providerAddress"
+                                                            name="providerAddress" placeholder="Address"
+                                                            onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
+                                                            onpaste="this.onchange();" oninput="this.onchange();"
+                                                            value="<%= json.providerAddress %>" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingThree">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                    aria-expanded="false" aria-controls="collapseThree">
+                                                    Contract Data
+                                                </button>
+                                            </h2>
+                                            <div id="collapseThree" class="accordion-collapse collapse"
+                                                aria-labelledby="headingThree" data-bs-parent="#accordion">
+                                                <div class="accordion-body">
+                                                    <div class="form-row">
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="serviceCost">Service cost:</label>
+                                                            <input type="number" class="form-control" name="serviceCost"
+                                                                id="serviceCost" onchange='onChangeAmount(this.id);'
+                                                                onkeyup="this.onchange();" onpaste="this.onchange();"
+                                                                oninput="this.onchange();"
+                                                                value="<%= json.serviceCost.split(" ")[0] %>" disabled>
+                                                        </div>
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="serviceCostCurrency">Currency:</label>
+                                                            <select class="form-select" name="serviceCostCurrency"
+                                                                id="currency" disabled>
+                                                                <option value="EUR">€</option>
+                                                                <option value="USD">$</option>
+                                                                <option value="GBP">£</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <label for="inicialDate">Initial date:</label>
+                                                            <input type="date" class="form-control" name="inicialDate"
+                                                                id="inicialDate" onchange='onChangeDate(this.id);'
+                                                                onkeyup="this.onchange();" onpaste="this.onchange();"
+                                                                oninput="this.onchange();" value="<%= json.inicialDate %>"
+                                                                disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label for="contractDuration">Duration amount:</label>
+                                                            <input type="number" class="form-control"
+                                                                name="contractDuration" id="contractDuration"
+                                                                onchange='onChangeDuration(this.id);'
+                                                                onkeyup="this.onchange();" oninput="this.onchange();"
+                                                                onpaste="this.onchange();"
+                                                                value="<%= json.contractDuration.split(" ")[0] %>" disabled>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <label for="contractDurationUnit">Duration unit:</label>
+                                                            <select class="form-select" name="contractDurationUnit"
+                                                                id="contractDurationUnit" disabled>
+                                                                <option disabled>Pick a unit</option>
+                                                                <option value="years">Anos</option>
+                                                                <option value="quartes">Trimestres</option>
+                                                                <option value="months">Meses</option>
+                                                                <option value="weeks">Semanas</option>
+                                                                <option value="days">Dias</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingFour">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                                                    aria-expanded="false" aria-controls="collapseFour">
+                                                    Service Level Agreement Points
+                                                </button>
+                                            </h2>
+                                            <div id="collapseFour" class="accordion-collapse collapse"
+                                                aria-labelledby="headingFour" data-bs-parent="#accordion">
+                                                <div class="accordion-body">
+                                                    <h5>Intervalos</h5>
+                                                    <div class="form-row">
+                                                        <div class="col-md-4">
+                                                            <input type="number" class="form-control" placeholder="0"
+                                                                readonly disabled>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input id="minPoints" name="minPoints" type="number"
+                                                                class="form-control"
+                                                                onchange='setIntervals(this.id); onChangeInput(this.id);'
+                                                                onkeyup="this.onchange();" oninput="this.onchange();"
+                                                                onpaste="this.onchange();" value="<%= json.minPoints %>"
+                                                                disabled>
+                                                        </div>
+                                                        <div class="input-group col-md-4">
+                                                            <input type="number" class="form-control" placeholder="0"
+                                                                readonly disabled>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="basic-addon2">%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-row">
+                                                        <div class="col-md-4">
+                                                            <input id="minPoints-2" type="number" class="form-control"
+                                                                placeholder="0" value="<%= json.minPoints %>" disabled
+                                                                readonly>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input name="lowPoints" id="lowPoints" type="number"
+                                                                class="form-control"
+                                                                onchange='setIntervals(this.id); onChangeInput(this.id);'
+                                                                onkeyup="this.onchange();" oninput="this.onchange();"
+                                                                onpaste="this.onchange();" value="<%= json.lowPoints %>"
+                                                                disabled>
+                                                        </div>
+                                                        <div class="input-group col-md-4">
+                                                            <input type="number" class="form-control" placeholder="0"
+                                                                id="highPercentage" name="highPercentage"
+                                                                onchange='onChangeInput(this.id);'
+                                                                onkeyup="this.onchange();" oninput="this.onchange();"
+                                                                onpaste="this.onchange();"
+                                                                value="<%= json.highPercentage %>" disabled>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="basic-addon2">%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-row">
+                                                        <div class="col-md-4">
+                                                            <input id="lowPoints-2" type="number" class="form-control"
+                                                                placeholder="0" value="<%= json.lowPoints %>" disabled
+                                                                readonly>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input id="midPoints" name="midPoints" type="number"
+                                                                class="form-control"
+                                                                onchange='setIntervals(this.id); onChangeInput(this.id);'
+                                                                onkeyup="this.onchange();" oninput="this.onchange();"
+                                                                onpaste="this.onchange();" value="<%= json.midPoints %>"
+                                                                disabled>
+                                                        </div>
+                                                        <div class="input-group col-md-4">
+                                                            <input type="number" class="form-control" placeholder="0"
+                                                                id="midPercentage" name="midPercentage"
+                                                                onchange='onChangeInput(this.id);'
+                                                                onkeyup="this.onchange();" oninput="this.onchange();"
+                                                                onpaste="this.onchange();" value="<%= json.midPercentage %>"
+                                                                disabled>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="basic-addon2">%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-row">
+                                                        <div class="col-md-4">
+                                                            <input id="midPoints-2" type="number" class="form-control"
+                                                                placeholder="0" value="<%= json.midPoints %>" disabled
+                                                                readonly>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input type="number" class="form-control" id="highPoints"
+                                                                name="highPoints" onchange='onChangeInput(this.id);'
+                                                                onkeyup="this.onchange();" oninput="this.onchange();"
+                                                                onpaste="this.onchange();" value="<%= json.highPoints %>"
+                                                                disabled>
+                                                        </div>
+                                                        <div class="input-group col-md-4">
+                                                            <input type="number" class="form-control" placeholder="0"
+                                                                id="lowPercentage" name="lowPercentage"
+                                                                onchange='onChangeInput(this.id);'
+                                                                onkeyup="this.onchange();" oninput="this.onchange();"
+                                                                onpaste="this.onchange();" value="<%= json.lowPercentage %>"
+                                                                disabled>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="basic-addon2">%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
                             </div>
                         </div>
                     </form>
@@ -339,11 +627,11 @@
                                     <% } else if (contract.currentstate == 5){ %>
                                     <h3><span class="badge badge-primary">Em curso</span></h3>
                                     <% } else if (contract.currentstate == 8) { %>
-                                    <h3><span class="badge badge-info">Obrigação emitida</span></h3>                                
+                                    <h3><span class="badge badge-info">Obrigação emitida</span></h3>
                                     <% } else if (contract.currentstate == 11) { %>
-                                    <h3><span class="badge badge-success">Concluído</span></h3> 
+                                    <h3><span class="badge badge-success">Concluído</span></h3>
                                     <% } else if (contract.currentstate == 14) { %>
-                                    <h3><span class="badge badge-danger">Expirado</span></h3>                                
+                                    <h3><span class="badge badge-danger">Expirado</span></h3>
                                     <% } %>
                                 </div>
                             </div>
@@ -363,40 +651,71 @@
                                             <tr>
                                                 <td><span class="badge badge-warning">Por assinar</span></td>
                                                 <% let date = contract.creation_date %>
-                                                <td><%= date.toLocaleDateString('pt-PT') + " " + date.toLocaleTimeString() %></td>
+                                                <td><%= date.toLocaleDateString('pt-PT') + " " + date.toLocaleTimeString() %>
+                                                </td>
                                             </tr>
-                                            <% for( let i=0;i<log.length;i++) { %> 
+                                            <% for( let i=0;i<log.length;i++) { %>
                                             <tr>
                                                 <% if (log[i].state == 2) { %>
                                                 <td><span class="badge badge-warning">Por assinar</span></td>
                                                 <% } else if (log[i].state == 5) { %>
                                                 <td><span class="badge badge-primary">Em curso</span></td>
                                                 <% } else if (log[i].state == 8) { %>
-                                                    <td><span class="badge badge-info">Obrigação emitida</span></td>
-                                                    <% } else if (log[i].state == 11) { %>
-                                                    <td><span class="badge badge-success">Terminado</span></td>
-                                                    <% } else if (log[i].state == 14) { %>
-                                                    <td><span class="badge badge-danger">Terminado</span></td>
-                                                    <% } %>
-                                                <td><%= log[i].timestamp.toLocaleDateString('pt-PT') + " " + log[i].timestamp.toLocaleTimeString() %>   
+                                                <td><span class="badge badge-info">Obrigação emitida</span></td>
+                                                <% } else if (log[i].state == 11) { %>
+                                                <td><span class="badge badge-success">Terminado</span></td>
+                                                <% } else if (log[i].state == 14) { %>
+                                                <td><span class="badge badge-danger">Terminado</span></td>
+                                                <% } %>
+                                                <td><%= log[i].timestamp.toLocaleDateString('pt-PT') + " " + log[i].timestamp.toLocaleTimeString() %>
                                                 </td>
-                                            <% } %>
+                                                <% } %>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                             <br>
-                            <% if (contract.currentstate != 11) { %>
-                                <form action="/user/<%= contract.idContract %>" method="post">
-                                    <div class="row">
-                                        <input type="number" name="contractcreator" value="<%= contract.creator %>" hidden>
-                                        <input type="number" name="contractstate" value="<%= contract.currentstate %>" hidden>
-                                        <button class="btn btn-block btn-outline-primary" id="statebutton" type="submit">Alterar
-                                            estado</button>
+                            <% if (contract.currentstate == 2) { %>
+                            <form action="/user/<%= contract.idContract %>" method="post">
+                                <div class="row">
+                                    <input type="text" name="contracthash" value="<%= contract.hash %>" hidden>
+                                    <input type="number" name="contractcreator" value="<%= contract.creator %>" hidden>
+                                    <input type="number" name="contractstate" value="<%= contract.currentstate %>"
+                                        hidden>
+                                    <button class="btn btn-block btn-outline-primary" id="statebutton"
+                                        type="submit">Assinar contrato</button>
+                                </div>
+                            </form>
+                            <% } else if (contract.currentstate == 5) { %>
+                            <form action="/user/<%= contract.idContract %>" method="post">
+                                <div class="row">
+                                    <input type="text" name="contracthash" value="<%= contract.hash %>" hidden>
+                                    <input type="number" name="contractcreator" value="<%= contract.creator %>" hidden>
+                                    <input type="number" name="contractstate" value="<%= contract.currentstate %>"
+                                        hidden>
+                                    <hr>
+                                    <div class="col-md-12">
+                                        <label for="slapoints">Pontos a atribuir ao serviço:</label>
+                                        <input class="form-control" type="number" id="slapoints" name="slapoints">
+                                        <br>
+                                        <button class="btn btn-block btn-outline-primary" id="statebutton"
+                                            type="submit">Avaliar serviço</button>
                                     </div>
-                                </form>
-                            <% } %>
+                                </div>
+                            </form>
+                            <% } else if (contract.currentstate == 8) { %>
+                            <form action="/user/<%= contract.idContract %>" method="post">
+                                <div class="row">
+                                    <input type="text" name="contracthash" value="<%= contract.hash %>" hidden>
+                                    <input type="number" name="contractcreator" value="<%= contract.creator %>" hidden>
+                                    <input type="number" name="contractstate" value="<%= contract.currentstate %>"
+                                        hidden>
+                                    <button class="btn btn-block btn-outline-primary" id="statebutton"
+                                        type="submit">Realizar pagamento</button>
+                                </div>
+                            </form>
+                            <% } %>  
                         </div>
                     </div>
                 </div>
@@ -447,7 +766,7 @@
                                 que:
                             </p>
                             <p class="card-text">1. No caso da pontuação ser inferior a <span class="contractvar"
-                                    id="spanminPoints"><%= json.minPoints %>}</span>
+                                    id="spanminPoints"><%= json.minPoints %></span>
                                 (valor mínimo de
                                 pontuação do serviço) o contrato entre ambas as partes termina e o
                                 <strong>Cliente</strong>
@@ -494,8 +813,15 @@
                 <div class="col-6" style="overflow: auto; float: left;">
                     <form id="contractform" action="/form/<%= user.idUser  %> " method="POST">
                         <div class="card shadow">
-                            <div class="card-body rounded-3 shadow">
+                            <div class="card-header">
                                 <h3 class="card-title">Dados Contratuais</h3>
+                            </div>
+                            <div class="card-body rounded-3 shadow">
+                                <div class="form-group">
+                                    <label for="contractname">Nome do Contrato:</label>
+                                    <input id="contractname" name="contractname" class="form-control" type="text"
+                                        required>
+                                </div>
                                 <div class="accordion" id="accordion">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="headingOne">
@@ -633,11 +959,11 @@
                                                         <select class="form-control" name="contractDurationUnit"
                                                             id="contractDurationUnit">
                                                             <option disabled selected>Pick a unit</option>
-                                                            <option value="anos">Anos</option>
-                                                            <option value="trimestres">Trimestres</option>
-                                                            <option value="meses">Meses</option>
-                                                            <option value="semanas">Semanas</option>
-                                                            <option value="dias">Dias</option>
+                                                            <option value="years">Anos</option>
+                                                            <option value="quarters">Trimestres</option>
+                                                            <option value="months">Meses</option>
+                                                            <option value="weeks">Semanas</option>
+                                                            <option value="days">Dias</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -754,8 +1080,8 @@
                                 </div>
                                 <br>
                                 <div class="form-row">
-                                    <button id="btnCreate" type="submit" class="btn btn-block btn-outline-success">Gerar
-                                        PDF</button>
+                                    <button id="btnCreate" type="submit" class="btn btn-block btn-outline-success">Criar
+                                        Contrato</button>
                                 </div>
                             </div>
                         </div>

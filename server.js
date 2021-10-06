@@ -26,8 +26,6 @@ global.secure = function(type) {
 	}
 };
 
-// API
-const contract = require('./controllers/api.controller');
 
 const index = require('./routes/index.route');
 const routerForm = require('./routes/form.route');
@@ -36,6 +34,7 @@ const login = require('./routes/login.route');
 const logout = require('./routes/logout.route');
 const signup = require('./routes/signup.route');
 const profile = require('./routes/profile.route');
+const download = require('./routes/download.route');
 
 app.use(validator());
 app.use(express.json(), express.urlencoded({
@@ -62,7 +61,7 @@ passport.deserializeUser(function (email, callback) {
 });
 
 app.listen(8080, () => {
-    console.log(`I'm RESTing at 8080`);
+    console.log(`Visit me at 8080`);
 });
 
 app.set('view engine', 'ejs');
@@ -81,9 +80,9 @@ app.use('/signup', signup);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/user', userContract);
-app.use('/contract', contract);
 app.use('/form', routerForm);
 app.use('/profile', profile);
+app.use('/download', download);
 
 app.use(function (req, res) {
     res.status(404).render('404');

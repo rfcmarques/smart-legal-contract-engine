@@ -1,11 +1,10 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 
-const controller = require('./controllers/api.controller');
+const v1controller = require('./controllers/api.controller');
 
-app.use('/api/v1', controller);
-
-app.listen(port, ()=>{
-    console.log(`API is RESTing at ${port}`);
+app.listen(3000, ()=>{
+    console.log(`API RESTing at 3000`)
 });
+
+app.use('/api/v1', v1controller);
