@@ -26,6 +26,7 @@ global.secure = function(type) {
 	}
 };
 
+
 const index = require('./routes/index.route');
 const routerForm = require('./routes/form.route');
 const userContract = require('./routes/contract.route');

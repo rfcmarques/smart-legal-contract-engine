@@ -12,29 +12,36 @@ const Clause = require('@accordproject/cicero-core').Clause;
 const Engine = require('@accordproject/cicero-engine').Engine;
 
 async function run() {
+  
+    let obj
 
-    const aod = await Template.fromDirectory('./data');
+    try {
+        const aod = await Template.fromDirectory('./data');
+        if (aod) {
+            const sample = aod.getMetadata().getSample();
 
-    const sample = aod.getMetadata().getSample();
-    
-    // const newsample = fs.readFileSync('./public/downloads/mdSamples/BpD6Ywt5NjKgK6zQ-uoJGgUOmnOaoTO1p.md').toString();
-    
+            const clause = new Clause(aod);
+            clause.parse(sample);
 
-    const clause = new Clause(aod);
-    clause.parse(sample);
+            obj = clause.toJSON();
+        }
 
-    let response = clause.toJSON();
-
-    str = JSON.stringify(response);
-
-    obj = JSON.parse(str);
+    } catch (error) {
+        console.log(error)
+    }
 
     let obligation = {};
 
     app.get("/data", (req, res, next) => {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/json');
-        res.json(obj.data);
+        if (obj) {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'text/json');
+            res.json(obj.data);
+        } else {
+            res.json({
+                error: "falied"
+            });
+        }
     })
 
     app.get("/client", (req, res, next) => {
