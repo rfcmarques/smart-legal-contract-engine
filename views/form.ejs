@@ -196,11 +196,11 @@
                                                             <select class="form-select" name="contractDurationUnit"
                                                                 id="contractDurationUnit">
                                                                 <option disabled>Pick a unit</option>
-                                                                <option value="anos">Anos</option>
-                                                                <option value="trimestres">Trimestres</option>
-                                                                <option value="meses">Meses</option>
-                                                                <option value="semanas">Semanas</option>
-                                                                <option value="dias">Dias</option>
+                                                                <option value="years">Anos</option>
+                                                                <option value="quarters">Trimestres</option>
+                                                                <option value="months">Meses</option>
+                                                                <option value="weeks">Semanas</option>
+                                                                <option value="days">Dias</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -480,11 +480,11 @@
                                                             <select class="form-select" name="contractDurationUnit"
                                                                 id="contractDurationUnit" disabled>
                                                                 <option disabled>Pick a unit</option>
-                                                                <option value="anos">Anos</option>
-                                                                <option value="trimestres">Trimestres</option>
-                                                                <option value="meses">Meses</option>
-                                                                <option value="semanas">Semanas</option>
-                                                                <option value="dias">Dias</option>
+                                                                <option value="years">Anos</option>
+                                                                <option value="quartes">Trimestres</option>
+                                                                <option value="months">Meses</option>
+                                                                <option value="weeks">Semanas</option>
+                                                                <option value="days">Dias</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -676,18 +676,46 @@
                                 </div>
                             </div>
                             <br>
-                            <% if (contract.currentstate != 11) { %>
+                            <% if (contract.currentstate == 2) { %>
                             <form action="/user/<%= contract.idContract %>" method="post">
                                 <div class="row">
+                                    <input type="text" name="contracthash" value="<%= contract.hash %>" hidden>
                                     <input type="number" name="contractcreator" value="<%= contract.creator %>" hidden>
                                     <input type="number" name="contractstate" value="<%= contract.currentstate %>"
                                         hidden>
                                     <button class="btn btn-block btn-outline-primary" id="statebutton"
-                                        type="submit">Alterar
-                                        estado</button>
+                                        type="submit">Assinar contrato</button>
                                 </div>
                             </form>
-                            <% } %>
+                            <% } else if (contract.currentstate == 5) { %>
+                            <form action="/user/<%= contract.idContract %>" method="post">
+                                <div class="row">
+                                    <input type="text" name="contracthash" value="<%= contract.hash %>" hidden>
+                                    <input type="number" name="contractcreator" value="<%= contract.creator %>" hidden>
+                                    <input type="number" name="contractstate" value="<%= contract.currentstate %>"
+                                        hidden>
+                                    <hr>
+                                    <div class="col-md-12">
+                                        <label for="slapoints">Pontos a atribuir ao serviço:</label>
+                                        <input class="form-control" type="number" id="slapoints" name="slapoints">
+                                        <br>
+                                        <button class="btn btn-block btn-outline-primary" id="statebutton"
+                                            type="submit">Avaliar serviço</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <% } else if (contract.currentstate == 8) { %>
+                            <form action="/user/<%= contract.idContract %>" method="post">
+                                <div class="row">
+                                    <input type="text" name="contracthash" value="<%= contract.hash %>" hidden>
+                                    <input type="number" name="contractcreator" value="<%= contract.creator %>" hidden>
+                                    <input type="number" name="contractstate" value="<%= contract.currentstate %>"
+                                        hidden>
+                                    <button class="btn btn-block btn-outline-primary" id="statebutton"
+                                        type="submit">Realizar pagamento</button>
+                                </div>
+                            </form>
+                            <% } %>  
                         </div>
                     </div>
                 </div>
@@ -931,11 +959,11 @@
                                                         <select class="form-control" name="contractDurationUnit"
                                                             id="contractDurationUnit">
                                                             <option disabled selected>Pick a unit</option>
-                                                            <option value="anos">Anos</option>
-                                                            <option value="trimestres">Trimestres</option>
-                                                            <option value="meses">Meses</option>
-                                                            <option value="semanas">Semanas</option>
-                                                            <option value="dias">Dias</option>
+                                                            <option value="years">Anos</option>
+                                                            <option value="quarters">Trimestres</option>
+                                                            <option value="months">Meses</option>
+                                                            <option value="weeks">Semanas</option>
+                                                            <option value="days">Dias</option>
                                                         </select>
                                                     </div>
                                                 </div>

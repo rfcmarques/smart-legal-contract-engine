@@ -10,7 +10,7 @@ E
 
 "a" com o NIF nº 1, sediado em "a", representado por "a", adiante designado por **Cliente**.
 
-O contrato será iniciado a 2021-09-29, iniciando nesse mesmo dia e terá a duração de 1 years meses.
+O contrato será iniciado a 2020-10-01, iniciando nesse mesmo dia e terá a duração de 1 years meses.
 
 Neste acordo entre ambas as partes, o **Fornecedor** sujeita-se a uma avaliação do serviço prestado ao **Cliente**, em que o segundo atribui uma pontuação ao primeiro e dependendo dessa mesma pontuação o contrato será, ou não, renovado.
 

@@ -19,8 +19,6 @@ async function run() {
     
     // const newsample = fs.readFileSync('./public/downloads/mdSamples/BpD6Ywt5NjKgK6zQ-uoJGgUOmnOaoTO1p.md').toString();
     
-    
-    console.log(test)
 
     const clause = new Clause(aod);
     clause.parse(sample);
