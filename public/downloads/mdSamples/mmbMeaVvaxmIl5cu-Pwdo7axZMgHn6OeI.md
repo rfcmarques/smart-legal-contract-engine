@@ -4,17 +4,17 @@ Este é um contrato para o fornecimento de um serviço de fornecimento de intern
 
 Entre
 
-Senhor Provider com o NIF nº 1111111, com sede em Rua, representado por Rep Provider, doravante denominado por **Fornecedor**.
+"Teste" com o NIF nº 1234, com sede em "Teste", representado por "Teste", doravante denominado por **Fornecedor**.
 
 E
 
-Senhor Cliente com o NIF nº 2222222, sediado em Outra Rep, representado por Client Rep, adiante designado por **Cliente**.
+"Teste" com o NIF nº 1234, sediado em "Teste", representado por "Teste", adiante designado por **Cliente**.
 
-O contrato será iniciado a , iniciando nesse mesmo dia e terá a duração de 3 months meses.
+O contrato será iniciado a 2021-10-04, iniciando nesse mesmo dia e terá a duração de 1 days meses.
 
 Neste acordo entre ambas as partes, o **Fornecedor** sujeita-se a uma avaliação do serviço prestado ao **Cliente**, em que o segundo atribui uma pontuação ao primeiro e dependendo dessa mesma pontuação o contrato será, ou não, renovado.
 
-O serviço prestado pelo **Fornecedor** terá o custo de 1000 EUR pelo período de serviço acordado pelas partes deste contrato. O pagamento será feito mediante o resultado da avaliação realizada pelo **Cliente**, que terá que ser obrigatoriamente realizada num espaço de 7 dias a contar desde o final do contrato.
+O serviço prestado pelo **Fornecedor** terá o custo de 1 EUR pelo período de serviço acordado pelas partes deste contrato. O pagamento será feito mediante o resultado da avaliação realizada pelo **Cliente**, que terá que ser obrigatoriamente realizada num espaço de 7 dias a contar desde o final do contrato.
 
 A avaliação terá que ser realizada numa escala de 0 a 100 pontos em que:
 

@@ -36,21 +36,21 @@
                 <div class="form-floating mb-3">
                   <input type="email" class="form-control rounded-4" id="email" name="email"
                     placeholder="name@example.com" value="<%= user.email %>" readonly>
-                  <label for="email">Email address</label>
+                  <label for="email">Endereço de email</label>
                 </div>
                 <div class="row">
                   <div class="col">
                     <div class="form-floating mb-3">
                       <input type="text" class="form-control rounded-4" id="firstName" name="firstName"
                         value="<%= user.firstName %>" placeholder="First Name">
-                      <label for="firstname">First Name</label>
+                      <label for="firstname">Primeiro nome</label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-floating mb-3">
                       <input type="text" class="form-control rounded-4" id="lastName" name="lastName"
                         value="<%= user.lastName %>" placeholder="Last Name">
-                      <label for="lastname">Last Name</label>
+                      <label for="lastname">Ultimo nome</label>
                     </div>
                   </div>
                 </div>
@@ -58,11 +58,6 @@
                   <input type="password" class="form-control rounded-4" id="password" name="password"
                     placeholder="Password" value="<%= user.password %>" required>
                   <label for="password">Password</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <input type="password" class="form-control rounded-4" id="repeatPassword"
-                    placeholder="Repeat Password" value="<%= user.password %>" required>
-                  <label for="repeatPassword">Repeat Password</label>
                 </div>
                 <button class="w-100 mb-2 btn btn-lg rounded-4 btn-success" type="submit">Editar perfil</button>
               </form>

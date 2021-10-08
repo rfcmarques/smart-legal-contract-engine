@@ -1,7 +1,7 @@
 $('#createaccount')
     .mouseenter(function () {
-        $(this).find("span").text("Create account")
+        $(this).find("span").text("Crie uma conta")
     })
     .mouseleave(function () {
-        $(this).find("span").text("Don't have an account?")
+        $(this).find("span").text("Não tem uma conta?")
     });

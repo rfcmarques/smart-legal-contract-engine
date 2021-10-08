@@ -16,11 +16,13 @@ router.post('/', function (request, response) {
         'firstName': request.body.firstName,
         'lastName': request.body.lastName
     }
-    model.create(data, function(){
-        setTimeout(()=>{
-            response.redirect('/login')
-        }, 3500);  
-    });
+    if (request.body.password == request.body.repeatPassword) {
+        model.create(data, function(){
+            setTimeout(()=>{
+                response.redirect('/login')
+            }, 3500);  
+        });
+    }
 });
 
 module.exports = router;
