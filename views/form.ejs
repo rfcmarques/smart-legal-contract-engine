@@ -62,16 +62,16 @@
                                                 aria-labelledby="headingOne" data-bs-parent="#accordion">
                                                 <div class="accordion-body">
                                                     <div class="form-group">
-                                                        <label for="client">Name:</label>
+                                                        <label for="client">Nome:</label>
                                                         <input type="text" class="form-control" id="client" name="client"
-                                                            placeholder="Name" onchange='onChangeInput(this.id);'
+                                                            placeholder="Nome" onchange='onChangeInput(this.id);'
                                                             onkeyup="this.onchange();" onpaste="this.onchange();"
                                                             oninput="this.onchange();" value="<%= json.client %>" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="clientRep">Representative:</label>
+                                                        <label for="clientRep">Nome do representante:</label>
                                                         <input type="text" class="form-control" id="clientRep"
-                                                            name="clientRep" placeholder="Representative's name"
+                                                            name="clientRep" placeholder="Nome do representante"
                                                             onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
                                                             onpaste="this.onchange();" oninput="this.onchange();"
                                                             value="<%= json.clientRep %>" required>
@@ -85,9 +85,9 @@
                                                             value="<%= json.clientNIF %>" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="clientAddress">Client's Address:</label>
+                                                        <label for="clientAddress">Morada do cliente:</label>
                                                         <input type="text" class="form-control" id="clientAddress"
-                                                            name="clientAddress" placeholder="Address"
+                                                            name="clientAddress" placeholder="Morada"
                                                             onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
                                                             onpaste="this.onchange();" oninput="this.onchange();"
                                                             value="<%= json.clientAddress %>" required>
@@ -108,17 +108,17 @@
                                                 aria-labelledby="headingTwo" data-bs-parent="#accordion">
                                                 <div class="accordion-body">
                                                     <div class="form-group">
-                                                        <label for="provider">Name:</label>
+                                                        <label for="provider">Nome:</label>
                                                         <input type="text" class="form-control" id="provider"
-                                                            name="provider" placeholder="Name"
+                                                            name="provider" placeholder="Nome"
                                                             onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
                                                             onpaste="this.onchange();" oninput="this.onchange();"
                                                             value="<%= json.provider %>" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="providerRep">Representative:</label>
+                                                        <label for="providerRep">Nome do representante:</label>
                                                         <input type="text" class="form-control" id="providerRep"
-                                                            name="providerRep" placeholder="Representative's name"
+                                                            name="providerRep" placeholder="Nome do representante"
                                                             onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
                                                             onpaste="this.onchange();" oninput="this.onchange();"
                                                             value="<%= json.providerRep %>" required>
@@ -132,9 +132,9 @@
                                                             value="<%= json.providerNIF %>" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="providerAddress">Provider's Address:</label>
+                                                        <label for="providerAddress">Morada do fornecedor:</label>
                                                         <input type="text" class="form-control" id="providerAddress"
-                                                            name="providerAddress" placeholder="Address"
+                                                            name="providerAddress" placeholder="Morada"
                                                             onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
                                                             onpaste="this.onchange();" oninput="this.onchange();"
                                                             value="<%= json.providerAddress %>" required>
@@ -156,7 +156,7 @@
                                                 <div class="accordion-body">
                                                     <div class="form-row">
                                                         <div class="col-md-3 mb-3">
-                                                            <label for="serviceCost">Service cost:</label>
+                                                            <label for="serviceCost">Custo do serviço:</label>
                                                             <input type="number" class="form-control" name="serviceCost"
                                                                 id="serviceCost" onchange='onChangeAmount(this.id);'
                                                                 onkeyup="this.onchange();" onpaste="this.onchange();"
@@ -164,7 +164,7 @@
                                                                 value="<%= json.serviceCost.split(" ")[0] %>" required>
                                                         </div>
                                                         <div class="col-md-3 mb-3">
-                                                            <label for="serviceCostCurrency">Currency:</label>
+                                                            <label for="serviceCostCurrency">Moeda:</label>
                                                             <select class="form-select" name="serviceCostCurrency"
                                                                 id="currency">
                                                                 <option value="EUR">€</option>
@@ -173,7 +173,7 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6 mb-3">
-                                                            <label for="inicialDate">Initial date:</label>
+                                                            <label for="inicialDate">Data de início:</label>
                                                             <input type="date" class="form-control" name="inicialDate"
                                                                 id="inicialDate" onchange='onChangeDate(this.id);'
                                                                 onkeyup="this.onchange();" onpaste="this.onchange();"
@@ -183,7 +183,7 @@
                                                     </div>
                                                     <div class="form-row">
                                                         <div class="col-md-6 mb-3">
-                                                            <label for="contractDuration">Duration amount:</label>
+                                                            <label for="contractDuration">Tempo de duração:</label>
                                                             <input type="number" class="form-control"
                                                                 name="contractDuration" id="contractDuration"
                                                                 onchange='onChangeDuration(this.id);'
@@ -192,10 +192,10 @@
                                                                 value="<%= json.contractDuration.split(" ")[0] %>" required>
                                                         </div>
                                                         <div class="col-md-6 mb-3">
-                                                            <label for="contractDurationUnit">Duration unit:</label>
+                                                            <label for="contractDurationUnit">Unidade de duração:</label>
                                                             <select class="form-select" name="contractDurationUnit"
                                                                 id="contractDurationUnit">
-                                                                <option disabled>Pick a unit</option>
+                                                                <option disabled>Selecione uma unidade</option>
                                                                 <option value="years">Anos</option>
                                                                 <option value="quarters">Trimestres</option>
                                                                 <option value="months">Meses</option>
@@ -346,16 +346,16 @@
                                                 aria-labelledby="headingOne" data-bs-parent="#accordion">
                                                 <div class="accordion-body">
                                                     <div class="form-group">
-                                                        <label for="client">Name:</label>
+                                                        <label for="client">Nome:</label>
                                                         <input type="text" class="form-control" id="client" name="client"
-                                                            placeholder="Name" onchange='onChangeInput(this.id);'
+                                                            placeholder="Nome" onchange='onChangeInput(this.id);'
                                                             onkeyup="this.onchange();" onpaste="this.onchange();"
                                                             oninput="this.onchange();" value="<%= json.client %>" disabled>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="clientRep">Representative:</label>
+                                                        <label for="clientRep">Nome do representante:</label>
                                                         <input type="text" class="form-control" id="clientRep"
-                                                            name="clientRep" placeholder="Representative's name"
+                                                            name="clientRep" placeholder="Nome do representante"
                                                             onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
                                                             onpaste="this.onchange();" oninput="this.onchange();"
                                                             value="<%= json.clientRep %>" disabled>
@@ -369,9 +369,9 @@
                                                             value="<%= json.clientNIF %>" disabled>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="clientAddress">Client's Address:</label>
+                                                        <label for="clientAddress">Morada do cliente:</label>
                                                         <input type="text" class="form-control" id="clientAddress"
-                                                            name="clientAddress" placeholder="Address"
+                                                            name="clientAddress" placeholder="Morada"
                                                             onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
                                                             onpaste="this.onchange();" oninput="this.onchange();"
                                                             value="<%= json.clientAddress %>" disabled>
@@ -392,17 +392,17 @@
                                                 aria-labelledby="headingTwo" data-bs-parent="#accordion">
                                                 <div class="accordion-body">
                                                     <div class="form-group">
-                                                        <label for="provider">Name:</label>
+                                                        <label for="provider">Nome:</label>
                                                         <input type="text" class="form-control" id="provider"
-                                                            name="provider" placeholder="Name"
+                                                            name="provider" placeholder="Nome"
                                                             onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
                                                             onpaste="this.onchange();" oninput="this.onchange();"
                                                             value="<%= json.provider %>" disabled>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="providerRep">Representative:</label>
+                                                        <label for="providerRep">Nome do representante:</label>
                                                         <input type="text" class="form-control" id="providerRep"
-                                                            name="providerRep" placeholder="Representative's name"
+                                                            name="providerRep" placeholder="Nome do representante"
                                                             onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
                                                             onpaste="this.onchange();" oninput="this.onchange();"
                                                             value="<%= json.providerRep %>" disabled>
@@ -416,9 +416,9 @@
                                                             value="<%= json.providerNIF %>" disabled>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="providerAddress">Provider's Address:</label>
+                                                        <label for="providerAddress">Morada do fornecedor:</label>
                                                         <input type="text" class="form-control" id="providerAddress"
-                                                            name="providerAddress" placeholder="Address"
+                                                            name="providerAddress" placeholder="Morada"
                                                             onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
                                                             onpaste="this.onchange();" oninput="this.onchange();"
                                                             value="<%= json.providerAddress %>" disabled>
@@ -440,7 +440,7 @@
                                                 <div class="accordion-body">
                                                     <div class="form-row">
                                                         <div class="col-md-3 mb-3">
-                                                            <label for="serviceCost">Service cost:</label>
+                                                            <label for="serviceCost">Custo do serviço:</label>
                                                             <input type="number" class="form-control" name="serviceCost"
                                                                 id="serviceCost" onchange='onChangeAmount(this.id);'
                                                                 onkeyup="this.onchange();" onpaste="this.onchange();"
@@ -448,7 +448,7 @@
                                                                 value="<%= json.serviceCost.split(" ")[0] %>" disabled>
                                                         </div>
                                                         <div class="col-md-3 mb-3">
-                                                            <label for="serviceCostCurrency">Currency:</label>
+                                                            <label for="serviceCostCurrency">Moeda:</label>
                                                             <select class="form-select" name="serviceCostCurrency"
                                                                 id="currency" disabled>
                                                                 <option value="EUR">€</option>
@@ -457,7 +457,7 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6 mb-3">
-                                                            <label for="inicialDate">Initial date:</label>
+                                                            <label for="inicialDate">Data de início:</label>
                                                             <input type="date" class="form-control" name="inicialDate"
                                                                 id="inicialDate" onchange='onChangeDate(this.id);'
                                                                 onkeyup="this.onchange();" onpaste="this.onchange();"
@@ -467,7 +467,7 @@
                                                     </div>
                                                     <div class="form-row">
                                                         <div class="col-md-6 mb-3">
-                                                            <label for="contractDuration">Duration amount:</label>
+                                                            <label for="contractDuration">Tempo de duração:</label>
                                                             <input type="number" class="form-control"
                                                                 name="contractDuration" id="contractDuration"
                                                                 onchange='onChangeDuration(this.id);'
@@ -476,10 +476,10 @@
                                                                 value="<%= json.contractDuration.split(" ")[0] %>" disabled>
                                                         </div>
                                                         <div class="col-md-6 mb-3">
-                                                            <label for="contractDurationUnit">Duration unit:</label>
+                                                            <label for="contractDurationUnit">Unidade de duração:</label>
                                                             <select class="form-select" name="contractDurationUnit"
                                                                 id="contractDurationUnit" disabled>
-                                                                <option disabled>Pick a unit</option>
+                                                                <option disabled>Selecione uma unidade</option>
                                                                 <option value="years">Anos</option>
                                                                 <option value="quartes">Trimestres</option>
                                                                 <option value="months">Meses</option>
@@ -835,16 +835,16 @@
                                             aria-labelledby="headingOne" data-bs-parent="#accordion">
                                             <div class="accordion-body">
                                                 <div class="form-group">
-                                                    <label for="client">Name:</label>
+                                                    <label for="client">Nome:</label>
                                                     <input type="text" class="form-control" id="client" name="client"
-                                                        placeholder="Name" onchange='onChangeInput(this.id);'
+                                                        placeholder="Nome" onchange='onChangeInput(this.id);'
                                                         onkeyup="this.onchange();" onpaste="this.onchange();"
                                                         oninput="this.onchange();" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="clientRep">Representative:</label>
+                                                    <label for="clientRep">Nome do representante:</label>
                                                     <input type="text" class="form-control" id="clientRep"
-                                                        name="clientRep" placeholder="Representative's name"
+                                                        name="clientRep" placeholder="Nome do representante"
                                                         onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
                                                         onpaste="this.onchange();" oninput="this.onchange();" required>
                                                 </div>
@@ -856,9 +856,9 @@
                                                         onpaste="this.onchange();" oninput="this.onchange();" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="clientAddress">Client's Address:</label>
+                                                    <label for="clientAddress">Morada do cliente:</label>
                                                     <input type="text" class="form-control" id="clientAddress"
-                                                        name="clientAddress" placeholder="Address"
+                                                        name="clientAddress" placeholder="Morada"
                                                         onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
                                                         onpaste="this.onchange();" oninput="this.onchange();" required>
                                                 </div>
@@ -878,16 +878,16 @@
                                             aria-labelledby="headingTwo" data-bs-parent="#accordion">
                                             <div class="accordion-body">
                                                 <div class="form-group">
-                                                    <label for="provider">Name:</label>
+                                                    <label for="provider">Nome:</label>
                                                     <input type="text" class="form-control" id="provider"
-                                                        name="provider" placeholder="Name"
+                                                        name="provider" placeholder="Nome"
                                                         onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
                                                         onpaste="this.onchange();" oninput="this.onchange();" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="providerRep">Representative:</label>
+                                                    <label for="providerRep">Nome do representante:</label>
                                                     <input type="text" class="form-control" id="providerRep"
-                                                        name="providerRep" placeholder="Representative's name"
+                                                        name="providerRep" placeholder="Nome do representante"
                                                         onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
                                                         onpaste="this.onchange();" oninput="this.onchange();" required>
                                                 </div>
@@ -899,9 +899,9 @@
                                                         onpaste="this.onchange();" oninput="this.onchange();" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="providerAddress">Provider's Address:</label>
+                                                    <label for="providerAddress">Morada do fornecedor:</label>
                                                     <input type="text" class="form-control" id="providerAddress"
-                                                        name="providerAddress" placeholder="Address"
+                                                        name="providerAddress" placeholder="Morada"
                                                         onchange='onChangeInput(this.id);' onkeyup="this.onchange();"
                                                         onpaste="this.onchange();" oninput="this.onchange();" required>
                                                 </div>
@@ -922,14 +922,14 @@
                                             <div class="accordion-body">
                                                 <div class="form-row">
                                                     <div class="col-md-3 mb-3">
-                                                        <label for="serviceCost">Service cost:</label>
+                                                        <label for="serviceCost">Custo do serviço:</label>
                                                         <input type="number" class="form-control" name="serviceCost"
                                                             id="serviceCost" onchange='onChangeAmount(this.id);'
                                                             onkeyup="this.onchange();" onpaste="this.onchange();"
                                                             oninput="this.onchange();" required>
                                                     </div>
                                                     <div class="col-md-3 mb-3">
-                                                        <label for="serviceCostCurrency">Currency:</label>
+                                                        <label for="serviceCostCurrency">Moeda:</label>
                                                         <select class="custom-select" name="serviceCostCurrency"
                                                             id="currency">
                                                             <option value="EUR">€</option>
@@ -938,7 +938,7 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6 mb-3">
-                                                        <label for="inicialDate">Initial date:</label>
+                                                        <label for="inicialDate">Data de início:</label>
                                                         <input type="date" class="form-control" name="inicialDate"
                                                             id="inicialDate" onchange='onChangeDate(this.id);'
                                                             onkeyup="this.onchange();" onpaste="this.onchange();"
@@ -947,7 +947,7 @@
                                                 </div>
                                                 <div class="form-row">
                                                     <div class="col-md-6 mb-3">
-                                                        <label for="contractDuration">Duration amount:</label>
+                                                        <label for="contractDuration">Tempo de duração:</label>
                                                         <input type="number" class="form-control"
                                                             name="contractDuration" id="contractDuration"
                                                             onchange='onChangeDuration(this.id);'
@@ -955,10 +955,10 @@
                                                             onpaste="this.onchange();" required>
                                                     </div>
                                                     <div class="col-md-6 mb-3">
-                                                        <label for="contractDurationUnit">Duration unit:</label>
+                                                        <label for="contractDurationUnit">Unidade de duração:</label>
                                                         <select class="form-control" name="contractDurationUnit"
                                                             id="contractDurationUnit">
-                                                            <option disabled selected>Pick a unit</option>
+                                                            <option disabled selected>Selecione uma unidade</option>
                                                             <option value="years">Anos</option>
                                                             <option value="quarters">Trimestres</option>
                                                             <option value="months">Meses</option>

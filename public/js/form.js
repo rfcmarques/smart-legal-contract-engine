@@ -120,7 +120,7 @@ function setIntervals(elem) {
  */
 
 $('input[type=text]').each(function () {
-    var textrgx = new RegExp('[^A-Za-z ,0-9]+');
+    var textrgx = new RegExp('[^A-Za-zÀ-ȕ0-9(),-_., ]+');
 
     $(this).on('keyup', function () {
         if ($(this).val()) {
@@ -150,6 +150,27 @@ $('input[type=number]').each(function () {
             $(this).removeClass("is-invalid");
         }
     })
+})
+
+$('input[type=number]').each(function () {
+    $(this).on('keypress', function (evt) {
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
+    })
+})
+
+$('form').on('focus', 'input[type=number]', function (e) {
+    $(this).on('wheel', function (e) {
+        e.preventDefault();
+    })
+})
+
+$('form').on('keydown', 'input[type=number]', function (e){
+    if (e.which == 38 || e.which == 40) {
+        e.preventDefault();
+    }
 })
 
 /*

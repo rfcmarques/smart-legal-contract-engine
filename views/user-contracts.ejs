@@ -55,7 +55,7 @@
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-lg-4 col-sm-6 dashboard">
+              <div class="col-lg-4 col-sm-6 dashboard" onclick="stateType('Terminado')">
                 <div class="card shadow">
                   <div class="card-body rounded-3 shadow btn-success">
                     <div class="row">
@@ -70,7 +70,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-sm-6 dashboard">
+              <div class="col-lg-4 col-sm-6 dashboard" onclick="stateType('Em curso')">
                 <div class="card-box shadow border">
                   <div class="card-body rounded-3 shadow btn-primary">
                     <div class="row">
@@ -85,7 +85,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-sm-6 dashboard">
+              <div class="col-lg-4 col-sm-6 dashboard" onclick="stateType('Por assinar')">
                 <div class="card shadow">
                   <div class="card-body rounded-3 shadow btn-warning">
                     <div class="row">
@@ -100,7 +100,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-sm-6 dashboard">
+              <div class="col-lg-4 col-sm-6 dashboard" onclick="stateType('Obrigação emitida')">
                 <div class="card shadow">
                   <div class="card-body rounded-3 shadow btn-info">
                     <div class="row">
@@ -138,7 +138,16 @@
 
         <div class="card shadow">
           <div class="card-header">
-            <h2 class="card-title">Contratos</h2>
+            <div class="row">
+              <div class="col-6">
+                <h2 class="card-title">Contratos</h2>
+              </div>
+              <div class="col-6" style="text-align: right;">
+                <button type="button" id="refreshtable" class="btn btn-light">
+                  <i class="fas fa-sync fa-lg"></i>
+                </button>
+              </div>
+            </div>
           </div>
           <div class="card-body rounded-3 shadow">
             <div class="table-responsive">
@@ -155,7 +164,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% counterid = 0 %> 
+                  <% counterid = 0 %>
                   <% for( let i = 0; i < contract.length; i++ ) {%>
                   <% if (contract[i].creator == user.idUser) { %>
                   <% let date = contract[i].creation_date %>
@@ -175,7 +184,8 @@
                     <% } else if (contract[i].currentstate == 14) { %>
                     <td><span class="badge badge-danger">Terminado</span></td>
                     <% } %>
-                    <td><a class="btn-sm btn-danger" href="/download/pdf/<%= contract[i].hash %>.pdf"><i class="fas fa-file-download"></i></a></td>
+                    <td><a class="btn-sm btn-danger" href="/download/pdf/<%= contract[i].hash %>.pdf"><i
+                          class="fas fa-file-download"></i></a></td>
                     <td><a class="btn-sm btn-success" href="/user/<%= contract[i].idContract %>"><i
                           class="fas fa-edit"></i></a></td>
                   </tr>
@@ -191,10 +201,8 @@
     </div>
   </div>
 
+  <script src="/public/js/user-contracts.js"></script>
   <script>
-    $(document).ready(function () {
-      $('#contracts').DataTable();
-    });
   </script>
 </body>
 
